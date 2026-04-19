@@ -1,3 +1,11 @@
+/**
+ * CHANGELOG
+ * Version: 2.0.0
+ * Date: 2026-04-20
+ * Description: Migrasi arsitektur dari Database Session ke JWT Session.
+ * Memindahkan logika auto-promote ke dalam callback JWT untuk efisiensi koneksi Prisma.
+ */
+
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
@@ -10,17 +18,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       try {
         return await prisma.session.delete({ where: { sessionToken } });
       } catch (e: any) {
-        // Handle "Record to delete does not exist." gracefully (P2025 code)
         if (e.code === "P2025") return null;
         throw e;
       }
     },
   } as any,
-  session: { strategy: "database" },
+  session: { strategy: "jwt" }, // Perubahan arsitektur ke JWT
   trustHost: true,
   secret: process.env.AUTH_SECRET || "sahal-arbani-livery-secret-key-that-is-at-least-32-chars",
   ...authConfig,
-  // 👇 Secure cross-origin cookies for iframe support
   useSecureCookies: true,
   cookies: {
     sessionToken: {
@@ -50,24 +56,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     ...authConfig.callbacks,
-    async session({ session, user }: any) {
-      if (session.user && user) {
-        session.user.id = user.id;
+    // Callback JWT hanya dieksekusi saat pembuatan/pembaruan token (Node.js layer)
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role || "user";
         
-        // AUTO-PROMOTE: Cek dari environment variable ADMIN_EMAILS
         const adminEmails = process.env.ADMIN_EMAILS?.split(",").map(e => e.trim()) || [];
         
-        if (user.email && adminEmails.includes(user.email) && user.role !== "admin") {
+        if (user.email && adminEmails.includes(user.email) && token.role !== "admin") {
           await prisma.user.update({
             where: { id: user.id },
             data: { role: "admin" }
           });
-          user.role = "admin";
+          token.role = "admin";
         }
-
-        session.user.role = user.role;
       }
-      return session;
+      return token;
     },
   },
 });
