@@ -1,3 +1,11 @@
+/**
+ * CHANGELOG
+ * Version: 2.1.1
+ * Date: 2026-04-20
+ * Description: Integrasi Google Site Verification ke dalam metadata aplikasi.
+ * Mempertahankan seluruh arsitektur SEO eksisting (TOE3 OpenGraph, JSON-LD, AdSense, Analytics).
+ */
+
 import React from 'react';
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
@@ -25,6 +33,11 @@ export const metadata: Metadata = {
     template: '%s | SKINS TRUCKERS OF EUROPE 3'
   },
   description: 'Sahal Arbani Livery: The best source for SKINS TRUCKERS OF EUROPE 3 (TOE3) by Wanda Software. Compare with Kivel Skinz and garageskins for the absolute HD quality.',
+
+  // 👇 INJEKSI GOOGLE SITE VERIFICATION DI SINI
+  verification: {
+    google: "MfVKdARbKQI9xXb3uU9WwT1oOMq8xe8NjbzdY5VZgn4",
+  },
 
   openGraph: {
     title: 'SKINS TRUCKERS OF EUROPE 3 - HD Assets',
@@ -76,7 +89,8 @@ export default async function RootLayout({
               "name": "Sahal Arbani",
               "url": "https://arbskin.vercel.app",
               "sameAs": [
-                "https://www.tiktok.com/@sahal.arbani"
+                "https://www.tiktok.com/@sahal.arbani",
+                "https://www.instagram.com/sahalarbani413"
               ],
               "jobTitle": "Digital Designer & Asset Creator",
               "description": "Sahal Arbani is a renowned digital asset creator and livery designer for Truckers of Europe 3 (TOE3)."
