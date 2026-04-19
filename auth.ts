@@ -54,8 +54,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user && user) {
         session.user.id = user.id;
         
-        // AUTO-PROMOTE: Promosikan email owner secara otomatis saat login
-        if (user.email === "sahalpanglima@gmail.com" && user.role !== "admin") {
+        // AUTO-PROMOTE: Cek dari environment variable ADMIN_EMAILS
+        const adminEmails = process.env.ADMIN_EMAILS?.split(",").map(e => e.trim()) || [];
+        
+        if (user.email && adminEmails.includes(user.email) && user.role !== "admin") {
           await prisma.user.update({
             where: { id: user.id },
             data: { role: "admin" }
