@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://arbskin.vercel.app';
+  const baseUrl = 'https:sahalarbani.my.id';
 
   const skins = await prisma.skin.findMany({
     select: { id: true, updatedAt: true },
