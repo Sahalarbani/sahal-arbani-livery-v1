@@ -1,3 +1,10 @@
+/**
+ * CHANGELOG
+ * Version: 2.2.0
+ * Date: 2026-04-25
+ * Description: Menambahkan isAdsActive dan slotDownload ke parameter upsert database.
+ */
+
 "use server";
 
 import { prisma } from "@/lib/prisma";
@@ -24,9 +31,11 @@ export async function getAdSettings() {
 
 export async function updateAdSettings(data: {
   publisherId: string;
+  isAdsActive: boolean;
   slotHome: string;
   slotDetail: string;
   slotBlog: string;
+  slotDownload: string;
 }) {
   try {
     await prisma.adSetting.upsert({
@@ -35,10 +44,8 @@ export async function updateAdSettings(data: {
       create: { ...data, id: "global-ads" }
     });
 
-    revalidatePath("/dashboard/ads");
-    revalidatePath("/");
-    revalidatePath("/blog");
-    revalidatePath("/skin", "layout");
+    // Revalidasi semua cache agar kill-switch instan teraplikasi di seluruh halaman
+    revalidatePath("/", "layout");
     
     return { success: true };
   } catch (error) {

@@ -94,13 +94,18 @@ model Comment {
   skin      Skin     @relation(fields: [skinId], references: [id], onDelete: Cascade)
 }
 
+// Changelog: v2.2.0 - Menambahkan Master Kill-Switch dan Slot Download pada AdSetting
+// Tanggal: 25 April 2026
+
 model AdSetting {
-  id          String   @id @default("global-ads")
-  publisherId String   @default("ca-pub-XXXXXXXXXXXXX")
-  slotHome    String   @default("1111111111")
-  slotDetail  String   @default("2222222222")
-  slotBlog    String   @default("3333333333")
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default("global-ads")
+  publisherId  String   @default("ca-pub-XXXXXXXXXXXXX")
+  isAdsActive  Boolean  @default(true)
+  slotHome     String   @default("1111111111")
+  slotDetail   String   @default("2222222222")
+  slotBlog     String   @default("3333333333")
+  slotDownload String   @default("4444444444")
+  updatedAt    DateTime @updatedAt
 }
 
 model ActivityLog {

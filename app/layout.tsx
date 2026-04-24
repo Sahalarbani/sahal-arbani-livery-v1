@@ -66,15 +66,15 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
-        {adSettings?.publisherId && (
-          <Script
-            id="adsense"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adSettings.publisherId}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
+                {adSettings?.isAdsActive && adSettings?.publisherId && (
+                  <Script
+                    id="adsense"
+                    async
+                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adSettings.publisherId}`}
+                    crossOrigin="anonymous"
+                    strategy="afterInteractive"
+                  />
+                )}
         
         <Script
           id="json-ld-person"
