@@ -7,10 +7,9 @@
  */
 
 import { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://sahalarbani.my.id';
-
   return {
     rules: [
       {
@@ -24,6 +23,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/dashboard/']
       }
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

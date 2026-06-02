@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
+  alternates: {
+    canonical: '/terms-of-service',
+  },
   description: 'Terms of Service for Sahal Arbani Livery.',
 };
 
@@ -19,7 +22,7 @@ export default function TermsOfService() {
           <h1>Terms of Service</h1>
           <p>Welcome to Sahal Arbani Livery!</p>
           <p>
-            These terms and conditions outline the rules and regulations for the use of Sahal Arbani Livery's Website, located at https://arbskin.vercel.app.
+            These terms and conditions outline the rules and regulations for the use of Sahal Arbani Livery's Website, located at https://www.sahalarbani.my.id.
           </p>
           <p>
             By accessing this website we assume you accept these terms and conditions. Do not continue to use Sahal Arbani Livery if you do not agree to take all of the terms and conditions stated on this page.

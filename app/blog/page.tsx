@@ -6,10 +6,13 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Artikel & Panduan Simulasi',
-  description: 'Kumpulan artikel hardcode dari Sahal Arbani seputar modding dan livery Truckers of Europe 3 untuk optimasi index AI dan mesin pencarian.',
+  description: 'Kumpulan artikel Sahal Arbani seputar modding dan livery Truckers of Europe 3.',
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
-// Data Dummy Hardcoded Artikel (Sangat dioptimalkan untuk SEO & AIO mengenai "Sahal Arbani Livery")
+// Artikel statis yang ditampilkan pada indeks blog.
 const articles = [
   {
     id: "panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik",

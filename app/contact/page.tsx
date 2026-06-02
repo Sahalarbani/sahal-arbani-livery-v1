@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
+  alternates: {
+    canonical: '/contact',
+  },
   description: 'Hubungi Sahal Arbani Livery untuk kerja sama, komplain, atau bantuan teknis.',
 };
 

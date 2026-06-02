@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
   description: 'Privacy Policy and data logging practices for Sahal Arbani Livery.',
 };
 
@@ -18,7 +21,7 @@ export default function PrivacyPolicy() {
         <div className="prose prose-invert prose-brand max-w-none">
           <h1>Privacy Policy for Sahal Arbani Livery</h1>
           <p>
-            At Sahal Arbani Livery, accessible from https://arbskin.vercel.app, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Sahal Arbani Livery and how we use it.
+            At Sahal Arbani Livery, accessible from https://www.sahalarbani.my.id, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Sahal Arbani Livery and how we use it.
           </p>
           <p>
             If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.

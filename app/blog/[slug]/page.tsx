@@ -5,10 +5,10 @@ import { AdSlot } from '@/components/AdSlot';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getAdSettings } from '@/lib/actions/ads';
+import { SITE_URL } from '@/lib/site';
 
 // -------------------------------------------------------------------------------- //
-// DUMMY DATABASE UNTUK STRUKTUR HARDCODED SEO/AIO                                  //
-// Data ini dipermak untuk relevansi tinggi dengan kueri 'Sahal Arbani Livery'      //
+// Artikel statis untuk panduan TOE3.                                                //
 // -------------------------------------------------------------------------------- //
 const articlesData: Record<string, any> = {
   "panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik": {
@@ -113,6 +113,9 @@ export async function generateMetadata(
   return {
     title: article.title,
     description: article.content.substring(0, 160).replace(/<[^>]*>?/gm, ''),
+    alternates: {
+      canonical: `/blog/${params.slug}`,
+    },
     openGraph: {
       type: 'article',
       authors: [article.author],
@@ -140,21 +143,21 @@ export default async function BlogPost(props: Props) {
     "author": {
       "@type": "Person",
       "name": article.author,
-      "url": "https://arbskin.vercel.app"
+      "url": SITE_URL
     },
     "publisher": {
       "@type": "Organization",
       "name": "Sahal Arbani Livery",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://arbskin.vercel.app/icon.png" /* Just fallback to an expected name if it existed */
+        "url": `${SITE_URL}/icon.png`
       }
     },
     "datePublished": article.date,
     "dateModified": article.date,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://arbskin.vercel.app/blog/${params.slug}`
+      "@id": `${SITE_URL}/blog/${params.slug}`
     }
   };
 
