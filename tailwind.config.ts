@@ -10,12 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          accent: "#E07A5F", // Terracotta
-          sage: "#8F9779", // Sage Green
-          dark: "#141414", // Charcoal
-          onyx: "#1F1F1F", // Onyx
-          paper: "#F5F5F4" 
+          accent: "#FFB86C", // Liquid amber
+          cyan: "#72E6FF", // iOS glass cyan
+          sage: "#A4D6A7", // Soft sage
+          dark: "#080A0D", // Graphite black
+          onyx: "#11151B", // Elevated graphite
+          glass: "#161B22",
+          paper: "#F7FAFF" 
         },
+      },
+      boxShadow: {
+        glass: "0 24px 80px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
+        halo: "0 0 0 1px rgba(255,255,255,0.08), 0 20px 70px rgba(114,230,255,0.12)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
