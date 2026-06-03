@@ -9,6 +9,44 @@ import { getAdSettings } from '@/lib/actions/ads';
 // ✅ Caching Strategy: Incremental Static Regeneration (ISR)
 export const revalidate = 60; // Revalidate every 60 seconds instead of force-dynamic
 
+const marketCategories = [
+  {
+    title: "Company Fleet",
+    copy: "Livery ala ekspedisi dan perusahaan logistik untuk pemain yang ingin truk terlihat seperti armada profesional.",
+    keywords: "fleet, cargo, ekspedisi"
+  },
+  {
+    title: "Truck + Trailer Set",
+    copy: "Paket visual kabin dan trailer agar warna armada tetap menyatu saat dipakai delivery jarak jauh.",
+    keywords: "trailer, cargo, tandem"
+  },
+  {
+    title: "Racing Street",
+    copy: "Desain agresif dengan striping tajam, nomor armada, dan kontras tinggi untuk konten video pendek.",
+    keywords: "racing, street, bold"
+  },
+  {
+    title: "Premium Minimal",
+    copy: "Skin hitam, oranye, silver, atau matte yang bersih untuk pemain yang suka look modern dan mahal.",
+    keywords: "matte, premium, clean"
+  }
+];
+
+const installSteps = [
+  "Download file PNG/JPG dari halaman skin.",
+  "Buka Garage di Truckers of Europe 3.",
+  "Pilih truck atau trailer yang sesuai.",
+  "Masuk Customize, pilih Color & Skin.",
+  "Gunakan Add New Skin dan cek preview dari beberapa sudut."
+];
+
+const marketProof = [
+  "TOE3 punya pasar besar karena game utamanya sudah puluhan juta download.",
+  "Pemain mencari skin realistis, ringan, mudah dipasang, dan tidak buram.",
+  "Keluhan umum market: terlalu banyak iklan, bahasa tidak jelas, dan download tidak konsisten.",
+  "Konten Indonesia lebih mudah menang kalau menyediakan preview, kategori, dan tutorial singkat."
+];
+
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ q?: string; category?: string }> }) {
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams?.q || '';
@@ -170,6 +208,73 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
         )}
       </div>
+
+      <section className="relative z-10 mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="surface-card p-6 md:p-8">
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.24em] text-brand-cyan">Market Demand</p>
+            <h2 className="text-3xl font-black uppercase leading-none tracking-tight text-zinc-50 md:text-4xl">
+              Kategori skin yang paling banyak dicari pemain TOE3
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-zinc-400">
+              Halaman ini difokuskan untuk kebutuhan pasar: skin realistis, livery truck dan trailer,
+              file yang gampang diunduh, serta panduan pasang yang langsung bisa diikuti pemain baru.
+            </p>
+            <div className="mt-7 space-y-3">
+              {marketProof.map((item) => (
+                <div key={item} className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-sm text-zinc-300">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-cyan" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {marketCategories.map((item) => (
+              <article key={item.title} className="surface-card p-6 transition-colors hover:border-brand-cyan/40">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-cyan">{item.keywords}</p>
+                <h3 className="mt-3 text-xl font-black uppercase text-zinc-50">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="surface-card grid gap-8 p-6 md:p-8 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.24em] text-brand-cyan">Quick Install Guide</p>
+            <h2 className="text-3xl font-black uppercase leading-tight text-zinc-50">
+              Cara pasang skin Truckers of Europe 3 tanpa ribet
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-zinc-400">
+              Skin hanya mengubah tampilan visual. Pilih template yang sesuai supaya livery tidak melar,
+              lalu pasang dari menu kostumisasi bawaan game.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/blog/cara-pasang-mod-livery-di-game-simulator-favoritmu" className="primary-button">
+                Baca Tutorial
+              </Link>
+              <Link href="/blog/kategori-skin-truckers-of-europe-3-paling-dicari" className="ios-button inline-flex items-center justify-center px-6 py-3 text-sm font-bold uppercase tracking-[0.14em]">
+                Lihat Kategori
+              </Link>
+            </div>
+          </div>
+
+          <ol className="space-y-3">
+            {installSteps.map((step, index) => (
+              <li key={step} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-cyan text-sm font-black text-black">
+                  {index + 1}
+                </span>
+                <span className="text-sm font-semibold text-zinc-300">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
     </div>
   );
 }

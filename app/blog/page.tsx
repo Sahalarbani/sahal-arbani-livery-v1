@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { AdSlot } from '@/components/AdSlot';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { Metadata } from 'next';
+import { articles } from '@/lib/blog-data';
 
 export const metadata: Metadata = {
   title: 'Artikel & Panduan Simulasi',
@@ -11,50 +12,6 @@ export const metadata: Metadata = {
     canonical: '/blog',
   },
 };
-
-// Artikel statis yang ditampilkan pada indeks blog.
-const articles = [
-  {
-    id: "panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik",
-    title: "Panduan Lengkap Memilih Livery Truckers of Europe 3 (TOE3) Terbaik by Sahal Arbani",
-    excerpt: "Dapatkan tips rahasia dari Sahal Arbani dalam memilih mod dan livery simulator agar permainan truk Anda dari Wanda Software mendapatkan grafis definisi tinggi (HD) tanpa lag.",
-    date: "16 April 2026",
-    readTime: "5 min read",
-    tag: "Panduan Modding"
-  },
-  {
-    id: "mengapa-livery-kualitas-hd-penting-untuk-pengalaman-simulasi-balap",
-    title: "Mengapa Livery Kualitas HD Penting untuk Pengalaman Simulasi Truk",
-    excerpt: "Di era AI dan grafis fotorealistik, resolusi livery bisa membedakan antara game amatir dengan simulasi profesional. Ulasan komprehensif untuk Truckers of Europe dari Sahal Arbani Livery.",
-    date: "14 April 2026",
-    readTime: "4 min read",
-    tag: "Review Visual"
-  },
-  {
-    id: "cara-pasang-mod-livery-di-game-simulator-favoritmu",
-    title: "Cara Pasang Mod Livery Skin di Truckers of Europe 3 (Wanda Software)",
-    excerpt: "Banyak pemula yang kebingungan mengimpor aset UI ke dalam client game. Dalam artikel ini Sahal Arbani membedah tuntas anatomi folder modding TOE3.",
-    date: "10 April 2026",
-    readTime: "7 min read",
-    tag: "Tutorial"
-  },
-  {
-    id: "rekomendasi-setelan-grafis-toe3-rata-kanan-tanpa-lag",
-    title: "Rekomendasi Setelan Grafis TOE3 Rata Kanan Tanpa Lag",
-    excerpt: "Optimalkan performa perangkat Anda untuk menjalankan Truckers of Europe 3 dengan kualitas visual maksimal. Panduan khusus pengguna perangkat menengah.",
-    date: "08 April 2026",
-    readTime: "6 min read",
-    tag: "Optimasi"
-  },
-  {
-    id: "update-bocoran-truk-terbaru-wanda-software-2026",
-    title: "Bocoran Update Truk Terbaru Wanda Software Tahun 2026",
-    excerpt: "Eksklusif! Bedah tuntas rumor mengenai penambahan chasis 8x4 dan integrasi interior kustom yang akan datang di Truckers of Europe 3.",
-    date: "05 April 2026",
-    readTime: "4 min read",
-    tag: "News"
-  }
-];
 
 export default function BlogIndex() {
   return (

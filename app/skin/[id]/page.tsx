@@ -10,38 +10,10 @@ import { CommentSection } from "@/components/CommentSection";
 import { AdSlot } from "@/components/AdSlot";
 import { getAdSettings } from "@/lib/actions/ads";
 import { SITE_URL } from "@/lib/site";
+import { recommendedArticles } from "@/lib/blog-data";
 
 // ✅ Caching Strategy: Incremental Static Regeneration (ISR)
 export const revalidate = 60;
-
-// Data Hardcoded Articles for Recommendation (Sync with blog page)
-const recommendedArticles = [
-  {
-    id: "panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik",
-    title: "Panduan Lengkap Memilih Livery Truckers of Europe 3 (TOE3) Terbaik",
-    category: "Panduan"
-  },
-  {
-    id: "mengapa-livery-kualitas-hd-penting-untuk-pengalaman-simulasi-balap",
-    title: "Mengapa Livery Kualitas HD Penting untuk Pengalaman Truk",
-    category: "Visual"
-  },
-  {
-    id: "cara-pasang-mod-livery-di-game-simulator-favoritmu",
-    title: "Cara Pasang Mod Livery Skin di Truckers of Europe 3",
-    category: "Tutorial"
-  },
-  {
-    id: "rekomendasi-setelan-grafis-toe3-rata-kanan-tanpa-lag",
-    title: "Rekomendasi Setelan Grafis TOE3 Rata Kanan Tanpa Lag",
-    category: "Optimasi"
-  },
-  {
-    id: "update-bocoran-truk-terbaru-wanda-software-2026",
-    title: "Bocoran Update Truk Terbaru Wanda Software Tahun 2026",
-    category: "Berita"
-  }
-];
 
 interface Props {
   params: Promise<{ id: string }>;
