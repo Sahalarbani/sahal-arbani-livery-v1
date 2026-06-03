@@ -26,7 +26,7 @@ export default function CookieConsent() {
   return (
     // FLOATING GLASS BAR
     <div className="fixed bottom-4 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-4xl z-[9999] animate-in slide-in-from-bottom-10 fade-in duration-500">
-      <div className="relative flex flex-col items-center justify-between gap-6 overflow-hidden rounded-2xl border border-zinc-200 bg-white/95 p-6 shadow-2xl backdrop-blur-2xl md:flex-row">
+      <div className="relative flex flex-col items-center justify-between gap-6 overflow-hidden rounded-2xl border border-white/10 bg-brand-onyx/95 p-6 shadow-2xl backdrop-blur-2xl md:flex-row">
         
         {/* Glow Accent */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
@@ -36,10 +36,10 @@ export default function CookieConsent() {
             <ShieldCheck size={24} />
           </div>
           <div>
-            <h3 className="mb-1 flex items-center gap-2 text-sm font-black uppercase tracking-widest text-zinc-950">
+            <h3 className="mb-1 flex items-center gap-2 text-sm font-black uppercase tracking-widest text-zinc-50">
               System Authorization Required
             </h3>
-            <p className="max-w-xl text-xs font-medium leading-relaxed text-zinc-600">
+            <p className="max-w-xl text-xs font-medium leading-relaxed text-zinc-400">
               This interface requires local storage access to maintain encrypted session tokens. 
               Declining may cause immediate session termination during asset deployment.
             </p>
@@ -49,7 +49,7 @@ export default function CookieConsent() {
         <div className="flex gap-4 w-full md:w-auto flex-shrink-0">
           <button 
             onClick={acceptCookies}
-            className="flex-grow rounded-full bg-zinc-950 px-8 py-3 text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all hover:scale-105 hover:bg-brand-cyan active:scale-95 md:flex-none"
+            className="flex-grow rounded-full bg-brand-cyan px-8 py-3 text-xs font-bold uppercase tracking-widest text-black shadow-lg transition-all hover:scale-105 hover:bg-brand-cyan active:scale-95 md:flex-none"
           >
             Authorize Access
           </button>

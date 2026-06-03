@@ -15,10 +15,10 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen pb-20 pt-28">
       <div className="max-w-3xl mx-auto px-6">
-        <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-950">
+        <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-50">
           <ArrowLeft size={16} /> Kembali ke Home
         </Link>
-        <div className="prose prose-zinc prose-brand max-w-none">
+        <div className="prose prose-invert prose-brand max-w-none">
           <h1>Privacy Policy for Sahal Arbani Livery</h1>
           <p>
             At Sahal Arbani Livery, accessible from https://www.sahalarbani.my.id, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Sahal Arbani Livery and how we use it.

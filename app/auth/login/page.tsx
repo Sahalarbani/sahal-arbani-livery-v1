@@ -5,23 +5,23 @@ import { LogIn, ShieldCheck } from "lucide-react";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-brand-paper px-4 font-sans">
+    <div className="flex min-h-screen items-center justify-center bg-black px-4 font-sans">
       <div className="max-w-md w-full">
         <div className="surface-card relative z-10 overflow-hidden rounded-[32px] p-8 md:p-10">
-          <div className="absolute left-0 top-0 h-[2px] w-full bg-gradient-to-r from-transparent via-zinc-950/20 to-transparent" />
+          <div className="absolute left-0 top-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-cyan/40 to-transparent" />
           
           <div className="text-center mb-10">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-950">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-brand-cyan">
               <ShieldCheck className="text-brand-accent" size={32} />
             </div>
-            <h1 className="mb-2 text-3xl font-black uppercase tracking-tight text-zinc-950">Gate <span className="text-brand-accent">Control</span></h1>
+            <h1 className="mb-2 text-3xl font-black uppercase tracking-tight text-zinc-50">Gate <span className="text-brand-accent">Control</span></h1>
             <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Authorized Access Only</p>
           </div>
 
           <div className="space-y-4">
             <button 
               onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-              className="flex h-14 w-full items-center justify-center gap-3 rounded-full bg-zinc-950 text-xs font-black uppercase tracking-widest text-white shadow-lg transition-all hover:bg-brand-cyan active:scale-[0.98]"
+              className="flex h-14 w-full items-center justify-center gap-3 rounded-full bg-brand-cyan text-xs font-black uppercase tracking-widest text-black shadow-lg transition-all hover:bg-brand-cyan active:scale-[0.98]"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path

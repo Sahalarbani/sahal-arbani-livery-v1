@@ -41,13 +41,13 @@ export default function ImageGalleryModal({ isOpen, onClose, onSelect }: ImageGa
 
   return (
     // OVERLAY: Lebih soft dengan blur
-    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-zinc-950/50 p-6 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 p-6 backdrop-blur-md animate-in fade-in duration-300">
       
       {/* MODAL CONTAINER: Super Rounded & Glass */}
-      <div className="relative flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-[32px] border border-zinc-200 bg-white shadow-2xl animate-in zoom-in-95 duration-300">
+      <div className="relative flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-[32px] border border-white/10 bg-brand-onyx shadow-2xl animate-in zoom-in-95 duration-300">
         
         {/* HEADER */}
-        <div className="flex items-center justify-between border-b border-zinc-200 bg-white px-8 py-6">
+        <div className="flex items-center justify-between border-b border-white/10 bg-brand-onyx px-8 py-6">
           <h3 className="text-brand-accent font-bold uppercase tracking-widest flex items-center gap-3 text-lg">
             <div className="p-2 rounded-full bg-brand-accent/10">
               <ImageIcon size={20} />
@@ -56,7 +56,7 @@ export default function ImageGalleryModal({ isOpen, onClose, onSelect }: ImageGa
           </h3>
           <button 
             onClick={onClose} 
-            className="rounded-full border border-zinc-200 bg-white p-2 text-zinc-500 transition-all duration-300 hover:rotate-90 hover:bg-red-50 hover:text-red-500"
+            className="rounded-full border border-white/10 bg-brand-onyx p-2 text-zinc-500 transition-all duration-300 hover:rotate-90 hover:bg-red-50 hover:text-red-500"
           >
             <X size={24} />
           </button>
@@ -80,7 +80,7 @@ export default function ImageGalleryModal({ isOpen, onClose, onSelect }: ImageGa
                     onSelect(img.secure_url);
                     onClose(); 
                   }}
-                  className="group relative aspect-video cursor-pointer overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 transition-all duration-300 hover:scale-[1.03] hover:border-brand-accent/50"
+                  className="group relative aspect-video cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-brand-onyx/10 transition-all duration-300 hover:scale-[1.03] hover:border-brand-accent/50"
                 >
                   <img 
                     src={getThumbnailUrl(img.secure_url)} 
@@ -89,7 +89,7 @@ export default function ImageGalleryModal({ isOpen, onClose, onSelect }: ImageGa
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                   />
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/50 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
                     <div className="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-300">
                        <Check className="text-brand-dark" size={20} strokeWidth={3} />
                     </div>
@@ -101,7 +101,7 @@ export default function ImageGalleryModal({ isOpen, onClose, onSelect }: ImageGa
         </div>
         
         {/* FOOTER HINT */}
-        <div className="border-t border-zinc-200 bg-zinc-50 px-8 py-4 text-center">
+        <div className="border-t border-white/10 bg-brand-onyx/5 px-8 py-4 text-center">
             <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">Select an asset to attach to matrix</span>
         </div>
       </div>

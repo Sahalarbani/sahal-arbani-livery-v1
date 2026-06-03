@@ -97,7 +97,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans font-medium antialiased bg-brand-paper text-zinc-950 min-h-screen flex flex-col">
+      <body className="font-sans font-medium antialiased bg-black text-zinc-50 min-h-screen flex flex-col">
         <Navbar user={session?.user as any} />
 
         <main className="flex-grow">

@@ -98,12 +98,12 @@ export default async function SkinPage({ params }: Props) {
   });
 
   return (
-    <div className="min-h-screen bg-transparent px-4 pb-12 pt-28 text-zinc-950 sm:px-6">
+    <div className="min-h-screen bg-transparent px-4 pb-12 pt-28 text-zinc-50 sm:px-6">
       <div className="max-w-5xl mx-auto">
         {/* Link Kembali ke Home */}
         <Link
           href="/"
-          className="group mb-8 inline-flex items-center rounded-full border border-zinc-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-500 shadow-sm transition-colors hover:text-zinc-950"
+          className="group mb-8 inline-flex items-center rounded-full border border-white/10 bg-brand-onyx px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-500 shadow-sm transition-colors hover:text-zinc-50"
         >
           <Home className="mr-2 group-hover:-translate-x-1 transition-transform" size={16} />
           Return to Hub
@@ -115,7 +115,7 @@ export default async function SkinPage({ params }: Props) {
           {/* Kolom Kiri: Gambar Skin */}
           <div className="space-y-6">
             <div className="glass-panel group relative aspect-video w-full overflow-hidden rounded-[28px] p-1">
-              <div className="relative h-full w-full overflow-hidden rounded-[23px] bg-zinc-100">
+              <div className="relative h-full w-full overflow-hidden rounded-[23px] bg-brand-onyx/10">
               {skin.image ? (
                 <ClientImage
                   src={skin.image}
@@ -125,7 +125,7 @@ export default async function SkinPage({ params }: Props) {
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-zinc-100 text-zinc-500">
+                <div className="w-full h-full flex items-center justify-center bg-brand-onyx/10 text-zinc-500">
                    <AlertTriangle size={36} className="opacity-50" />
                    <span className="ml-3 font-semibold uppercase tracking-widest text-xs">No Visual Source</span>
                 </div>
@@ -134,7 +134,7 @@ export default async function SkinPage({ params }: Props) {
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent opacity-60 pointer-events-none" />
 
               <div className="absolute top-4 right-4 z-10">
-                <span className="inline-flex items-center rounded-full border border-white/30 bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-950 shadow-sm backdrop-blur-xl">
+                <span className="inline-flex items-center rounded-full border border-white/30 bg-brand-onyx/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-50 shadow-sm backdrop-blur-xl">
                   <span className="mr-2 h-1.5 w-1.5 animate-pulse rounded-full bg-brand-cyan" />
                   {skin.category}
                 </span>
@@ -144,17 +144,17 @@ export default async function SkinPage({ params }: Props) {
 
             {/* Statistik / Metadata -> Simple Bento Mini Grid */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="hairline-panel rounded-[20px] p-4 text-center transition-colors hover:bg-zinc-50">
-                <div className="text-2xl font-black text-zinc-950">{skin.downloads}</div>
+              <div className="hairline-panel rounded-[20px] p-4 text-center transition-colors hover:bg-brand-onyx/5">
+                <div className="text-2xl font-black text-zinc-50">{skin.downloads}</div>
                 <div className="mt-1 text-[10px] uppercase tracking-widest text-zinc-500">Downloads</div>
               </div>
-              <div className="hairline-panel rounded-[20px] p-4 text-center transition-colors hover:bg-zinc-50">
+              <div className="hairline-panel rounded-[20px] p-4 text-center transition-colors hover:bg-brand-onyx/5">
                 <Calendar className="mx-auto mb-2 text-brand-cyan" size={18} />
-                <div className="mt-1 text-[11px] font-semibold text-zinc-600">{formattedDate}</div>
+                <div className="mt-1 text-[11px] font-semibold text-zinc-400">{formattedDate}</div>
               </div>
-              <div className="hairline-panel rounded-[20px] p-4 text-center transition-colors hover:bg-zinc-50">
+              <div className="hairline-panel rounded-[20px] p-4 text-center transition-colors hover:bg-brand-onyx/5">
                 <User className="mx-auto mb-2 text-brand-accent" size={18} />
-                <div className="mt-1 truncate px-1 text-[11px] font-semibold text-zinc-600">{skin.author}</div>
+                <div className="mt-1 truncate px-1 text-[11px] font-semibold text-zinc-400">{skin.author}</div>
               </div>
             </div>
           </div>
@@ -162,7 +162,7 @@ export default async function SkinPage({ params }: Props) {
           {/* Kolom Kanan: Detail & Action */}
           <div className="glass-panel flex h-full flex-col rounded-[28px] p-7 lg:p-9">
             <div>
-              <h1 className="mb-6 text-3xl font-black leading-tight tracking-tight text-zinc-950 md:text-5xl">
+              <h1 className="mb-6 text-3xl font-black leading-tight tracking-tight text-zinc-50 md:text-5xl">
                 {skin.title}
               </h1>
 
@@ -181,10 +181,10 @@ export default async function SkinPage({ params }: Props) {
               </div>
 
               <div className="max-w-none mb-10">
-                <h3 className="mb-4 border-b border-zinc-200 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-cyan">
+                <h3 className="mb-4 border-b border-white/10 pb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-cyan">
                   Technical Description
                 </h3>
-                <p className="whitespace-pre-wrap text-sm font-medium leading-relaxed text-zinc-600">
+                <p className="whitespace-pre-wrap text-sm font-medium leading-relaxed text-zinc-400">
                   {skin.description}
                 </p>
               </div>
@@ -197,7 +197,7 @@ export default async function SkinPage({ params }: Props) {
               />
             </div>
 
-            <div className="mt-auto border-t border-zinc-200 pt-8">
+            <div className="mt-auto border-t border-white/10 pt-8">
               <DownloadButton
                 skinId={skin.id}
                 downloadUrl={skin.downloadUrl}
@@ -208,11 +208,11 @@ export default async function SkinPage({ params }: Props) {
               <div className="hairline-panel mt-8 rounded-[20px] p-4">
                 <h4 className="mb-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Professional Insight & TOE3 Guides</h4>
                 <div className="flex flex-col gap-2">
-                  <Link href="/blog/panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik" className="group flex items-center justify-between text-xs text-brand-cyan transition-colors hover:text-zinc-950">
+                  <Link href="/blog/panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik" className="group flex items-center justify-between text-xs text-brand-cyan transition-colors hover:text-zinc-50">
                     <span>TOE3 Skin Selection Guide</span>
                     <ArrowLeft size={12} className="rotate-180 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <Link href="/blog/cara-pasang-mod-livery-di-game-simulator-favoritmu" className="group flex items-center justify-between text-xs text-brand-cyan transition-colors hover:text-zinc-950">
+                  <Link href="/blog/cara-pasang-mod-livery-di-game-simulator-favoritmu" className="group flex items-center justify-between text-xs text-brand-cyan transition-colors hover:text-zinc-50">
                     <span>How to install TOE3 Skins (Wanda)</span>
                     <ArrowLeft size={12} className="rotate-180 group-hover:translate-x-1 transition-transform" />
                   </Link>
@@ -223,7 +223,7 @@ export default async function SkinPage({ params }: Props) {
         </div>
 
         {/* Context section for visitors arriving from search engines. */}
-        <div className="mt-20 border-t border-zinc-200 pt-10 text-center">
+        <div className="mt-20 border-t border-white/10 pt-10 text-center">
             <h2 className="mb-4 text-xl font-bold uppercase tracking-[0.3em] text-zinc-500">SKINS TRUCKERS OF EUROPE 3</h2>
             <p className="mx-auto max-w-2xl text-xs leading-relaxed text-zinc-500">
                 Sahal Arbani Livery menyediakan skin Truckers of Europe 3 (TOE3) karya Sahal Arbani.
@@ -233,7 +233,7 @@ export default async function SkinPage({ params }: Props) {
 
         {/* Dynamic Recommendations - 5 Posts for SEO stickiness */}
         <div className="mt-20">
-          <h3 className="mb-8 border-l-4 border-brand-cyan pl-4 text-xl font-bold text-zinc-950">Exclusive Insights for Truckers</h3>
+          <h3 className="mb-8 border-l-4 border-brand-cyan pl-4 text-xl font-bold text-zinc-50">Exclusive Insights for Truckers</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {recommendedArticles.map((article) => (
               <Link
@@ -243,11 +243,11 @@ export default async function SkinPage({ params }: Props) {
               >
                 <div>
                   <span className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-brand-sage">{article.category}</span>
-                  <h4 className="line-clamp-2 text-sm font-bold leading-snug text-zinc-800 transition-colors group-hover:text-brand-cyan">
+                  <h4 className="line-clamp-2 text-sm font-bold leading-snug text-zinc-200 transition-colors group-hover:text-brand-cyan">
                     {article.title}
                   </h4>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-zinc-200 pt-3 font-mono text-[10px] uppercase text-zinc-500">
+                <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 font-mono text-[10px] uppercase text-zinc-500">
                   <span>Read Article</span>
                   <ArrowLeft size={12} className="rotate-180 group-hover:translate-x-1 transition-transform" />
                 </div>

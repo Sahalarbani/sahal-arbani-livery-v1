@@ -42,7 +42,7 @@ export function AdSlot({
   }, [isMounted, isReal]);
 
   return (
-    <div className={`relative my-6 flex min-h-[100px] w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed border-zinc-200 bg-white transition-all ${className}`}>
+    <div className={`relative my-6 flex min-h-[100px] w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed border-white/10 bg-brand-onyx transition-all ${className}`}>
       {isReal && isMounted ? (
         <ins className="adsbygoogle"
              style={{ display: "block", width: "100%", height: "100%", minHeight: "100px" }}
@@ -60,7 +60,7 @@ export function AdSlot({
               Sponsor / Advertisement
             </span>
             <p className="max-w-sm text-xs font-medium text-zinc-500">
-              Ruang iklan AdSense. Slot ID: <code className="rounded bg-zinc-100 px-1 font-mono text-zinc-700">{adSlotId}</code>
+              Ruang iklan AdSense. Slot ID: <code className="rounded bg-brand-onyx/10 px-1 font-mono text-zinc-300">{adSlotId}</code>
             </p>
           </div>
         </>

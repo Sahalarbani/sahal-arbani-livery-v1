@@ -63,13 +63,13 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
       <form onSubmit={handleSubmit} className="space-y-8">
         
         {/* Master Kill-Switch Module */}
-        <div className={`flex items-center justify-between rounded-3xl border p-6 transition-colors duration-300 md:p-8 ${isAdsActive ? 'border-zinc-200 bg-white' : 'border-red-500/20 bg-red-50'}`}>
+        <div className={`flex items-center justify-between rounded-3xl border p-6 transition-colors duration-300 md:p-8 ${isAdsActive ? 'border-white/10 bg-brand-onyx' : 'border-red-500/20 bg-red-50'}`}>
           <div>
-            <h3 className="mb-1 flex items-center gap-3 text-xl font-bold text-zinc-950">
+            <h3 className="mb-1 flex items-center gap-3 text-xl font-bold text-zinc-50">
               {isAdsActive ? <Power className="text-brand-accent" size={24} /> : <PowerOff className="text-red-500" size={24} />}
               Master Kill-Switch
             </h3>
-            <p className="text-sm text-zinc-600">
+            <p className="text-sm text-zinc-400">
               {isAdsActive ? "Ads are currently LIVE across the ecosystem." : "Ads are DISABLED. Script injection is halted."}
             </p>
           </div>
@@ -79,13 +79,13 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
             onClick={() => setIsAdsActive(!isAdsActive)}
             className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark ${isAdsActive ? 'bg-brand-accent' : 'bg-gray-600'}`}
           >
-            <span className={`inline-block h-6 w-6 transform rounded-full bg-white transition duration-300 ${isAdsActive ? 'translate-x-7' : 'translate-x-1'}`} />
+            <span className={`inline-block h-6 w-6 transform rounded-full bg-brand-onyx transition duration-300 ${isAdsActive ? 'translate-x-7' : 'translate-x-1'}`} />
           </button>
         </div>
 
         {/* Identity Module */}
-        <div className={`rounded-3xl border border-zinc-200 bg-white p-6 transition-opacity duration-300 md:p-10 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
-          <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-zinc-950">
+        <div className={`rounded-3xl border border-white/10 bg-brand-onyx p-6 transition-opacity duration-300 md:p-10 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
+          <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-zinc-50">
             <span className="w-8 h-8 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent text-sm">01</span>
             Publisher Identity
           </h3>
@@ -103,8 +103,8 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
         </div>
 
         {/* Slot Module */}
-        <div className={`rounded-3xl border border-zinc-200 bg-white p-6 transition-opacity duration-300 md:p-10 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
-          <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-zinc-950">
+        <div className={`rounded-3xl border border-white/10 bg-brand-onyx p-6 transition-opacity duration-300 md:p-10 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
+          <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-zinc-50">
             <span className="w-8 h-8 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent text-sm">02</span>
             Slot Configurations
           </h3>
@@ -168,7 +168,7 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="flex w-full items-center justify-center gap-3 rounded-full bg-zinc-950 px-10 py-4 text-sm font-black uppercase text-white shadow-lg transition-all hover:scale-[1.02] hover:bg-brand-cyan active:scale-95 disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-3 rounded-full bg-brand-cyan px-10 py-4 text-sm font-black uppercase text-black shadow-lg transition-all hover:scale-[1.02] hover:bg-brand-cyan active:scale-95 disabled:opacity-50"
         >
           {loading ? "Processing..." : "Deploy Ad Configuration"}
           <Save size={18} />

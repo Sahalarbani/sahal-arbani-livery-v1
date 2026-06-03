@@ -13,7 +13,7 @@ export default async function AdsDashboardPage() {
             <Megaphone className="text-brand-accent animate-pulse" size={20} />
             <span className="text-[10px] font-bold text-brand-accent uppercase tracking-[0.3em]">Monetization Module</span>
         </div>
-        <h1 className="mb-4 text-3xl font-black uppercase leading-none tracking-tighter text-zinc-950 md:text-5xl">
+        <h1 className="mb-4 text-3xl font-black uppercase leading-none tracking-tighter text-zinc-50 md:text-5xl">
           ADSENSE <span className="text-brand-accent">MANAGER</span>
         </h1>
         <p className="max-w-xl text-sm font-medium leading-relaxed text-zinc-500">

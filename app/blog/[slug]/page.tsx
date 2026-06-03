@@ -170,7 +170,7 @@ export default async function BlogPost(props: Props) {
       <div className="min-h-screen pb-20 pt-28">
         <div className="max-w-3xl mx-auto px-6">
           
-          <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-950">
+          <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-50">
             <ArrowLeft size={16} /> Kembali ke Indeks
           </Link>
 
@@ -180,14 +180,14 @@ export default async function BlogPost(props: Props) {
                 {article.tag}
               </span>
               
-              <h1 className="mb-6 text-3xl font-black leading-tight tracking-tight text-zinc-950 md:text-5xl">
+              <h1 className="mb-6 text-3xl font-black leading-tight tracking-tight text-zinc-50 md:text-5xl">
                 {article.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-4 border-y border-zinc-200 py-4 font-mono text-xs text-zinc-500">
+              <div className="flex flex-wrap items-center gap-4 border-y border-white/10 py-4 font-mono text-xs text-zinc-500">
                 <span className="flex items-center gap-2">
                   <span className="w-6 h-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent">S</span>
-                  By <strong className="text-zinc-950">{article.author}</strong>
+                  By <strong className="text-zinc-50">{article.author}</strong>
                 </span>
                 <span className="hidden md:inline">•</span>
                 <span className="flex items-center gap-1.5">
@@ -209,7 +209,7 @@ export default async function BlogPost(props: Props) {
 
             {/* Content (Prose Wrapper using raw HTML for hardcoded strings) */}
             <div 
-              className="prose prose-zinc prose-brand prose-headings:font-display prose-headings:font-bold prose-a:text-brand-cyan hover:prose-a:text-zinc-950 max-w-none"
+              className="prose prose-invert prose-brand prose-headings:font-display prose-headings:font-bold prose-a:text-brand-cyan hover:prose-a:text-zinc-50 max-w-none"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
 

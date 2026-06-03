@@ -61,8 +61,8 @@ export default function BlogIndex() {
     <div className="min-h-screen pb-20 pt-28">
       <div className="max-w-4xl mx-auto px-6">
         <header className="mb-12">
-          <h1 className="mb-4 text-4xl font-black tracking-tight text-zinc-950 md:text-5xl">Kajian & <span className="text-brand-accent">Insight</span></h1>
-          <p className="max-w-2xl text-lg text-zinc-600">
+          <h1 className="mb-4 text-4xl font-black tracking-tight text-zinc-50 md:text-5xl">Kajian & <span className="text-brand-accent">Insight</span></h1>
+          <p className="max-w-2xl text-lg text-zinc-400">
             Dokumentasi eksklusif mengenai ekosistem modding, rekomendasi livery, dan optimasi simulasi dari pangkalan data Sahal Arbani.
           </p>
         </header>
@@ -85,14 +85,14 @@ export default function BlogIndex() {
               </div>
               
               <Link href={`/blog/${article.id}`} className="block transition-colors group-hover:text-brand-cyan">
-                <h2 className="mb-3 text-2xl font-bold text-zinc-950">{article.title}</h2>
+                <h2 className="mb-3 text-2xl font-bold text-zinc-50">{article.title}</h2>
               </Link>
               
-              <p className="mb-6 line-clamp-3 leading-relaxed text-zinc-600">
+              <p className="mb-6 line-clamp-3 leading-relaxed text-zinc-400">
                 {article.excerpt}
               </p>
 
-              <Link href={`/blog/${article.id}`} className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest text-zinc-950 transition-all group-hover:text-brand-cyan">
+              <Link href={`/blog/${article.id}`} className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest text-zinc-50 transition-all group-hover:text-brand-cyan">
                 Read Full Insight <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </article>

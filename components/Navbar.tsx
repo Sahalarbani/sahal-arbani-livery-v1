@@ -21,7 +21,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ href, children, icon: Icon }) => (
   <Link 
     href={href} 
-    className="group relative flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500 transition-all duration-300 hover:bg-zinc-100 hover:text-zinc-950"
+    className="group relative flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500 transition-all duration-300 hover:bg-brand-onyx/10 hover:text-zinc-50"
   >
     {Icon && <Icon size={14} className="text-brand-cyan transition-transform group-hover:scale-110" />}
     <span className="relative z-10">{children}</span>
@@ -48,18 +48,18 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
           
           {/* LOGO AREA */}
           <Link href="/" className="group relative flex flex-shrink-0 items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-950 text-white shadow-halo">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-brand-cyan text-black shadow-halo">
               <Sparkles size={18} />
             </span>
             <span className="flex flex-col leading-none">
-              <span className="text-sm font-black uppercase tracking-[0.12em] text-zinc-950 sm:text-base">Sahal Arbani</span>
+              <span className="text-sm font-black uppercase tracking-[0.12em] text-zinc-50 sm:text-base">Sahal Arbani</span>
               <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.22em] text-brand-accent">Livery Hub</span>
             </span>
           </Link>
 
           {/* DESKTOP MENU - PILL SHAPE */}
           <div className="hidden md:block">
-            <div className="flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-50 p-1">
+            <div className="flex items-center gap-1 rounded-full border border-white/10 bg-brand-onyx/5 p-1">
               <NavLink href="/">Home</NavLink>
               <NavLink href="/blog">Insight</NavLink>
               <NavLink href="/#about">About</NavLink>
@@ -77,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
               <div className="flex items-center gap-5">
                 <div className="flex flex-col items-end">
                   <span className="text-[9px] uppercase font-bold text-brand-sage tracking-widest">Active</span>
-                  <span className="text-xs font-semibold text-zinc-800">{user.name}</span>
+                  <span className="text-xs font-semibold text-zinc-200">{user.name}</span>
                 </div>
                 <button 
                   onClick={handleLogout}
@@ -90,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
             ) : (
               <button 
                 onClick={handleLogin}
-                className="group relative flex items-center gap-2 rounded-full border border-zinc-950 bg-zinc-950 px-5 py-2.5 text-white transition-all duration-300 hover:bg-brand-cyan hover:border-brand-cyan active:scale-95"
+                className="group relative flex items-center gap-2 rounded-full border border-zinc-950 bg-brand-cyan px-5 py-2.5 text-black transition-all duration-300 hover:bg-brand-cyan hover:border-brand-cyan active:scale-95"
               >
                 <ShieldCheck size={16} />
                 <span className="text-[10px] font-bold uppercase tracking-[0.18em]">Login</span>
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="rounded-full border border-zinc-200 bg-white p-2 text-zinc-950 transition-all hover:bg-zinc-100 active:scale-90"
+              className="rounded-full border border-white/10 bg-brand-onyx p-2 text-zinc-50 transition-all hover:bg-brand-onyx/10 active:scale-90"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -115,9 +115,9 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
       {isOpen && (
         <div className="glass-panel absolute left-4 right-4 top-24 overflow-hidden rounded-[22px] md:hidden animate-in slide-in-from-top-2 fade-in duration-200">
           <div className="p-4 space-y-1">
-            <Link href="/" onClick={() => setIsOpen(false)} className="block rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-wider text-zinc-800 transition-colors hover:bg-zinc-100">Home</Link>
-            <Link href="/blog" onClick={() => setIsOpen(false)} className="block rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-wider text-zinc-800 transition-colors hover:bg-zinc-100">Insight</Link>
-            <Link href="/#about" onClick={() => setIsOpen(false)} className="block rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-wider text-zinc-800 transition-colors hover:bg-zinc-100">About</Link>
+            <Link href="/" onClick={() => setIsOpen(false)} className="block rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-wider text-zinc-200 transition-colors hover:bg-brand-onyx/10">Home</Link>
+            <Link href="/blog" onClick={() => setIsOpen(false)} className="block rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-wider text-zinc-200 transition-colors hover:bg-brand-onyx/10">Insight</Link>
+            <Link href="/#about" onClick={() => setIsOpen(false)} className="block rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-wider text-zinc-200 transition-colors hover:bg-brand-onyx/10">About</Link>
             
             {user?.role === 'admin' && (
                <Link href="/dashboard" onClick={() => setIsOpen(false)} className="block rounded-2xl bg-brand-cyan/10 px-4 py-3 text-sm font-semibold uppercase tracking-wider text-brand-cyan">
@@ -125,15 +125,15 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
                </Link>
             )}
             
-            <div className="my-2 h-px bg-zinc-200" />
+            <div className="my-2 h-px bg-brand-onyx/10" />
             
             <div className="pt-2">
                {user ? (
-                 <button onClick={handleLogout} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-red-500/10 py-3 text-sm font-bold uppercase tracking-wider text-red-300 transition-colors hover:bg-red-500 hover:text-white">
+                 <button onClick={handleLogout} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-red-500/10 py-3 text-sm font-bold uppercase tracking-wider text-red-300 transition-colors hover:bg-red-500 hover:text-black">
                    <LogOut size={16} /> Logout
                  </button>
                ) : (
-                 <button onClick={handleLogin} className="w-full rounded-2xl bg-zinc-950 py-3 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-brand-cyan">
+                 <button onClick={handleLogin} className="w-full rounded-2xl bg-brand-cyan py-3 text-sm font-bold uppercase tracking-widest text-black transition-colors hover:bg-brand-cyan">
                    Login
                  </button>
                )}

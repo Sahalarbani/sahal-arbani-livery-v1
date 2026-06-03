@@ -50,8 +50,8 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
   };
 
   return (
-    <div className="mt-12 border-t border-zinc-200 pt-12">
-      <h3 className="mb-8 flex items-center gap-3 text-xl font-bold text-zinc-950">
+    <div className="mt-12 border-t border-white/10 pt-12">
+      <h3 className="mb-8 flex items-center gap-3 text-xl font-bold text-zinc-50">
         <MessageSquare className="text-brand-accent" />
         Engagement Section ({comments.length})
       </h3>
@@ -59,7 +59,7 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
       {/* Comment List */}
       <div className="space-y-6 mb-12">
         {comments.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-zinc-200 bg-white p-8 text-center">
+          <div className="rounded-2xl border border-dashed border-white/10 bg-brand-onyx p-8 text-center">
             <p className="text-sm text-zinc-500">No transmissions yet. Be the first to engage.</p>
           </div>
         ) : (
@@ -72,23 +72,23 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
                     alt={comment.userName} 
                     width={40} 
                     height={40} 
-                    className="rounded-full border border-zinc-200"
+                    className="rounded-full border border-white/10"
                   />
                 ) : (
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white font-bold text-brand-accent">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-brand-onyx font-bold text-brand-accent">
                     {comment.userName[0]?.toUpperCase()}
                   </div>
                 )}
               </div>
               <div className="flex-grow">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm font-bold text-zinc-800">{comment.userName}</span>
+                  <span className="text-sm font-bold text-zinc-200">{comment.userName}</span>
                   <span className="font-mono text-[10px] text-zinc-500">
                     {new Date(comment.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <div className="rounded-2xl rounded-tl-none border border-zinc-200 bg-white p-4 transition-colors group-hover:border-brand-accent/30">
-                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-zinc-600">
+                <div className="rounded-2xl rounded-tl-none border border-white/10 bg-brand-onyx p-4 transition-colors group-hover:border-brand-accent/30">
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-zinc-400">
                     {comment.content}
                   </p>
                 </div>
@@ -141,8 +141,8 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
               className={cn(
                 "w-full md:w-auto px-8 py-3 rounded-full flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-xs transition-all",
                 loading || !token || !content.trim() || !name.trim()
-                  ? "cursor-not-allowed bg-zinc-200 text-zinc-500"
-                  : "bg-zinc-950 text-white hover:bg-brand-cyan active:scale-95"
+                  ? "cursor-not-allowed bg-brand-onyx/10 text-zinc-500"
+                  : "bg-brand-cyan text-black hover:bg-brand-cyan active:scale-95"
               )}
             >
               {loading ? "Transmitting..." : "Post Transmission"}

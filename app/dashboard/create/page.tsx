@@ -14,8 +14,8 @@ import PresetSelector from "@/components/PresetSelector";
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending} className={`group relative flex w-full items-center justify-center gap-4 overflow-hidden rounded-full bg-zinc-950 py-4 text-xl font-black text-white shadow-lg transition-all hover:bg-brand-cyan md:py-6 ${pending ? 'cursor-wait opacity-70' : ''}`}>
-      {!pending && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>}
+    <button type="submit" disabled={pending} className={`group relative flex w-full items-center justify-center gap-4 overflow-hidden rounded-full bg-brand-cyan py-4 text-xl font-black text-black shadow-lg transition-all hover:bg-brand-cyan md:py-6 ${pending ? 'cursor-wait opacity-70' : ''}`}>
+      {!pending && <div className="absolute inset-0 bg-brand-onyx/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>}
       <span className="flex items-center gap-3 md:gap-4 relative z-10 text-sm md:text-xl">
         {pending ? <><Loader2 size={24} className="animate-spin" /> INITIALIZING...</> : <><Zap size={24} strokeWidth={2.5} className="md:w-7 md:h-7" /> FINALIZE DEPLOYMENT</>}
       </span>
@@ -77,7 +77,7 @@ export default function CreateSkinPage() {
   };
 
   // FIX: Padding tombol dikecilin di mobile (px-3) biar muat
-  const buttonStyle = "h-[50px] px-3 md:px-6 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-xs transition-all flex items-center gap-2 md:gap-3 border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-950 hover:text-white hover:border-zinc-950 active:scale-95 whitespace-nowrap";
+  const buttonStyle = "h-[50px] px-3 md:px-6 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-xs transition-all flex items-center gap-2 md:gap-3 border border-white/10 bg-brand-onyx text-zinc-300 hover:bg-brand-cyan hover:text-black hover:border-zinc-950 active:scale-95 whitespace-nowrap";
 
   return (
     <div className="w-full">
@@ -85,7 +85,7 @@ export default function CreateSkinPage() {
       <ImageGalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} onSelect={(url) => setFormData(prev => ({ ...prev, [targetField]: url }))} />
 
       <div className="max-w-[1440px] mx-auto">
-        <Link href="/dashboard" className="mb-6 flex items-center gap-2 px-2 text-xs font-bold uppercase tracking-widest text-zinc-500 transition-all hover:text-zinc-950 md:mb-8 group">
+        <Link href="/dashboard" className="mb-6 flex items-center gap-2 px-2 text-xs font-bold uppercase tracking-widest text-zinc-500 transition-all hover:text-zinc-50 md:mb-8 group">
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Abort Deployment
         </Link>
 
@@ -96,23 +96,23 @@ export default function CreateSkinPage() {
               <div className="flex items-center gap-4 mb-6 md:mb-10 pl-2">
                 <div className="p-3 bg-brand-accent/10 rounded-2xl border border-brand-accent/20"><Edit3 size={24} className="text-brand-accent" /></div>
                 <div className="overflow-hidden">
-                    <h1 className="truncate text-xl font-black uppercase tracking-tight text-zinc-950 md:text-3xl">Sequence Editor</h1>
+                    <h1 className="truncate text-xl font-black uppercase tracking-tight text-zinc-50 md:text-3xl">Sequence Editor</h1>
                     <p className="mt-1 truncate text-[10px] font-semibold uppercase tracking-widest text-zinc-500">Initialize New Asset</p>
                 </div>
               </div>
 
               <form action={dispatch} className="space-y-6 md:space-y-8">
                 {/* Section 1 */}
-                <div className="space-y-5 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 md:space-y-6 md:rounded-3xl md:p-6">
+                <div className="space-y-5 rounded-2xl border border-white/10 bg-brand-onyx/5 p-4 md:space-y-6 md:rounded-3xl md:p-6">
                   <div>
                     <label className="mb-2 ml-2 block border-l border-brand-accent pl-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500 md:mb-3">Asset Designation</label>
-                    <input name="title" type="text" placeholder="e.g. NEON VORTEX LIVERY" value={formData.title} onChange={handleInputChange} className={`w-full rounded-full border bg-white p-4 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors placeholder:text-zinc-400 focus:border-brand-cyan focus:outline-none md:text-base ${state.errors?.title ? 'border-red-500 animate-pulse' : 'border-zinc-200'}`} />
+                    <input name="title" type="text" placeholder="e.g. NEON VORTEX LIVERY" value={formData.title} onChange={handleInputChange} className={`w-full rounded-full border bg-brand-onyx p-4 text-sm font-bold uppercase tracking-widest text-zinc-50 transition-colors placeholder:text-zinc-600 focus:border-brand-cyan focus:outline-none md:text-base ${state.errors?.title ? 'border-red-500 animate-pulse' : 'border-white/10'}`} />
                     <ErrorMessage error={state.errors?.title} />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div>
                       <label className="mb-2 ml-2 block border-l border-brand-accent pl-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500 md:mb-3">Classification</label>
-                      <select name="categorySelect" onChange={handleInputChange} className="mb-2 w-full cursor-pointer appearance-none rounded-full border border-zinc-200 bg-white p-4 text-xs font-semibold uppercase tracking-widest text-zinc-950 focus:border-brand-cyan focus:outline-none md:text-sm">
+                      <select name="categorySelect" onChange={handleInputChange} className="mb-2 w-full cursor-pointer appearance-none rounded-full border border-white/10 bg-brand-onyx p-4 text-xs font-semibold uppercase tracking-widest text-zinc-50 focus:border-brand-cyan focus:outline-none md:text-sm">
                         <option value="street">Street Division</option>
                         <option value="racing">Racing Division</option>
                         <option value="drift">Drift Division</option>
@@ -125,9 +125,9 @@ export default function CreateSkinPage() {
                     </div>
                     <div>
                       <label className="mb-2 ml-2 block border-l border-brand-accent pl-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500 md:mb-3">Transmission</label>
-                      <div className="flex h-[58px] items-center gap-4 rounded-full border border-zinc-200 bg-white p-1 md:p-1">
+                      <div className="flex h-[58px] items-center gap-4 rounded-full border border-white/10 bg-brand-onyx p-1 md:p-1">
                         <input type="hidden" name="published" value={formData.published.toString()} />
-                        <button type="button" onClick={() => setFormData(p => ({ ...p, published: !p.published }))} className={`flex h-full flex-grow items-center justify-center gap-2 rounded-full px-4 text-[10px] font-bold uppercase tracking-widest transition-all ${formData.published ? 'border border-brand-sage/30 bg-brand-sage/10 text-brand-sage' : 'bg-transparent text-zinc-500 hover:text-zinc-950'}`}>
+                        <button type="button" onClick={() => setFormData(p => ({ ...p, published: !p.published }))} className={`flex h-full flex-grow items-center justify-center gap-2 rounded-full px-4 text-[10px] font-bold uppercase tracking-widest transition-all ${formData.published ? 'border border-brand-sage/30 bg-brand-sage/10 text-brand-sage' : 'bg-transparent text-zinc-500 hover:text-zinc-50'}`}>
                           {formData.published ? <Globe size={14} /> : <Lock size={14} />} {formData.published ? 'Public' : 'Private'}
                         </button>
                       </div>
@@ -136,12 +136,12 @@ export default function CreateSkinPage() {
                 </div>
 
                 {/* Section 2 */}
-                <div className="space-y-5 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 md:space-y-6 md:rounded-3xl md:p-6">
+                <div className="space-y-5 rounded-2xl border border-white/10 bg-brand-onyx/5 p-4 md:space-y-6 md:rounded-3xl md:p-6">
                   <div>
                     <label className="mb-2 ml-2 block border-l border-brand-accent pl-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500 md:mb-3">Visual Source (Preview)</label>
                     {/* FIX: gap-2 biar rapet di HP. Input dikasih min-w-0 biar bisa mengecil */}
                     <div className="flex gap-2 md:gap-4 items-center">
-                      <input name="image" type="text" placeholder="URL..." value={formData.image} onChange={handleInputChange} className={`h-[50px] min-w-0 flex-grow rounded-full border bg-white p-4 font-mono text-[10px] text-zinc-600 focus:border-brand-cyan focus:outline-none md:text-xs ${state.errors?.image ? 'border-red-500' : 'border-zinc-200'}`} />
+                      <input name="image" type="text" placeholder="URL..." value={formData.image} onChange={handleInputChange} className={`h-[50px] min-w-0 flex-grow rounded-full border bg-brand-onyx p-4 font-mono text-[10px] text-zinc-400 focus:border-brand-cyan focus:outline-none md:text-xs ${state.errors?.image ? 'border-red-500' : 'border-white/10'}`} />
                       <button type="button" onClick={() => openUploadWidget('image')} className={`${buttonStyle} flex-shrink-0`}><FolderOpen size={16} /> <span className="hidden sm:inline">NEW</span></button>
                       <button type="button" onClick={() => openGallery('image')} className={`${buttonStyle} flex-shrink-0`}><ImageIcon size={16} /> <span className="hidden sm:inline">LIBRARY</span></button>
                     </div>
@@ -154,7 +154,7 @@ export default function CreateSkinPage() {
                     </div>
                     <PresetSelector currentDescription={formData.description} onSelect={(val) => setFormData(prev => ({ ...prev, description: val }))} />
                      
-                    <textarea name="description" rows={4} value={formData.description} onChange={handleInputChange} className={`mt-2 w-full rounded-2xl border bg-white p-4 text-sm leading-relaxed text-zinc-700 focus:border-brand-cyan focus:outline-none md:rounded-3xl ${state.errors?.description ? 'border-red-500' : 'border-zinc-200'}`} />
+                    <textarea name="description" rows={4} value={formData.description} onChange={handleInputChange} className={`mt-2 w-full rounded-2xl border bg-brand-onyx p-4 text-sm leading-relaxed text-zinc-300 focus:border-brand-cyan focus:outline-none md:rounded-3xl ${state.errors?.description ? 'border-red-500' : 'border-white/10'}`} />
                     <ErrorMessage error={state.errors?.description} />
                   </div>
 
@@ -162,7 +162,7 @@ export default function CreateSkinPage() {
                      <label className="mb-2 ml-2 block border-l border-brand-accent pl-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500 md:mb-3">Payload (Download Link)</label>
                     {/* FIX: gap-2 & min-w-0 */}
                     <div className="flex gap-2 md:gap-4 items-center">
-                      <input name="downloadUrl" type="text" placeholder="Link..." value={formData.downloadUrl} onChange={handleInputChange} className={`h-[50px] min-w-0 flex-grow rounded-full border bg-white p-4 font-mono text-[10px] text-zinc-700 focus:border-brand-cyan focus:outline-none md:text-xs ${state.errors?.downloadUrl ? 'border-red-500' : 'border-zinc-200'}`} />
+                      <input name="downloadUrl" type="text" placeholder="Link..." value={formData.downloadUrl} onChange={handleInputChange} className={`h-[50px] min-w-0 flex-grow rounded-full border bg-brand-onyx p-4 font-mono text-[10px] text-zinc-300 focus:border-brand-cyan focus:outline-none md:text-xs ${state.errors?.downloadUrl ? 'border-red-500' : 'border-white/10'}`} />
                       <button type="button" onClick={() => openUploadWidget('downloadUrl')} className={`${buttonStyle} flex-shrink-0`}><FolderOpen size={16} /> <span className="hidden sm:inline">UPLOAD</span></button>
                       <button type="button" onClick={() => openGallery('downloadUrl')} className={`${buttonStyle} flex-shrink-0`}><ImageIcon size={16} /> <span className="hidden sm:inline">LIBRARY</span></button>
                     </div>

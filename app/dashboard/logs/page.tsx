@@ -11,7 +11,7 @@ export default async function LogsPage() {
   return (
     <div className="max-w-6xl mx-auto flex flex-col h-[calc(100vh-140px)] md:h-[calc(100vh-80px)]">
       <div className="mb-6">
-        <h1 className="flex items-center gap-3 text-2xl font-black uppercase tracking-tight text-zinc-950 md:text-3xl">
+        <h1 className="flex items-center gap-3 text-2xl font-black uppercase tracking-tight text-zinc-50 md:text-3xl">
             <Terminal className="text-brand-accent" size={28} /> Activity Logs
         </h1>
         <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500 md:text-xs">
@@ -19,7 +19,7 @@ export default async function LogsPage() {
         </p>
       </div>
 
-      <div className="relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white">
+      <div className="relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 bg-brand-onyx">
           <div className="absolute top-0 right-0 p-4">
               <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -35,9 +35,9 @@ export default async function LogsPage() {
                          Log aktivitas kosong
                       </div>
                  ) : logs.map(log => (
-                     <div key={log.id} className="group flex gap-4 rounded-2xl border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-950">
+                     <div key={log.id} className="group flex gap-4 rounded-2xl border border-white/10 bg-brand-onyx p-4 transition-colors hover:border-zinc-950">
                         <div className="mt-1">
-                           <div className="flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-zinc-50 transition-colors group-hover:border-brand-accent/50 group-hover:text-brand-accent">
+                           <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-brand-onyx/5 transition-colors group-hover:border-brand-accent/50 group-hover:text-brand-accent">
                               <Activity size={14} />
                            </div>
                         </div>
@@ -51,9 +51,9 @@ export default async function LogsPage() {
                                     <Clock size={10}/> {formatDistanceToNow(new Date(log.createdAt), {addSuffix:true})}
                                 </span>
                             </div>
-                            <p className="mb-1 text-sm text-zinc-700">{log.description}</p>
+                            <p className="mb-1 text-sm text-zinc-300">{log.description}</p>
                             <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
-                                BY: <span className="text-zinc-700">{log.userName}</span>
+                                BY: <span className="text-zinc-300">{log.userName}</span>
                             </p>
                         </div>
                      </div>
