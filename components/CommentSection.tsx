@@ -50,8 +50,8 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
   };
 
   return (
-    <div className="mt-12 pt-12 border-t border-white/5">
-      <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
+    <div className="mt-12 border-t border-zinc-200 pt-12">
+      <h3 className="mb-8 flex items-center gap-3 text-xl font-bold text-zinc-950">
         <MessageSquare className="text-brand-accent" />
         Engagement Section ({comments.length})
       </h3>
@@ -59,8 +59,8 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
       {/* Comment List */}
       <div className="space-y-6 mb-12">
         {comments.length === 0 ? (
-          <div className="p-8 text-center bg-white/5 rounded-2xl border border-white/5 border-dashed">
-            <p className="text-gray-500 text-sm">No transmissions yet. Be the first to engage.</p>
+          <div className="rounded-2xl border border-dashed border-zinc-200 bg-white p-8 text-center">
+            <p className="text-sm text-zinc-500">No transmissions yet. Be the first to engage.</p>
           </div>
         ) : (
           comments.map((comment) => (
@@ -72,23 +72,23 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
                     alt={comment.userName} 
                     width={40} 
                     height={40} 
-                    className="rounded-full border border-white/10"
+                    className="rounded-full border border-zinc-200"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-brand-onyx border border-white/10 flex items-center justify-center text-brand-accent font-bold">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white font-bold text-brand-accent">
                     {comment.userName[0]?.toUpperCase()}
                   </div>
                 )}
               </div>
               <div className="flex-grow">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm font-bold text-gray-200">{comment.userName}</span>
-                  <span className="text-[10px] text-gray-600 font-mono">
+                  <span className="text-sm font-bold text-zinc-800">{comment.userName}</span>
+                  <span className="font-mono text-[10px] text-zinc-500">
                     {new Date(comment.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <div className="p-4 bg-brand-onyx/50 border border-white/5 rounded-2xl rounded-tl-none group-hover:border-brand-accent/20 transition-colors">
-                  <p className="text-sm text-gray-400 leading-relaxed whitespace-pre-wrap">
+                <div className="rounded-2xl rounded-tl-none border border-zinc-200 bg-white p-4 transition-colors group-hover:border-brand-accent/30">
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-zinc-600">
                     {comment.content}
                   </p>
                 </div>
@@ -99,29 +99,29 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
       </div>
 
       {/* Comment Form */}
-      <div className="bg-brand-onyx rounded-3xl p-6 lg:p-8 border border-white/5">
+      <div className="surface-card p-6 lg:p-8">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Your Identity</label>
+              <label className="ml-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Your Identity</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name..."
-                className="w-full bg-brand-dark border border-white/5 focus:border-brand-accent/50 rounded-2xl px-5 py-3 text-gray-200 placeholder-gray-600 outline-none transition-all"
+                className="field-control"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Transmission Message</label>
+            <label className="ml-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Transmission Message</label>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Deploy your thoughts..."
               rows={3}
-              className="w-full bg-brand-dark border border-white/5 focus:border-brand-accent/50 rounded-2xl p-4 text-gray-200 placeholder-gray-600 outline-none transition-all resize-none"
+              className="field-control resize-none"
             />
           </div>
           
@@ -141,8 +141,8 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
               className={cn(
                 "w-full md:w-auto px-8 py-3 rounded-full flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-xs transition-all",
                 loading || !token || !content.trim() || !name.trim()
-                  ? "bg-gray-800 text-gray-500 cursor-not-allowed"
-                  : "bg-brand-accent text-brand-dark hover:bg-white active:scale-95"
+                  ? "cursor-not-allowed bg-zinc-200 text-zinc-500"
+                  : "bg-zinc-950 text-white hover:bg-brand-cyan active:scale-95"
               )}
             >
               {loading ? "Transmitting..." : "Post Transmission"}

@@ -15,7 +15,7 @@ export default function AuthSuccess() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-dark text-brand-sage p-8 text-center">
+    <div className="flex min-h-screen items-center justify-center bg-brand-paper p-8 text-center text-brand-sage">
       <div className="flex flex-col items-center gap-4">
         <div className="w-16 h-16 rounded-full bg-brand-sage/20 flex items-center justify-center">
           <svg className="w-8 h-8 text-brand-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -23,7 +23,7 @@ export default function AuthSuccess() {
           </svg>
         </div>
         <p className="font-medium tracking-widest uppercase text-sm">Authentication Successful!</p>
-        <p className="text-gray-400 text-xs">You can close this window now.</p>
+        <p className="text-xs text-zinc-500">You can close this window now.</p>
       </div>
     </div>
   );

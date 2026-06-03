@@ -167,10 +167,10 @@ export default async function BlogPost(props: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="pt-24 pb-20 min-h-screen bg-brand-dark">
+      <div className="min-h-screen pb-20 pt-28">
         <div className="max-w-3xl mx-auto px-6">
           
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors mb-8">
+          <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-950">
             <ArrowLeft size={16} /> Kembali ke Indeks
           </Link>
 
@@ -180,14 +180,14 @@ export default async function BlogPost(props: Props) {
                 {article.tag}
               </span>
               
-              <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-6 tracking-tight">
+              <h1 className="mb-6 text-3xl font-black leading-tight tracking-tight text-zinc-950 md:text-5xl">
                 {article.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400 font-mono border-y border-white/5 py-4">
+              <div className="flex flex-wrap items-center gap-4 border-y border-zinc-200 py-4 font-mono text-xs text-zinc-500">
                 <span className="flex items-center gap-2">
                   <span className="w-6 h-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent">S</span>
-                  By <strong className="text-white">{article.author}</strong>
+                  By <strong className="text-zinc-950">{article.author}</strong>
                 </span>
                 <span className="hidden md:inline">•</span>
                 <span className="flex items-center gap-1.5">
@@ -209,7 +209,7 @@ export default async function BlogPost(props: Props) {
 
             {/* Content (Prose Wrapper using raw HTML for hardcoded strings) */}
             <div 
-              className="prose prose-invert prose-brand prose-headings:font-display prose-headings:font-bold prose-h2:text-white prose-h3:text-gray-200 prose-p:text-gray-400 prose-p:leading-relaxed prose-a:text-brand-accent hover:prose-a:text-white max-w-none"
+              className="prose prose-zinc prose-brand prose-headings:font-display prose-headings:font-bold prose-a:text-brand-cyan hover:prose-a:text-zinc-950 max-w-none"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
 

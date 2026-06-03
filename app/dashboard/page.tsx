@@ -52,19 +52,19 @@ export default async function DashboardPage({ searchParams }: PageProps) {
         {/* HEADER SECTION */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-100 uppercase tracking-tight drop-shadow-sm">
+                <h1 className="text-3xl font-bold uppercase tracking-tight text-zinc-950 drop-shadow-sm md:text-4xl">
                     Command <span className="text-brand-accent">Center</span>
                 </h1>
                 <div className="flex items-center gap-2 mt-2">
                     <span className="w-1.5 h-1.5 bg-brand-accent rounded-full animate-pulse"/>
-                    <p className="text-gray-400 text-xs font-bold uppercase tracking-[0.2em]">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
                         Operator: {session?.user?.name || 'Authorized Personnel'}
                     </p>
                 </div>
             </div>
             <Link 
                 href="/dashboard/create" 
-                className="group relative px-6 py-3 bg-brand-accent text-brand-dark font-black uppercase text-sm rounded-full transition-all hover:shadow-md hover:scale-105"
+                className="group relative rounded-full bg-zinc-950 px-6 py-3 text-sm font-black uppercase text-white transition-all hover:scale-105 hover:shadow-md"
             >
                 <div className="flex items-center gap-2 relative z-10">
                     <Plus size={18} strokeWidth={2.5} /> Deploy Sequence
@@ -75,56 +75,56 @@ export default async function DashboardPage({ searchParams }: PageProps) {
 
         {/* STATS CARDS - BENTO STYLED */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-           <div className="relative p-6 bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden group hover:bg-brand-onyx/80 transition-all">
+           <div className="surface-card group relative overflow-hidden p-6 transition-all hover:border-zinc-950">
              <div className="flex items-center gap-5">
-                 <div className="p-4 bg-brand-accent/10 rounded-2xl text-brand-accent border border-brand-accent/20 group-hover:scale-110 transition-transform"><Box size={24} /></div>
+                 <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 text-brand-accent transition-transform group-hover:scale-110"><Box size={24} /></div>
                  <div>
-                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Active Assets</p>
-                     <p className="text-3xl font-black text-gray-100">{totalSkins}</p>
+                     <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Active Assets</p>
+                     <p className="text-3xl font-black text-zinc-950">{totalSkins}</p>
                  </div>
              </div>
            </div>
 
-           <div className="relative p-6 bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden group hover:bg-brand-onyx/80 transition-all">
+           <div className="surface-card group relative overflow-hidden p-6 transition-all hover:border-zinc-950">
              <div className="flex items-center gap-5">
                  <div className="p-4 bg-brand-sage/10 rounded-2xl text-brand-sage border border-brand-sage/20 group-hover:scale-110 transition-transform"><Activity size={24} /></div>
                  <div>
-                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">System Status</p>
+                     <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500">System Status</p>
                      <p className="text-3xl font-black text-brand-sage uppercase">Secure</p>
                  </div>
              </div>
            </div>
 
-           <div className="relative p-6 bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden group hover:bg-brand-onyx/80 transition-all">
+           <div className="surface-card group relative overflow-hidden p-6 transition-all hover:border-zinc-950">
              <div className="flex items-center gap-5">
                  <div className="p-4 bg-purple-500/10 rounded-2xl text-purple-400 border border-purple-500/20 group-hover:scale-110 transition-transform"><Clock size={24} /></div>
                  <div>
-                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Last Sync</p>
-                     <p className="text-3xl font-black text-gray-100">{timeSinceLastUpdate}</p>
+                     <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Last Sync</p>
+                     <p className="text-3xl font-black text-zinc-950">{timeSinceLastUpdate}</p>
                  </div>
              </div>
            </div>
         </div>
 
         {/* DATA TABLE - MINIMAL CONTAINER */}
-        <div className="bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden">
+        <div className="surface-card overflow-hidden">
            <div className="overflow-x-auto">
              <table className="w-full text-left border-collapse">
                <thead>
-                 <tr className="bg-brand-dark/50 border-b border-white/5">
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Asset Identity</th>
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Visibility</th>
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Class</th>
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Timestamp</th>
-                   <th className="px-8 py-5 text-right text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Controls</th>
+                 <tr className="border-b border-zinc-200 bg-zinc-50">
+                   <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Asset Identity</th>
+                   <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Visibility</th>
+                   <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Class</th>
+                   <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Timestamp</th>
+                   <th className="px-8 py-5 text-right text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Controls</th>
                  </tr>
                </thead>
-               <tbody className="divide-y divide-white/5">
+               <tbody className="divide-y divide-zinc-200">
                  {allSkins.map((skin) => (
-                   <tr key={skin.id} className="group hover:bg-brand-dark/30 transition-colors duration-200">
+                   <tr key={skin.id} className="group transition-colors duration-200 hover:bg-zinc-50">
                      <td className="px-8 py-4">
                        <div className="flex items-center gap-4">
-                         <div className="w-16 h-12 rounded-lg overflow-hidden border border-white/5 relative bg-brand-dark">
+                         <div className="relative h-12 w-16 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100">
                            {skin.image ? (
                              <img 
                                src={getThumbUrl(skin.image) || skin.image} 
@@ -133,23 +133,23 @@ export default async function DashboardPage({ searchParams }: PageProps) {
                                referrerPolicy="no-referrer"
                              />
                            ) : (
-                             <div className="w-full h-full flex items-center justify-center text-gray-600"><AlertTriangle size={14}/></div>
+                             <div className="flex h-full w-full items-center justify-center text-zinc-500"><AlertTriangle size={14}/></div>
                            )}
                          </div>
                          <div>
-                           <p className="text-sm font-bold text-gray-100 uppercase tracking-tight group-hover:text-brand-accent transition-colors">{skin.title}</p>
-                           <p className="text-[9px] text-gray-500 font-mono uppercase tracking-widest mt-1">ID: {skin.id.substring(0,8)}</p>
+                           <p className="text-sm font-bold uppercase tracking-tight text-zinc-950 transition-colors group-hover:text-brand-cyan">{skin.title}</p>
+                           <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-zinc-500">ID: {skin.id.substring(0,8)}</p>
                          </div>
                        </div>
                      </td>
                      <td className="px-8 py-4">
-                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${skin.published ? 'bg-brand-sage/10 border-brand-sage/20 text-brand-sage' : 'bg-white/5 border-white/10 text-gray-500'}`}>
+                        <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[9px] font-bold uppercase tracking-widest ${skin.published ? 'border-brand-sage/20 bg-brand-sage/10 text-brand-sage' : 'border-zinc-200 bg-zinc-50 text-zinc-500'}`}>
                           {skin.published ? <Globe size={10} /> : <Lock size={10} />} 
                           {skin.published ? 'Live' : 'Hidden'}
                         </span>
                      </td>
-                     <td className="px-8 py-4"><span className="text-[10px] font-bold uppercase text-gray-400 bg-brand-dark px-3 py-1 rounded-full border border-white/5">{skin.category}</span></td>
-                     <td className="px-8 py-4"><p className="text-[10px] text-gray-500 font-medium">{new Date(skin.createdAt).toLocaleDateString()}</p></td>
+                     <td className="px-8 py-4"><span className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-[10px] font-bold uppercase text-zinc-600">{skin.category}</span></td>
+                     <td className="px-8 py-4"><p className="text-[10px] font-medium text-zinc-500">{new Date(skin.createdAt).toLocaleDateString()}</p></td>
                      <td className="px-8 py-4 text-right">
                        <PostActions id={skin.id} />
                      </td>
@@ -160,15 +160,15 @@ export default async function DashboardPage({ searchParams }: PageProps) {
            </div>
 
            {/* PAGINATION */}
-           <div className="p-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
-              <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+           <div className="flex flex-col items-center justify-between gap-4 border-t border-zinc-200 p-6 sm:flex-row">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                 Displaying Page {currentPage} of {totalPages || 1}
               </span>
               <div className="flex gap-2">
-                 <Link href={`/dashboard?page=${Math.max(1, currentPage - 1)}${query ? `&q=${query}` : ''}`} className="w-10 h-10 flex items-center justify-center bg-brand-dark border border-white/5 rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all">
+                 <Link href={`/dashboard?page=${Math.max(1, currentPage - 1)}${query ? `&q=${query}` : ''}`} className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white transition-all hover:bg-zinc-950 hover:text-white">
                     <ChevronLeft size={16} />
                  </Link>
-                 <Link href={`/dashboard?page=${Math.min(totalPages, currentPage + 1)}${query ? `&q=${query}` : ''}`} className="w-10 h-10 flex items-center justify-center bg-brand-dark border border-white/5 rounded-full hover:bg-brand-accent hover:text-brand-dark transition-all">
+                 <Link href={`/dashboard?page=${Math.min(totalPages, currentPage + 1)}${query ? `&q=${query}` : ''}`} className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white transition-all hover:bg-zinc-950 hover:text-white">
                     <ChevronRight size={16} />
                  </Link>
               </div>

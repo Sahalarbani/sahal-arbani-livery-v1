@@ -55,7 +55,7 @@ export function DownloadButton({ skinId, downloadUrl, fileName }: DownloadButton
 
   if (status === 'loading') {
     return (
-      <button disabled className="flex w-full cursor-wait items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.06] py-4 text-sm font-bold text-slate-400 shadow-glass backdrop-blur-xl">
+      <button disabled className="flex w-full cursor-wait items-center justify-center gap-3 rounded-full border border-zinc-200 bg-zinc-100 py-4 text-sm font-bold text-zinc-500 shadow-sm">
         <Loader2 className="animate-spin text-brand-cyan" size={20} />
         <span className="tracking-[0.2em] uppercase">CONNECTING...</span>
       </button>
@@ -66,7 +66,7 @@ export function DownloadButton({ skinId, downloadUrl, fileName }: DownloadButton
     return (
       <button 
         onClick={handleDownload}
-        className="group relative flex w-full animate-in items-center justify-center gap-2 overflow-hidden rounded-full bg-brand-sage py-4 text-sm font-extrabold text-brand-dark transition-all duration-300 zoom-in-95 hover:scale-[1.02] hover:bg-brand-sage/90"
+        className="group relative flex w-full animate-in items-center justify-center gap-2 overflow-hidden rounded-full bg-brand-sage py-4 text-sm font-extrabold text-white transition-all duration-300 zoom-in-95 hover:scale-[1.02] hover:bg-brand-sage/90"
       >
         <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
         <FileDown className="relative z-10" strokeWidth={2.5} size={20} />
@@ -78,7 +78,7 @@ export function DownloadButton({ skinId, downloadUrl, fileName }: DownloadButton
   return (
     <button 
       onClick={handleInitiate}
-      className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-cyan py-4 text-sm font-extrabold text-brand-dark shadow-halo transition-all duration-300 hover:bg-white active:scale-95"
+      className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-zinc-950 py-4 text-sm font-extrabold text-white shadow-halo transition-all duration-300 hover:bg-brand-cyan active:scale-95"
     >
       <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" />
       <Download className="relative z-10 group-hover:-translate-y-1 transition-transform" strokeWidth={2.5} size={20} />

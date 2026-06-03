@@ -58,7 +58,7 @@ export default function PresetSelector({ currentDescription, onSelect }: PresetS
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-accent/50 text-brand-accent px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-sm"
+            className="flex w-full items-center justify-between rounded-full border border-zinc-200 bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-brand-accent shadow-sm transition-all duration-300 hover:border-brand-accent/50 hover:bg-zinc-50"
           >
             <span className="flex items-center gap-2">
               <FileText size={14} /> LOAD PRESET ({presets.length})
@@ -67,9 +67,9 @@ export default function PresetSelector({ currentDescription, onSelect }: PresetS
           </button>
 
           {isOpen && (
-            <div className="absolute top-full left-0 w-full mt-3 bg-brand-onyx backdrop-blur-2xl border border-white/10 rounded-2xl shadow-xl overflow-hidden max-h-64 overflow-y-auto z-50 animate-in fade-in slide-in-from-top-2 duration-200 p-2">
+            <div className="absolute left-0 top-full z-50 mt-3 max-h-64 w-full overflow-y-auto rounded-2xl border border-zinc-200 bg-white p-2 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
               {presets.length === 0 ? (
-                <div className="p-4 text-center text-gray-500 text-xs font-mono">NO DATA FOUND</div>
+                <div className="p-4 text-center font-mono text-xs text-zinc-500">NO DATA FOUND</div>
               ) : (
                 presets.map((p) => (
                   <div
@@ -78,13 +78,13 @@ export default function PresetSelector({ currentDescription, onSelect }: PresetS
                       onSelect(p.content);
                       setIsOpen(false);
                     }}
-                    className="group flex items-center justify-between px-4 py-3 hover:bg-white/5 rounded-xl cursor-pointer transition-colors"
+                    className="group flex cursor-pointer items-center justify-between rounded-xl px-4 py-3 transition-colors hover:bg-zinc-50"
                   >
-                    <span className="text-gray-300 group-hover:text-white text-xs truncate font-medium">{p.name}</span>
+                    <span className="truncate text-xs font-medium text-zinc-700 group-hover:text-zinc-950">{p.name}</span>
                     <button
                       type="button"
                       onClick={(e) => handleDelete(e, p.id)}
-                      className="text-gray-600 hover:text-red-500 hover:bg-red-500/10 p-2 rounded-full transition-all"
+                      className="rounded-full p-2 text-zinc-500 transition-all hover:bg-red-500/10 hover:text-red-500"
                     >
                       <Trash2 size={14} />
                     </button>
@@ -100,7 +100,7 @@ export default function PresetSelector({ currentDescription, onSelect }: PresetS
           <button
             type="button"
             onClick={() => setIsSaving(true)}
-            className="bg-white/5 border border-white/10 text-gray-400 hover:bg-brand-accent hover:text-brand-dark hover:border-brand-accent w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all duration-300 hover:border-zinc-950 hover:bg-zinc-950 hover:text-white"
             title="Save Current as Preset"
           >
             <Save size={18} />
@@ -112,7 +112,7 @@ export default function PresetSelector({ currentDescription, onSelect }: PresetS
               placeholder="NAME..."
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
-              className="bg-brand-dark border border-brand-accent/50 text-white text-xs px-4 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-accent/20 w-32 md:w-48 placeholder-gray-600"
+              className="w-32 rounded-full border border-brand-accent/50 bg-white px-4 py-3 text-xs text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-brand-accent/20 md:w-48"
               autoFocus
             />
             <button type="button" onClick={handleSave} disabled={loading} className="text-brand-accent bg-brand-accent/10 hover:bg-brand-accent hover:text-brand-dark w-10 h-10 flex items-center justify-center rounded-full border border-brand-accent/30 transition-all">

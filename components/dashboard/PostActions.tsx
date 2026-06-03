@@ -30,7 +30,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ id }) => {
       {/* ✅ FIX: Ganti Button jadi Link */}
       <Link 
         href={`/dashboard/edit/${id}`}
-        className="p-2 bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/5 transition-all rounded-sm flex items-center justify-center"
+        className="flex items-center justify-center rounded-md border border-zinc-200 bg-white p-2 text-zinc-500 transition-all hover:bg-zinc-950 hover:text-white"
         title="Edit Parameters"
       >
         <Edit3 size={16} />

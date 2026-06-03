@@ -6,27 +6,27 @@ export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 border-t border-white/5 bg-brand-dark/60 backdrop-blur-2xl">
+    <footer className="relative mt-20 border-t border-zinc-200 bg-white/80 backdrop-blur-2xl">
       {/* Top Glow Accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent" />
+      <div className="absolute top-0 left-1/2 h-[1px] w-1/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-zinc-950/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-white/5 pb-12">
-          
+        <div className="grid grid-cols-1 gap-12 border-b border-zinc-200 pb-12 md:grid-cols-12">
+
           {/* Brand Column (Span 5) */}
           <div className="md:col-span-5 space-y-6">
             <div className="group cursor-default">
-              <h2 className="text-xl md:text-2xl font-black tracking-tight text-white uppercase flex items-center gap-2">
+              <h2 className="text-xl md:text-2xl font-black tracking-tight text-zinc-950 uppercase flex items-center gap-2">
                 SAHAL ARBANI <span className="text-brand-accent text-sm md:text-lg">/ LIVERY</span>
               </h2>
-              <p className="mt-4 text-gray-400 text-sm font-medium leading-relaxed max-w-sm">
-                Premium digital assets for the simulation racing ecosystem. 
+              <p className="mt-4 max-w-sm text-sm font-medium leading-relaxed text-zinc-500">
+                Premium digital assets for the simulation racing ecosystem.
                 Forging the gap between virtual performance and visual dominance.
               </p>
             </div>
-            
+
             {/* System Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/5 border border-brand-accent/10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-brand-sage/20 bg-brand-sage/5 px-3 py-1">
               <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
               <span className="text-[10px] font-bold text-brand-accent uppercase tracking-wider">All Systems Operational</span>
             </div>
@@ -34,17 +34,17 @@ export const Footer: React.FC = () => {
 
           {/* Links Column (Span 3) */}
           <div className="md:col-span-3">
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+            <h3 className="mb-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-950">
               <Terminal size={14} className="text-brand-accent" /> Navigation
             </h3>
             <ul className="space-y-3">
               {['Home', 'Blog', 'Gallery', 'About', 'Dashboard'].map((item) => (
                 <li key={item}>
-                  <Link 
+                  <Link
                     href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `/#${item.toLowerCase()}`}
-                    className="text-gray-500 hover:text-white transition-colors text-sm font-medium flex items-center gap-2 group"
+                    className="flex items-center gap-2 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950 group"
                   >
-                    <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-brand-accent transition-colors" />
+                    <span className="w-1 h-1 rounded-full bg-zinc-300 group-hover:bg-brand-accent transition-colors" />
                     {item === 'Blog' ? 'Insight' : item}
                   </Link>
                 </li>
@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
 
           {/* Socials Column (Span 4) */}
           <div className="md:col-span-4">
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+            <h3 className="mb-6 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-950">
               <Shield size={14} className="text-brand-accent" /> Network
             </h3>
             <div className="flex gap-4">
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/5 text-gray-400 hover:text-brand-dark hover:bg-brand-accent hover:border-brand-accent transition-all duration-300 hover:scale-110"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all duration-300 hover:scale-110 hover:border-zinc-950 hover:bg-zinc-950 hover:text-white"
                   aria-label={social.label}
                 >
                   {social.label === 'TikTok' ? (
@@ -81,8 +81,8 @@ export const Footer: React.FC = () => {
                 </a>
               ))}
             </div>
-            <p className="mt-6 text-xs text-gray-600 font-medium leading-relaxed">
-              Official Hub for <span className="text-gray-400">Sahal Arbani</span> (TikTok: <span className="text-gray-400">@sahal.arbani</span>). 
+            <p className="mt-6 text-xs font-medium leading-relaxed text-zinc-500">
+              Official Hub for <span className="text-zinc-700">Sahal Arbani</span> (TikTok: <span className="text-zinc-700">@sahal.arbani</span>).
               Premium Livery designer for the Wanda Software simulation community.
             </p>
           </div>
@@ -90,13 +90,13 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 opacity-60">
-          <p className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+          <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
              &copy; {currentYear} SAHAL ARBANI LIVERY.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy-policy" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors">Privacy</Link>
-            <Link href="/terms-of-service" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors">Terms</Link>
-            <Link href="/contact" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors">Contact</Link>
+            <Link href="/privacy-policy" className="text-[10px] font-bold text-zinc-500 hover:text-zinc-950 uppercase tracking-wider transition-colors">Privacy</Link>
+            <Link href="/terms-of-service" className="text-[10px] font-bold text-zinc-500 hover:text-zinc-950 uppercase tracking-wider transition-colors">Terms</Link>
+            <Link href="/contact" className="text-[10px] font-bold text-zinc-500 hover:text-zinc-950 uppercase tracking-wider transition-colors">Contact</Link>
           </div>
         </div>
       </div>

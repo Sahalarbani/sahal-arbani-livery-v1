@@ -63,13 +63,13 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
       <form onSubmit={handleSubmit} className="space-y-8">
         
         {/* Master Kill-Switch Module */}
-        <div className={`border rounded-3xl p-6 md:p-8 flex items-center justify-between transition-colors duration-300 ${isAdsActive ? 'bg-brand-onyx border-brand-accent/20' : 'bg-red-950/20 border-red-500/20'}`}>
+        <div className={`flex items-center justify-between rounded-3xl border p-6 transition-colors duration-300 md:p-8 ${isAdsActive ? 'border-zinc-200 bg-white' : 'border-red-500/20 bg-red-50'}`}>
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-3 mb-1">
+            <h3 className="mb-1 flex items-center gap-3 text-xl font-bold text-zinc-950">
               {isAdsActive ? <Power className="text-brand-accent" size={24} /> : <PowerOff className="text-red-500" size={24} />}
               Master Kill-Switch
             </h3>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-zinc-600">
               {isAdsActive ? "Ads are currently LIVE across the ecosystem." : "Ads are DISABLED. Script injection is halted."}
             </p>
           </div>
@@ -84,34 +84,34 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
         </div>
 
         {/* Identity Module */}
-        <div className={`bg-brand-onyx border border-white/5 rounded-3xl p-6 md:p-10 transition-opacity duration-300 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
-          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+        <div className={`rounded-3xl border border-zinc-200 bg-white p-6 transition-opacity duration-300 md:p-10 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
+          <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-zinc-950">
             <span className="w-8 h-8 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent text-sm">01</span>
             Publisher Identity
           </h3>
           
           <div className="space-y-2">
-            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Google Publisher ID (ca-pub-xxx)</label>
+            <label className="ml-1 text-xs font-bold uppercase tracking-widest text-zinc-500">Google Publisher ID (ca-pub-xxx)</label>
             <input
               type="text"
               value={publisherId}
               onChange={(e) => setPublisherId(e.target.value)}
               placeholder="ca-pub-XXXXXXXXXXXXXXXX"
-              className="w-full bg-brand-dark border border-white/5 focus:border-brand-accent/50 rounded-2xl px-5 py-4 text-gray-200 placeholder-gray-600 outline-none transition-all font-mono"
+              className="field-control font-mono"
             />
           </div>
         </div>
 
         {/* Slot Module */}
-        <div className={`bg-brand-onyx border border-white/5 rounded-3xl p-6 md:p-10 transition-opacity duration-300 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
-          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+        <div className={`rounded-3xl border border-zinc-200 bg-white p-6 transition-opacity duration-300 md:p-10 ${!isAdsActive && 'opacity-50 pointer-events-none'}`}>
+          <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-zinc-950">
             <span className="w-8 h-8 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent text-sm">02</span>
             Slot Configurations
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2 md:col-span-2">
-              <label className="text-xs font-bold text-brand-accent uppercase tracking-widest ml-1 flex items-center gap-2">
+              <label className="ml-1 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-accent">
                 High-RPM Slot (Download Area)
               </label>
               <input
@@ -119,40 +119,40 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
                 value={slotDownload}
                 onChange={(e) => setSlotDownload(e.target.value)}
                 placeholder="Ex: 4444444444"
-                className="w-full bg-brand-dark border border-brand-accent/20 focus:border-brand-accent/70 rounded-2xl px-5 py-4 text-gray-200 placeholder-gray-600 outline-none transition-all font-mono shadow-[0_0_15px_rgba(200,100,50,0.1)]"
+                className="field-control border-brand-accent/30 font-mono"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Home Feed Slot</label>
+              <label className="ml-1 text-xs font-bold uppercase tracking-widest text-zinc-500">Home Feed Slot</label>
               <input
                 type="text"
                 value={slotHome}
                 onChange={(e) => setSlotHome(e.target.value)}
                 placeholder="Ex: 1111111111"
-                className="w-full bg-brand-dark border border-white/5 focus:border-brand-accent/50 rounded-2xl px-5 py-3 text-gray-200 placeholder-gray-600 outline-none transition-all font-mono"
+                className="field-control font-mono"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Detail Page Slot</label>
+              <label className="ml-1 text-xs font-bold uppercase tracking-widest text-zinc-500">Detail Page Slot</label>
               <input
                 type="text"
                 value={slotDetail}
                 onChange={(e) => setSlotDetail(e.target.value)}
                 placeholder="Ex: 2222222222"
-                className="w-full bg-brand-dark border border-white/5 focus:border-brand-accent/50 rounded-2xl px-5 py-3 text-gray-200 placeholder-gray-600 outline-none transition-all font-mono"
+                className="field-control font-mono"
               />
             </div>
 
             <div className="space-y-2 md:col-span-2">
-              <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Blog Articles Slot</label>
+              <label className="ml-1 text-xs font-bold uppercase tracking-widest text-zinc-500">Blog Articles Slot</label>
               <input
                 type="text"
                 value={slotBlog}
                 onChange={(e) => setSlotBlog(e.target.value)}
                 placeholder="Ex: 3333333333"
-                className="w-full bg-brand-dark border border-white/5 focus:border-brand-accent/50 rounded-2xl px-5 py-3 text-gray-200 placeholder-gray-600 outline-none transition-all font-mono"
+                className="field-control font-mono"
               />
             </div>
           </div>
@@ -168,7 +168,7 @@ export function AdSettingsForm({ initialSettings }: AdSettingsFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-10 py-4 bg-brand-accent text-brand-dark font-black uppercase text-sm rounded-full transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 flex items-center justify-center gap-3 shadow-lg shadow-brand-accent/20"
+          className="flex w-full items-center justify-center gap-3 rounded-full bg-zinc-950 px-10 py-4 text-sm font-black uppercase text-white shadow-lg transition-all hover:scale-[1.02] hover:bg-brand-cyan active:scale-95 disabled:opacity-50"
         >
           {loading ? "Processing..." : "Deploy Ad Configuration"}
           <Save size={18} />
