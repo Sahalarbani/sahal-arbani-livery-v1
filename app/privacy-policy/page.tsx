@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-brand-dark">
+    <div className="min-h-screen pb-20 pt-28">
       <div className="max-w-3xl mx-auto px-6">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors mb-8">
+        <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-50">
           <ArrowLeft size={16} /> Kembali ke Home
         </Link>
         <div className="prose prose-invert prose-brand max-w-none">

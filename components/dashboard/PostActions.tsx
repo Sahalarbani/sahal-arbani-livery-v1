@@ -30,7 +30,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ id }) => {
       {/* ✅ FIX: Ganti Button jadi Link */}
       <Link 
         href={`/dashboard/edit/${id}`}
-        className="p-2 bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/5 transition-all rounded-sm flex items-center justify-center"
+        className="flex items-center justify-center rounded-md border border-white/10 bg-brand-onyx p-2 text-zinc-500 transition-all hover:bg-brand-cyan hover:text-black"
         title="Edit Parameters"
       >
         <Edit3 size={16} />
@@ -39,7 +39,7 @@ export const PostActions: React.FC<PostActionsProps> = ({ id }) => {
       <button 
         onClick={handleDelete}
         disabled={isDeleting}
-        className="p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 transition-all rounded-sm disabled:opacity-50"
+        className="p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-black border border-red-500/20 transition-all rounded-sm disabled:opacity-50"
         title="Terminate Asset"
       >
         {isDeleting ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} />}

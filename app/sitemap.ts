@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { prisma } from '@/lib/prisma';
 import { SITE_URL } from '@/lib/site';
+import { articles } from '@/lib/blog-data';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,14 +25,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   };
 
-  const hardcodedArticles = [
-    "panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik",
-    "mengapa-livery-kualitas-hd-penting-untuk-pengalaman-simulasi-balap",
-    "cara-pasang-mod-livery-di-game-simulator-favoritmu",
-    "rekomendasi-setelan-grafis-toe3-rata-kanan-tanpa-lag",
-    "update-bocoran-truk-terbaru-wanda-software-2026"
-  ].map((slug) => ({
-    url: `${SITE_URL}/blog/${slug}`,
+  const articleUrls = articles.map((article) => ({
+    url: `${SITE_URL}/blog/${article.id}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
@@ -60,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.2,
     },
-    ...hardcodedArticles,
+    ...articleUrls,
     ...skinUrls,
   ];
 }

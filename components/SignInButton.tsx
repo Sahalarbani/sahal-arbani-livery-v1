@@ -57,7 +57,7 @@ export const SignInButton = () => {
     <button
       onClick={handleConnect}
       disabled={isLoading}
-      className={`group relative w-full bg-white text-black font-bold text-sm py-4 px-6 rounded-full flex items-center justify-center gap-3 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] ${isLoading ? "opacity-90 pointer-events-none" : ""}`}
+      className={`group relative w-full bg-brand-onyx text-black font-bold text-sm py-4 px-6 rounded-full flex items-center justify-center gap-3 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] ${isLoading ? "opacity-90 pointer-events-none" : ""}`}
     >
       {isLoading ? (
         <Loader2 className="w-5 h-5 animate-spin text-brand-dark" />

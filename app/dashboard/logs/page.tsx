@@ -11,15 +11,15 @@ export default async function LogsPage() {
   return (
     <div className="max-w-6xl mx-auto flex flex-col h-[calc(100vh-140px)] md:h-[calc(100vh-80px)]">
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-black text-gray-100 uppercase tracking-tight flex items-center gap-3">
+        <h1 className="flex items-center gap-3 text-2xl font-black uppercase tracking-tight text-zinc-50 md:text-3xl">
             <Terminal className="text-brand-accent" size={28} /> Activity Logs
         </h1>
-        <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">
+        <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500 md:text-xs">
           Sistem pemantauan rekaman aktivitas real-time
         </p>
       </div>
 
-      <div className="flex-1 bg-brand-dark/50 border border-white/5 rounded-3xl overflow-hidden flex flex-col relative">
+      <div className="relative flex flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 bg-brand-onyx">
           <div className="absolute top-0 right-0 p-4">
               <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -30,14 +30,14 @@ export default async function LogsPage() {
           <div className="flex-1 overflow-y-auto custom-scrollbar p-4 mt-8">
              <div className="space-y-4">
                  {logs.length === 0 ? (
-                      <div className="text-center py-20 text-gray-500 text-xs font-bold uppercase tracking-widest flex flex-col items-center gap-3">
+                      <div className="flex flex-col items-center gap-3 py-20 text-center text-xs font-bold uppercase tracking-widest text-zinc-500">
                          <ShieldAlert size={32} className="opacity-20"/>
                          Log aktivitas kosong
                       </div>
                  ) : logs.map(log => (
-                     <div key={log.id} className="flex gap-4 p-4 rounded-2xl bg-brand-onyx border border-white/5 hover:border-brand-accent/30 transition-colors group">
+                     <div key={log.id} className="group flex gap-4 rounded-2xl border border-white/10 bg-brand-onyx p-4 transition-colors hover:border-zinc-950">
                         <div className="mt-1">
-                           <div className="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center border border-white/10 group-hover:border-brand-accent/50 group-hover:text-brand-accent transition-colors">
+                           <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-brand-onyx/5 transition-colors group-hover:border-brand-accent/50 group-hover:text-brand-accent">
                               <Activity size={14} />
                            </div>
                         </div>
@@ -47,13 +47,13 @@ export default async function LogsPage() {
                                 <span className="text-[10px] font-black uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-2 py-0.5 rounded-md inline-block w-max">
                                     {log.action}
                                 </span>
-                                <span className="text-[9px] text-gray-500 flex items-center gap-1 uppercase tracking-wider font-bold">
+                                <span className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-zinc-500">
                                     <Clock size={10}/> {formatDistanceToNow(new Date(log.createdAt), {addSuffix:true})}
                                 </span>
                             </div>
-                            <p className="text-sm text-gray-300 mb-1">{log.description}</p>
-                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">
-                                BY: <span className="text-gray-400">{log.userName}</span>
+                            <p className="mb-1 text-sm text-zinc-300">{log.description}</p>
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                                BY: <span className="text-zinc-300">{log.userName}</span>
                             </p>
                         </div>
                      </div>

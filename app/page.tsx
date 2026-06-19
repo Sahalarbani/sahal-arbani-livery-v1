@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkinCard } from '@/components/SkinCard';
-import { Search, Zap, LayoutGrid } from 'lucide-react';
+import { Search, Zap, LayoutGrid, ArrowDown, Sparkles, Download } from 'lucide-react';
 import Link from 'next/link';
 import { getCategories, getSkins } from '@/services/skin.service';
 import { AdSlot } from '@/components/AdSlot';
@@ -8,6 +8,44 @@ import { getAdSettings } from '@/lib/actions/ads';
 
 // ✅ Caching Strategy: Incremental Static Regeneration (ISR)
 export const revalidate = 60; // Revalidate every 60 seconds instead of force-dynamic
+
+const marketCategories = [
+  {
+    title: "Company Fleet",
+    copy: "Livery ala ekspedisi dan perusahaan logistik untuk pemain yang ingin truk terlihat seperti armada profesional.",
+    keywords: "fleet, cargo, ekspedisi"
+  },
+  {
+    title: "Truck + Trailer Set",
+    copy: "Paket visual kabin dan trailer agar warna armada tetap menyatu saat dipakai delivery jarak jauh.",
+    keywords: "trailer, cargo, tandem"
+  },
+  {
+    title: "Racing Street",
+    copy: "Desain agresif dengan striping tajam, nomor armada, dan kontras tinggi untuk konten video pendek.",
+    keywords: "racing, street, bold"
+  },
+  {
+    title: "Premium Minimal",
+    copy: "Skin hitam, oranye, silver, atau matte yang bersih untuk pemain yang suka look modern dan mahal.",
+    keywords: "matte, premium, clean"
+  }
+];
+
+const installSteps = [
+  "Download file PNG/JPG dari halaman skin.",
+  "Buka Garage di Truckers of Europe 3.",
+  "Pilih truck atau trailer yang sesuai.",
+  "Masuk Customize, pilih Color & Skin.",
+  "Gunakan Add New Skin dan cek preview dari beberapa sudut."
+];
+
+const marketProof = [
+  "TOE3 punya pasar besar karena game utamanya sudah puluhan juta download.",
+  "Pemain mencari skin realistis, ringan, mudah dipasang, dan tidak buram.",
+  "Keluhan umum market: terlalu banyak iklan, bahasa tidak jelas, dan download tidak konsisten.",
+  "Konten Indonesia lebih mudah menang kalau menyediakan preview, kategori, dan tutorial singkat."
+];
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ q?: string; category?: string }> }) {
   const resolvedSearchParams = await searchParams;
@@ -22,70 +60,115 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
     getAdSettings()
   ]);
 
-  // 3️⃣ RETURN UI (REFACTORED TO MINIMALIST iOS 26 STYLE)
   return (
-    <div className="min-h-screen relative overflow-hidden bg-brand-dark">
-      
+    <div className="relative min-h-screen overflow-hidden bg-transparent">
+
       {/* HERO SECTION */}
-      <div className="relative z-10 pt-32 pb-4 px-6 text-center max-w-5xl mx-auto">
-        
-        {/* Version Badge - Minimalist Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-onyx border border-white/5 mb-8">
-          <Zap size={14} className="text-brand-sage fill-brand-sage" />
-          <span className="text-[11px] font-semibold text-brand-sage uppercase tracking-[0.2em]">
-            System V2.0 Online
-          </span>
+      <section className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 pb-12 pt-32 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-16 lg:pt-36">
+        <div className="flex flex-col justify-center">
+          <div className="mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-brand-onyx px-4 py-2 shadow-sm">
+            <Zap size={14} className="text-brand-cyan" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-500">
+              TOE3 Livery Studio 2026
+            </span>
+          </div>
+
+          <h1 className="max-w-4xl text-5xl font-black leading-[0.95] tracking-tight text-zinc-50 sm:text-6xl lg:text-7xl">
+            SAHAL ARBANI
+            <span className="mt-2 block font-display text-brand-cyan">
+              LIVERY
+            </span>
+          </h1>
+
+          <p className="mt-7 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
+            Download skin dan livery Truckers of Europe 3 dengan preview yang rapi, kategori jelas, dan asset pilihan dari Sahal Arbani.
+            <Link href="https://www.tiktok.com/@sahal.arbani" target="_blank" className="ml-1 font-semibold text-brand-cyan transition-colors hover:text-zinc-50">@sahal.arbani</Link>
+          </p>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Link href="#gallery" className="primary-button">
+              Browse Skins <ArrowDown size={16} />
+            </Link>
+            <Link href="/blog" className="ios-button inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-[0.14em]">
+              Read Guides <Sparkles size={16} />
+            </Link>
+          </div>
         </div>
 
-        {/* Minimalist Title */}
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-100 mb-6 tracking-tight uppercase">
-          SAHAL ARBANI <br />
-          <span className="text-brand-paper italic font-serif opacity-80">
-            LIVERIES
-          </span>
-        </h1>
-
-        <p className="text-lg text-gray-400 font-medium max-w-2xl mx-auto mb-12 leading-relaxed">
-          The official source for <span className="text-brand-accent">SAHAL ARBANI</span> Truckers of Europe 3 (TOE3) skins. 
-          <br className="hidden md:block"/> Follow the evolution on TikTok: <Link href="https://www.tiktok.com/@sahal.arbani" target="_blank" className="text-white hover:text-brand-accent transition-colors">@sahal.arbani</Link>
-        </p>
-
-        {/* CLEAN SEARCH PILL */}
-        <div className="max-w-xl mx-auto relative group mb-8">
-          <form action="/" method="GET" className="relative flex items-center">
-            <div className="absolute left-5 text-gray-500 group-focus-within:text-brand-accent transition-colors">
-              <Search size={22} />
+        <div className="glass-panel relative overflow-hidden rounded-[28px] p-3">
+          <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-brand-cyan/40 to-transparent" />
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-brand-onyx/10">
+            {skins[0]?.image ? (
+              <img src={skins[0].image} alt={skins[0].title || 'Featured livery'} className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,rgba(255,122,0,0.18),rgba(255,122,0,0.10)),#11151B]">
+                <LayoutGrid className="text-brand-cyan" size={56} />
+              </div>
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/78 via-zinc-950/10 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-cyan">Featured Asset</p>
+                <h2 className="mt-1 line-clamp-2 text-2xl font-black leading-tight text-white">{skins[0]?.title || 'TOE3 HD Livery'}</h2>
+              </div>
+              <div className="hidden rounded-2xl border border-white/20 bg-brand-onyx/90 px-4 py-3 text-right shadow-sm backdrop-blur-xl sm:block">
+                <p className="text-2xl font-black text-zinc-50">{skins.length}</p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-500">Assets</p>
+              </div>
             </div>
-            
-            <input
-              type="text"
-              name="q"
-              defaultValue={query}
-              placeholder="Search TOE3 skins / liveries..."
-              className="w-full bg-brand-onyx focus:bg-brand-onyx border border-white/5 focus:border-brand-accent/50 rounded-full py-4 pl-14 pr-6 text-gray-200 placeholder-gray-500 tracking-wide outline-none transition-all duration-300 shadow-sm"
-            />
-          </form>
+          </div>
+          <div className="grid grid-cols-3 gap-2 pt-3">
+            {skins.slice(0, 3).map((skin) => (
+              <div key={skin.id} className="hairline-panel flex items-center gap-2 rounded-2xl p-2">
+                <div className="relative h-10 w-12 shrink-0 overflow-hidden rounded-xl bg-brand-onyx/10">
+                  {skin.image && <img src={skin.image} alt="" className="h-full w-full object-cover" />}
+                </div>
+                <div className="min-w-0">
+                  <p className="truncate text-[10px] font-bold uppercase tracking-wide text-zinc-50">{skin.category}</p>
+                  <p className="flex items-center gap-1 text-[10px] text-zinc-500"><Download size={10} /> {(skin.downloads || 0).toLocaleString()}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* TOP AD SENSE PLACEMENT */}
-        <AdSlot 
-          publisherId={adSettings?.publisherId} 
-          adSlotId={adSettings?.slotHome || "HOMEPAGE-TOP-728x90"} 
+      </section>
+
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <form action="/" method="GET" className="glass-panel relative flex items-center rounded-full p-2">
+          <Search size={20} className="ml-4 text-brand-cyan" />
+          <input
+            type="text"
+            name="q"
+            defaultValue={query}
+            placeholder="Search TOE3 skins, livery, truck type..."
+            className="w-full bg-transparent px-4 py-3 text-sm font-semibold tracking-wide text-zinc-50 outline-none placeholder:text-zinc-600"
+          />
+        </form>
+        <AdSlot
+          publisherId={adSettings?.publisherId}
+          adSlotId={adSettings?.slotHome || "HOMEPAGE-TOP-728x90"}
+          className="mt-8"
         />
       </div>
 
       {/* CONTENT SECTION (Bento Grid Style) */}
-      <div id="gallery" className="relative z-10 max-w-7xl mx-auto px-6 pb-24">
-        
+      <div id="gallery" className="relative z-10 mx-auto max-w-7xl px-4 pb-24 pt-14 sm:px-6 lg:px-8">
+
         {/* SEPARATOR */}
-        <div className="flex items-center justify-center gap-4 mb-10 opacity-40">
-          <div className="h-px w-16 bg-gradient-to-r from-transparent to-gray-500" />
-          <LayoutGrid size={14} className="text-gray-400" />
-          <div className="h-px w-16 bg-gradient-to-l from-transparent to-gray-500" />
+        <div className="mb-8 flex items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-black uppercase tracking-tight text-zinc-50 sm:text-3xl">Latest Liveries</h2>
+            <p className="mt-2 text-sm text-zinc-500">Pilih kategori atau cari asset TOE3 favoritmu.</p>
+          </div>
+          <div className="hidden items-center gap-3 text-zinc-500 sm:flex">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-white/20" />
+            <LayoutGrid size={16} />
+          </div>
         </div>
 
         {/* CAPSULE TABS FILTERS */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="mb-10 flex flex-wrap gap-2 rounded-[22px] border border-white/10 bg-brand-onyx p-2 shadow-sm">
           {allCategories.map((cat) => {
             const isActive = categoryFilter.toUpperCase() === cat.toUpperCase();
             return (
@@ -93,10 +176,10 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 key={cat}
                 href={`/?category=${cat === 'ALL' ? '' : cat}&q=${query}`}
                 className={`
-                  relative px-5 py-2 rounded-full font-semibold text-[11px] uppercase tracking-wider transition-all duration-300
-                  ${isActive 
-                    ? 'bg-brand-accent text-brand-dark shadow-sm scale-[1.02]' 
-                    : 'bg-brand-onyx text-gray-400 border border-transparent hover:bg-brand-onyx/80 hover:text-gray-200'
+                  relative rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] transition-all duration-300
+                  ${isActive
+                    ? 'bg-brand-cyan text-black shadow-halo'
+                    : 'text-zinc-500 hover:bg-brand-onyx/10 hover:text-zinc-50'
                   }
                 `}
               >
@@ -108,23 +191,90 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
         {/* GRID LAYOUT (Bento) */}
         {skins.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 bg-brand-onyx rounded-[24px] border border-white/5 border-dashed">
-            <Search size={40} className="text-gray-600 mb-4 opacity-50" />
-            <p className="text-lg font-semibold text-gray-400 uppercase tracking-wide">No Data Found</p>
-            <p className="text-gray-500 mt-1 text-sm">Try adjusting your search parameters.</p>
+          <div className="glass-panel flex flex-col items-center justify-center rounded-[28px] border-dashed py-24">
+            <Search size={40} className="mb-4 text-zinc-500" />
+            <p className="text-lg font-semibold uppercase tracking-wide text-zinc-300">No Data Found</p>
+            <p className="mt-1 text-sm text-zinc-500">Try adjusting your search parameters.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {skins.map(skin => (
-              <SkinCard 
-                key={skin.id} 
-                skin={skin as any} 
+              <SkinCard
+                key={skin.id}
+                skin={skin as any}
                 href={`/skin/${skin.id}`}
               />
             ))}
           </div>
         )}
       </div>
+
+      <section className="relative z-10 mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="surface-card p-6 md:p-8">
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.24em] text-brand-cyan">Market Demand</p>
+            <h2 className="text-3xl font-black uppercase leading-none tracking-tight text-zinc-50 md:text-4xl">
+              Kategori skin yang paling banyak dicari pemain TOE3
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-zinc-400">
+              Halaman ini difokuskan untuk kebutuhan pasar: skin realistis, livery truck dan trailer,
+              file yang gampang diunduh, serta panduan pasang yang langsung bisa diikuti pemain baru.
+            </p>
+            <div className="mt-7 space-y-3">
+              {marketProof.map((item) => (
+                <div key={item} className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-sm text-zinc-300">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-cyan" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {marketCategories.map((item) => (
+              <article key={item.title} className="surface-card p-6 transition-colors hover:border-brand-cyan/40">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-cyan">{item.keywords}</p>
+                <h3 className="mt-3 text-xl font-black uppercase text-zinc-50">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="surface-card grid gap-8 p-6 md:p-8 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.24em] text-brand-cyan">Quick Install Guide</p>
+            <h2 className="text-3xl font-black uppercase leading-tight text-zinc-50">
+              Cara pasang skin Truckers of Europe 3 tanpa ribet
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-zinc-400">
+              Skin hanya mengubah tampilan visual. Pilih template yang sesuai supaya livery tidak melar,
+              lalu pasang dari menu kostumisasi bawaan game.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/blog/cara-pasang-mod-livery-di-game-simulator-favoritmu" className="primary-button">
+                Baca Tutorial
+              </Link>
+              <Link href="/blog/kategori-skin-truckers-of-europe-3-paling-dicari" className="ios-button inline-flex items-center justify-center px-6 py-3 text-sm font-bold uppercase tracking-[0.14em]">
+                Lihat Kategori
+              </Link>
+            </div>
+          </div>
+
+          <ol className="space-y-3">
+            {installSteps.map((step, index) => (
+              <li key={step} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-cyan text-sm font-black text-black">
+                  {index + 1}
+                </span>
+                <span className="text-sm font-semibold text-zinc-300">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
     </div>
   );
 }

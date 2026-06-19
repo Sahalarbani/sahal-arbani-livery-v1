@@ -3,40 +3,62 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    background: #000000;
+    scroll-behavior: smooth;
+  }
+
   body {
-    /* Minimal Dark Background */
-    @apply bg-brand-dark text-gray-200 selection:bg-brand-accent selection:text-white overflow-x-hidden;
-    /* Font Default */
+    @apply bg-black text-zinc-50 selection:bg-brand-cyan selection:text-black overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.98), #000 34rem),
+      radial-gradient(circle at 16% -12%, rgba(255, 122, 0, 0.18), transparent 30rem),
+      radial-gradient(circle at 82% 2%, rgba(255, 122, 0, 0.1), transparent 28rem),
+      #000000;
   }
 }
 
-/* Subtle iOS 26 Ambient Glow */
 body::before {
   content: "";
   position: fixed;
-  top: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 50%;
-  background: radial-gradient(ellipse, rgba(224, 122, 95, 0.05) 0%, rgba(20, 20, 20, 0) 70%);
-  filter: blur(100px);
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
   z-index: -1;
   pointer-events: none;
 }
 
-/* --- UTILITIES --- */
-.animate-spin-slow {
-  animation: spin 3s linear infinite;
+@layer components {
+  .glass-panel {
+    @apply border border-white/10 bg-brand-onyx/90 shadow-glass backdrop-blur-xl;
+  }
+
+  .hairline-panel {
+    @apply border border-white/10 bg-brand-glass/90 shadow-sm backdrop-blur-xl;
+  }
+
+  .ios-button {
+    @apply rounded-full border border-white/10 bg-brand-onyx/5 text-zinc-100 shadow-sm backdrop-blur-xl transition-all duration-300 hover:border-brand-cyan hover:bg-brand-cyan hover:text-black active:scale-95;
+  }
+
+  .surface-card {
+    @apply rounded-[24px] border border-white/10 bg-brand-onyx shadow-sm;
+  }
+
+  .field-control {
+    @apply w-full rounded-2xl border border-white/10 bg-black px-5 py-3 text-sm font-medium text-zinc-100 outline-none transition-colors placeholder:text-zinc-600 focus:border-brand-cyan focus:ring-4 focus:ring-brand-cyan/10;
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-cyan px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition-all hover:bg-brand-onyx active:scale-95;
+  }
 }
 
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-/* Smooth Scrolling for Anchor Links */
-html {
-  scroll-behavior: smooth;
 }

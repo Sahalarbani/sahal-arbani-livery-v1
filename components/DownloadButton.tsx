@@ -55,8 +55,8 @@ export function DownloadButton({ skinId, downloadUrl, fileName }: DownloadButton
 
   if (status === 'loading') {
     return (
-      <button disabled className="w-full bg-brand-onyx border border-white/5 text-gray-400 font-bold text-sm py-4 rounded-full flex items-center justify-center gap-3 cursor-wait shadow-sm">
-        <Loader2 className="animate-spin text-brand-accent" size={20} />
+      <button disabled className="flex w-full cursor-wait items-center justify-center gap-3 rounded-full border border-white/10 bg-brand-onyx/10 py-4 text-sm font-bold text-zinc-500 shadow-sm">
+        <Loader2 className="animate-spin text-brand-cyan" size={20} />
         <span className="tracking-[0.2em] uppercase">CONNECTING...</span>
       </button>
     );
@@ -66,9 +66,9 @@ export function DownloadButton({ skinId, downloadUrl, fileName }: DownloadButton
     return (
       <button 
         onClick={handleDownload}
-        className="group w-full relative overflow-hidden bg-brand-sage hover:bg-brand-sage/90 text-brand-dark font-extrabold text-sm py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 shadow-sm animate-in zoom-in-95 hover:scale-[1.02]"
+        className="group relative flex w-full animate-in items-center justify-center gap-2 overflow-hidden rounded-full bg-brand-sage py-4 text-sm font-extrabold text-black transition-all duration-300 zoom-in-95 hover:scale-[1.02] hover:bg-brand-sage/90"
       >
-        <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
+        <div className="absolute inset-0 bg-brand-onyx/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
         <FileDown className="relative z-10" strokeWidth={2.5} size={20} />
         <span className="relative z-10 tracking-[0.1em] uppercase">SECURE DOWNLOAD</span>
       </button>
@@ -78,9 +78,9 @@ export function DownloadButton({ skinId, downloadUrl, fileName }: DownloadButton
   return (
     <button 
       onClick={handleInitiate}
-      className="group w-full relative overflow-hidden bg-brand-accent hover:bg-brand-accent/90 text-brand-dark font-extrabold text-sm py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:shadow-lg active:scale-95"
+      className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-cyan py-4 text-sm font-extrabold text-black shadow-halo transition-all duration-300 hover:bg-brand-cyan active:scale-95"
     >
-      <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" />
+      <div className="absolute inset-0 bg-brand-onyx/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" />
       <Download className="relative z-10 group-hover:-translate-y-1 transition-transform" strokeWidth={2.5} size={20} />
       <span className="relative z-10 tracking-[0.15em] uppercase">ACQUIRE ASSET</span>
     </button>

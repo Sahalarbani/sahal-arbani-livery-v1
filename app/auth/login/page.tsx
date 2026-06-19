@@ -5,26 +5,23 @@ import { LogIn, ShieldCheck } from "lucide-react";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-dark px-4 font-sans">
+    <div className="flex min-h-screen items-center justify-center bg-black px-4 font-sans">
       <div className="max-w-md w-full">
-        {/* Glow Effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-brand-accent/10 blur-[100px] rounded-full pointer-events-none" />
-        
-        <div className="bg-brand-onyx border border-white/5 p-8 md:p-10 rounded-[40px] shadow-2xl relative z-10 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent" />
+        <div className="surface-card relative z-10 overflow-hidden rounded-[32px] p-8 md:p-10">
+          <div className="absolute left-0 top-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-cyan/40 to-transparent" />
           
           <div className="text-center mb-10">
-            <div className="w-16 h-16 bg-brand-accent/10 rounded-2xl border border-brand-accent/20 flex items-center justify-center mx-auto mb-6">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-brand-cyan">
               <ShieldCheck className="text-brand-accent" size={32} />
             </div>
-            <h1 className="text-3xl font-black text-gray-100 uppercase tracking-tight mb-2">Gate <span className="text-brand-accent">Control</span></h1>
-            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Authorized Access Only</p>
+            <h1 className="mb-2 text-3xl font-black uppercase tracking-tight text-zinc-50">Gate <span className="text-brand-accent">Control</span></h1>
+            <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Authorized Access Only</p>
           </div>
 
           <div className="space-y-4">
             <button 
               onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-              className="w-full h-14 bg-white text-black hover:bg-gray-100 transition-all rounded-full font-black uppercase text-xs tracking-widest flex items-center justify-center gap-3 active:scale-[0.98] shadow-lg"
+              className="flex h-14 w-full items-center justify-center gap-3 rounded-full bg-brand-cyan text-xs font-black uppercase tracking-widest text-black shadow-lg transition-all hover:bg-brand-cyan active:scale-[0.98]"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -47,14 +44,14 @@ export default function LoginPage() {
               <span>Verify via Google</span>
             </button>
             
-            <p className="text-[10px] text-gray-600 text-center font-bold uppercase tracking-widest pt-4 opacity-50">
+            <p className="pt-4 text-center text-[10px] font-bold uppercase tracking-widest text-zinc-500">
               System encryption active. Logins are monitored.
             </p>
           </div>
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
             Sahal Arbani Livery &copy; 2026
           </p>
         </div>

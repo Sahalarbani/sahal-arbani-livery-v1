@@ -42,7 +42,7 @@ export function AdSlot({
   }, [isMounted, isReal]);
 
   return (
-    <div className={`w-full bg-white/5 border border-white/10 rounded-xl overflow-hidden flex flex-col items-center justify-center min-h-[100px] my-6 transition-all relative group ${className}`}>
+    <div className={`relative my-6 flex min-h-[100px] w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed border-white/10 bg-brand-onyx transition-all ${className}`}>
       {isReal && isMounted ? (
         <ins className="adsbygoogle"
              style={{ display: "block", width: "100%", height: "100%", minHeight: "100px" }}
@@ -54,13 +54,13 @@ export function AdSlot({
         />
       ) : (
         <>
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(9,9,11,0.03),transparent)]" />
           <div className="z-10 text-center py-6 px-4">
             <span className="inline-block px-3 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/20 rounded-full text-[10px] font-bold uppercase tracking-widest mb-2">
               Sponsor / Advertisement
             </span>
-            <p className="text-xs text-gray-500 font-medium max-w-sm">
-              Ruang iklan AdSense. Slot ID: <code className="text-gray-300 font-mono bg-black/30 px-1 rounded">{adSlotId}</code>
+            <p className="max-w-sm text-xs font-medium text-zinc-500">
+              Ruang iklan AdSense. Slot ID: <code className="rounded bg-brand-onyx/10 px-1 font-mono text-zinc-300">{adSlotId}</code>
             </p>
           </div>
         </>
