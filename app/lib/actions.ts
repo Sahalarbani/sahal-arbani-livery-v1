@@ -157,3 +157,101 @@ export async function deletePreset(id: string) {
     return { success: true, message: "Preset Deleted" };
   } catch (error) { return { success: false, message: "Delete Failed" }; }
 }
+
+// 6. BLOG CRUD
+function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+const BlogPostSchema = z.object({
+  title: z.string().min(3, "Judul minimal 3 karakter"),
+  excerpt: z.string().min(10, "Excerpt minimal 10 karakter"),
+  content: z.string().min(20, "Content minimal 20 karakter"),
+  tag: z.string().min(1, "Tag wajib diisi"),
+  readTime: z.string().default("5 min read"),
+  published: z.boolean().default(true),
+});
+
+export async function createBlogPost(prevState: any, formData: FormData) {
+  const session = await auth();
+  if (!session?.user || session.user.role !== "admin") return { message: "Access Denied." };
+
+  const validated = BlogPostSchema.safeParse({
+    title: formData.get("title"),
+    excerpt: formData.get("excerpt"),
+    content: formData.get("content"),
+    tag: formData.get("tag"),
+    readTime: formData.get("readTime") || "5 min read",
+    published: formData.get("published") === "true",
+  });
+
+  if (!validated.success) return { errors: validated.error.flatten().fieldErrors, message: "Validation Failed." };
+
+  const data = validated.data;
+  let slug = slugify(data.title);
+
+  // Deduplicate slug
+  const existing = await prisma.blogPost.findUnique({ where: { slug } });
+  if (existing) slug = `${slug}-${Date.now()}`;
+
+  try {
+    await prisma.blogPost.create({ data: { ...data, slug } });
+    await prisma.activityLog.create({
+      data: { action: "CREATE_BLOG", description: `Published article: ${data.title}`, userName: session.user.name || "Admin" }
+    });
+  } catch (error) {
+    console.error(error);
+    return { message: "Database Failure." };
+  }
+
+  revalidatePath("/dashboard/blog");
+  revalidatePath("/blog");
+  redirect("/dashboard/blog");
+}
+
+export async function updateBlogPost(id: string, prevState: any, formData: FormData) {
+  const session = await auth();
+  if (!session?.user || session.user.role !== "admin") return { message: "Access Denied." };
+
+  const validated = BlogPostSchema.safeParse({
+    title: formData.get("title"),
+    excerpt: formData.get("excerpt"),
+    content: formData.get("content"),
+    tag: formData.get("tag"),
+    readTime: formData.get("readTime") || "5 min read",
+    published: formData.get("published") === "true",
+  });
+
+  if (!validated.success) return { errors: validated.error.flatten().fieldErrors, message: "Update Failed." };
+
+  try {
+    await prisma.blogPost.update({ where: { id }, data: validated.data });
+    await prisma.activityLog.create({
+      data: { action: "UPDATE_BLOG", description: `Updated article: ${validated.data.title}`, userName: session.user.name || "Admin" }
+    });
+  } catch (error) {
+    return { message: "Update Failed." };
+  }
+
+  revalidatePath("/dashboard/blog");
+  revalidatePath("/blog");
+  redirect("/dashboard/blog");
+}
+
+export async function deleteBlogPost(id: string) {
+  const session = await auth();
+  if (!session?.user || session.user.role !== "admin") return { message: "Unauthorized" };
+  try {
+    const post = await prisma.blogPost.findUnique({ where: { id } });
+    await prisma.blogPost.delete({ where: { id } });
+    if (post) {
+      await prisma.activityLog.create({
+        data: { action: "DELETE_BLOG", description: `Deleted article: ${post.title}`, userName: session.user.name || "Admin" }
+      });
+    }
+    revalidatePath("/dashboard/blog");
+    revalidatePath("/blog");
+  } catch (error) {
+    return { message: "Delete Failed." };
+  }
+}

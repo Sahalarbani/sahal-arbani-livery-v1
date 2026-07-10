@@ -2,7 +2,7 @@ import { auth, signOut } from "@/auth";
 import { redirect } from "next/navigation";
 import React from "react";
 import Link from "next/link";
-import { LayoutDashboard, PackagePlus, LogOut, ArrowLeft, Layers } from "lucide-react";
+import { LayoutDashboard, PackagePlus, LogOut, ArrowLeft, Layers, FileText } from "lucide-react";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -59,6 +59,10 @@ export default async function DashboardLayout({
                 <Link href="/dashboard/comments" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
                     <span>Comments</span>
+                </Link>
+                <Link href="/dashboard/blog" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
+                    <FileText size={18} />
+                    <span>Blog</span>
                 </Link>
                 <Link href="/dashboard/logs" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -141,6 +145,10 @@ export default async function DashboardLayout({
           <Link href="/dashboard/ads" className="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-brand-accent transition-colors flex-1">
               <Layers size={20} />
               <span className="text-[9px] font-bold uppercase tracking-wider">Ads</span>
+          </Link>
+          <Link href="/dashboard/blog" className="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-brand-accent transition-colors flex-1">
+              <FileText size={20} />
+              <span className="text-[9px] font-bold uppercase tracking-wider">Blog</span>
           </Link>
           <Link href="/dashboard/logs" className="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-brand-accent transition-colors flex-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
