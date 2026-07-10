@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // output: "standalone" dihapus — itu buat Docker, di Vercel bikin semua halaman SSR + zero caching.
   images: {
     remotePatterns: [
       {

@@ -38,6 +38,9 @@ export default auth((req) => {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    // ponytail: hanya intercept dashboard + auth. Halaman publik bebas dari auth middleware
+    // supaya Vercel CDN bisa cache + Googlebot ga kena cookie overhead.
+    "/dashboard/:path*",
+    "/auth/:path*",
   ],
 };
