@@ -21,7 +21,7 @@ function SubmitButton() {
 const TAG_OPTIONS = ["Tutorial", "News", "Review Visual", "Panduan Modding", "Optimasi"];
 
 export default function CreateBlogPage() {
-  const initialState = { message: null, errors: {} };
+  const initialState = { message: null as string | null, errors: {} as Record<string, string[]> };
   const [state, dispatch] = useActionState(createBlogPost, initialState);
   const [isCustomTag, setIsCustomTag] = useState(false);
 

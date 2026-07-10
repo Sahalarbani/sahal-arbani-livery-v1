@@ -22,7 +22,7 @@ function SubmitButton() {
 const TAG_OPTIONS = ["Tutorial", "News", "Review Visual", "Panduan Modding", "Optimasi"];
 
 export default function EditBlogForm({ post }: { post: BlogPost }) {
-  const initialState = { message: null, errors: {} };
+  const initialState = { message: null as string | null, errors: {} as Record<string, string[]> };
   const [state, dispatch] = useActionState(updateBlogPost.bind(null, post.id), initialState);
   const isCustomTag = !TAG_OPTIONS.includes(post.tag);
 
