@@ -1,5 +1,7 @@
+successfully downloaded text file (SHA: 341c90ebb07b7790b5ac83a4688587f22bb2b16e)
 import { v2 as cloudinary } from "cloudinary";
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 
 export const dynamic = 'force-dynamic';
 
@@ -10,6 +12,13 @@ cloudinary.config({
 });
 
 export async function GET() {
+  // SEC3: daftar media Cloudinary hanya untuk admin. Sebelumnya endpoint ini
+  // tanpa auth dan mengembalikan semua aset upload (termasuk draft) ke publik.
+  const session = await auth();
+  if (!session?.user || session.user.role !== "admin") {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+  }
+
   try {
     // ✅ UPDATE: Gw naikin max_results jadi 500 (Maksimal Cloudinary)
     const results = await cloudinary.api.resources({
@@ -25,3 +34,4 @@ export async function GET() {
     return NextResponse.json({ error: "Gagal ambil gambar" }, { status: 500 });
   }
 }
+
