@@ -109,6 +109,18 @@ export default async function DashboardLayout({
                     {session.user.image && <img src={session.user.image} alt="User" className="w-full h-full object-cover" />}
                  </div>
              </div>
+             {/* Tombol Keluar di HP: sebelumnya tidak ada jalan logout dari
+                 dashboard mobile (tombol Keluar hanya ada di sidebar
+                 desktop). Memakai server action signOut yang sama seperti
+                 versi desktop, redirect ke homepage. */}
+             <form action={async () => {
+                 "use server"
+                 await signOut({ redirectTo: '/' });
+             }}>
+                 <button type="submit" aria-label="Keluar" title="Keluar" className="w-11 h-11 flex items-center justify-center rounded-full bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white transition-all">
+                     <LogOut size={18} />
+                 </button>
+             </form>
          </div>
       </div>
       
