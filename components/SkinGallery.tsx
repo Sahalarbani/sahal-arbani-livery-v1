@@ -33,7 +33,7 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
   };
 
   return (
-    <div id="gallery" className="relative z-10 max-w-7xl mx-auto px-6 pb-24">
+    <div id="gallery" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-20 sm:pb-24">
       {/* Search */}
       <div className="max-w-xl mx-auto relative group mb-8">
         <div className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors">
@@ -45,7 +45,7 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search TOE3 skins / liveries..."
           aria-label="Search skins"
-          className="w-full bg-brand-onyx border border-white/5 focus:border-brand-accent/50 rounded-full py-4 pl-14 pr-6 text-gray-200 placeholder-gray-500 tracking-wide outline-none transition-all duration-300 shadow-sm"
+          className="w-full min-h-[48px] bg-brand-onyx border border-white/5 focus:border-brand-accent/50 rounded-full py-3.5 pl-14 pr-6 text-base text-gray-200 placeholder-gray-500 tracking-wide outline-none transition-all duration-300 shadow-sm"
         />
       </div>
 
@@ -66,7 +66,7 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
               type="button"
               onClick={() => setCategory(cat)}
               aria-pressed={isActive}
-              className={`px-5 py-2 rounded-full font-semibold text-[11px] uppercase tracking-wider transition-all duration-300 ${
+              className={`min-h-[44px] px-4 py-2.5 rounded-full font-semibold text-[11px] uppercase tracking-wider transition-all duration-300 ${
                 isActive
                   ? "bg-brand-accent text-brand-dark shadow-sm scale-[1.02]"
                   : "bg-brand-onyx text-gray-400 border border-transparent hover:bg-brand-onyx/80 hover:text-gray-200"
@@ -78,7 +78,7 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
         })}
       </div>
 
-      <p className="text-center text-xs text-gray-500 font-medium mb-12" aria-live="polite">
+      <p className="text-center text-sm text-gray-500 font-medium mb-10 sm:mb-12" aria-live="polite">
         {filtered.length === 0
           ? "No skins match your search."
           : `${filtered.length} ${filtered.length === 1 ? "livery" : "liveries"} shown`}
@@ -86,20 +86,20 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
 
       {/* Grid */}
       {filtered.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-24 bg-brand-onyx rounded-[24px] border border-white/5 border-dashed">
+        <div className="flex flex-col items-center justify-center py-16 sm:py-24 px-6 text-center bg-brand-onyx rounded-[24px] border border-white/5 border-dashed">
           <Search size={40} className="text-gray-600 mb-4 opacity-50" />
           <p className="text-lg font-semibold text-gray-400 uppercase tracking-wide">No skins found</p>
           <p className="text-gray-500 mt-1 text-sm">Try a different search or category.</p>
           <button
             type="button"
             onClick={clearFilters}
-            className="mt-6 px-6 py-2.5 rounded-full bg-brand-accent text-brand-dark text-xs font-bold uppercase tracking-widest hover:bg-brand-accent/90 transition-colors"
+            className="mt-6 px-6 py-3 min-h-[44px] rounded-full bg-brand-accent text-brand-dark text-xs font-bold uppercase tracking-widest hover:bg-brand-accent/90 transition-colors"
           >
             Clear filters
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-6">
           {filtered.map((skin) => (
             <SkinCard key={skin.id} skin={skin as any} href={`/skin/${skin.id}`} />
           ))}
@@ -108,3 +108,4 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
     </div>
   );
 }
+

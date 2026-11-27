@@ -30,17 +30,8 @@
   animation: shimmer 1200ms linear infinite;
 }
 
-/* --- UTILITIES --- */
-.animate-spin-slow {
-  animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 /* Smooth Scrolling for Anchor Links */
 html {
   scroll-behavior: smooth;
 }
+

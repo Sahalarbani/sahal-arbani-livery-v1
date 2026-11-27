@@ -44,12 +44,12 @@ export const SkinCard: React.FC<SkinCardProps> = ({ skin, onClick, href }) => {
       </div>
 
       {/* 2. TEXT CONTENT AREA */}
-      <div className="px-5 pb-5 pt-3 flex flex-col flex-grow">
-        <h3 className="text-lg font-semibold text-gray-100 leading-tight mb-2 group-hover:text-brand-accent transition-colors">
+      <div className="px-5 pb-6 pt-4 flex flex-col flex-grow">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-100 leading-snug mb-2 group-hover:text-brand-accent transition-colors">
           {skin.title}
         </h3>
         
-        <p className="text-gray-400 text-sm font-light line-clamp-2 mb-6 flex-grow leading-relaxed">
+        <p className="text-gray-400 text-[15px] font-light line-clamp-2 mb-5 flex-grow leading-relaxed">
           {skin.description}
         </p>
         
@@ -90,3 +90,4 @@ export const SkinCard: React.FC<SkinCardProps> = ({ skin, onClick, href }) => {
     </div>
   );
 };
+
