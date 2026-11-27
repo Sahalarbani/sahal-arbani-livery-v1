@@ -42,11 +42,23 @@ export default async function BlogIndex() {
 
         <AdSlot adSlotId="TOP-HOME-ARTICLES" />
 
+        {articles.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 bg-brand-onyx rounded-2xl border border-white/5 border-dashed text-center px-6">
+            <BookOpen size={40} className="text-gray-600 mb-4 opacity-50" />
+            <h2 className="text-lg font-semibold text-gray-300 uppercase tracking-wide">Belum ada artikel</h2>
+            <p className="text-gray-500 mt-2 text-sm max-w-md">
+              Artikel dan panduan seputar modding dan livery Truckers of Europe 3 akan tampil di sini setelah diterbitkan dari dashboard.
+            </p>
+            <Link href="/" className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-accent text-brand-dark text-xs font-bold uppercase tracking-widest hover:bg-brand-accent/90 transition-colors">
+              Lihat livery <ArrowRight size={14} />
+            </Link>
+          </div>
+        ) : (
         <div className="grid gap-6 mt-10">
           {articles.map((article) => (
-            <article key={article.id} className="bg-brand-onyx/40 backdrop-blur-xl border border-white/5 rounded-2xl p-6 md:p-8 hover:border-brand-accent/30 transition-all duration-300 group">
+            <article key={article.id} className="bg-brand-onyx border border-white/5 rounded-2xl p-6 md:p-8 hover:border-brand-accent/30 transition-all duration-300 group">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center mb-4">
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-[10px] font-bold uppercase tracking-widest border border-brand-sage/20">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-dark text-brand-sage text-[10px] font-bold uppercase tracking-widest border border-brand-sage/20">
                   {article.tag}
                 </span>
                 <div className="flex items-center gap-3 text-xs text-gray-500 font-mono">
@@ -68,6 +80,7 @@ export default async function BlogIndex() {
             </article>
           ))}
         </div>
+        )}
 
         <div className="mt-12">
           <AdSlot adSlotId="BOTTOM-ARTICLES" />
