@@ -12,8 +12,10 @@ const config: Config = {
         brand: {
           accent: "#E07A5F", // Terracotta
           sage: "#8F9779", // Sage Green
-          dark: "#141414", // Charcoal
+          dark: "#141414", // Charcoal (true neutral)
           onyx: "#1F1F1F", // Onyx
+          surface: "#1E1E1E", // Solid surface (Material Dark)
+          elevated: "#242424", // Solid elevated surface
           paper: "#F5F5F4" 
         },
       },
