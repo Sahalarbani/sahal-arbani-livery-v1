@@ -1,4 +1,3 @@
-successfully downloaded text file (SHA: 355b80e8ecd86c8d8e51d11dbfe884fdf25f6104)
 /**
  * CHANGELOG
  * Version: 2.0.0

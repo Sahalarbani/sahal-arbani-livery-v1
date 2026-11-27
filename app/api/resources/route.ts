@@ -1,4 +1,3 @@
-successfully downloaded text file (SHA: 341c90ebb07b7790b5ac83a4688587f22bb2b16e)
 import { v2 as cloudinary } from "cloudinary";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
