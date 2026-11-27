@@ -25,7 +25,9 @@ export default async function DashboardLayout({
   return (
     // PARENT WRAPPER
     // Default flow so the whole page can scroll natively if needed on mobile, but on desktop we lock it to h-[calc(100vh-navbar)]
-    <div className="flex flex-col md:flex-row w-full bg-brand-dark text-gray-100 font-sans min-h-screen md:h-[calc(100vh-80px)] overflow-hidden">
+    // pt-20 di mobile: Navbar publik fixed setinggi 80px; tanpa ini header
+    // mobile dashboard (termasuk tombol Keluar) tertutup Navbar dan tidak terlihat.
+    <div className="flex flex-col md:flex-row w-full bg-brand-dark text-gray-100 font-sans min-h-screen pt-20 md:pt-0 md:h-[calc(100vh-80px)] overflow-hidden">
       
       {/* DESKTOP SIDEBAR SECTION */}
       <aside className="hidden md:flex flex-shrink-0 w-80 z-50 p-4 h-full">
@@ -109,16 +111,19 @@ export default async function DashboardLayout({
                     {session.user.image && <img src={session.user.image} alt="User" className="w-full h-full object-cover" />}
                  </div>
              </div>
-             {/* Tombol Keluar di HP: sebelumnya tidak ada jalan logout dari
-                 dashboard mobile (tombol Keluar hanya ada di sidebar
-                 desktop). Memakai server action signOut yang sama seperti
-                 versi desktop, redirect ke homepage. */}
+             {/* Tombol Keluar di HP: sebelumnya hanya ikon tanpa teks dan
+                 header ini tertutup Navbar publik yang fixed (80px),
+                 sehingga tombol tidak terlihat di viewport mobile.
+                 Sekarang berlabel teks "Keluar" dan wrapper punya pt-20
+                 di mobile supaya header tampil di bawah Navbar. Memakai
+                 server action signOut yang sama seperti versi desktop,
+                 redirect ke homepage. */}
              <form action={async () => {
                  "use server"
                  await signOut({ redirectTo: '/' });
              }}>
-                 <button type="submit" aria-label="Keluar" title="Keluar" className="w-11 h-11 flex items-center justify-center rounded-full bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white transition-all">
-                     <LogOut size={18} />
+                 <button type="submit" aria-label="Keluar" title="Keluar" className="min-h-11 px-4 flex items-center gap-2 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white transition-all text-[10px] font-bold uppercase tracking-widest">
+                     <LogOut size={16} /> Keluar
                  </button>
              </form>
          </div>
