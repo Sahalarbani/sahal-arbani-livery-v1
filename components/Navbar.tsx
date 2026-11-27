@@ -21,7 +21,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ href, children, icon: Icon }) => (
   <Link 
     href={href} 
-    className="group relative flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300 rounded-full hover:bg-brand-surface uppercase tracking-widest"
+    className="group relative flex items-center gap-2 px-5 py-3 text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300 rounded-full hover:bg-brand-surface uppercase tracking-widest"
   >
     {Icon && <Icon size={14} className="text-brand-accent group-hover:scale-110 transition-transform" />}
     <span className="relative z-10">{children}</span>
@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
           {/* LOGO AREA */}
           <Link href="/" className="flex-shrink-0 cursor-pointer group relative">
             <h1 className="relative text-lg md:text-2xl font-black tracking-tight text-white uppercase flex items-center gap-2">
-              SAHAL ARBANI <span className="text-brand-accent text-sm md:text-lg">/ LIVERY</span>
+              SAHAL ARBANI&nbsp;<span className="text-brand-accent text-sm md:text-lg">/ LIVERY</span>
             </h1>
           </Link>
 
@@ -73,7 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
             {user ? (
               <div className="flex items-center gap-5">
                 <div className="flex flex-col items-end">
-                  <span className="text-[9px] uppercase font-bold text-brand-sage tracking-widest">Active</span>
+                  <span className="text-[9px] uppercase font-bold text-brand-sage tracking-widest">{user.role === 'admin' ? 'Admin' : 'Pengguna'}</span>
                   <span className="text-xs font-semibold text-white/90">{user.name}</span>
                 </div>
                 <button 
@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
                 className="group relative flex items-center gap-2 bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-white px-6 py-2.5 rounded-full border border-brand-accent/20 transition-all duration-300 active:scale-95"
               >
                 <ShieldCheck size={16} />
-                <span className="font-bold uppercase text-[10px] tracking-widest">Authenticate</span>
+                <span className="font-bold uppercase text-[10px] tracking-widest">Masuk</span>
               </button>
             )}
           </div>
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-full bg-brand-onyx text-white hover:bg-brand-surface active:scale-90 transition-all"
+              className="w-11 h-11 flex items-center justify-center rounded-full bg-brand-onyx text-white hover:bg-brand-surface active:scale-90 transition-all"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -130,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
                  </button>
                ) : (
                  <button onClick={handleLogin} className="w-full bg-brand-accent text-white py-3 text-sm font-bold uppercase tracking-widest rounded-xl transition-colors hover:bg-brand-accent/90">
-                   Access System
+                   Masuk
                  </button>
                )}
             </div>
@@ -140,3 +140,4 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
     </nav>
   );
 };
+
