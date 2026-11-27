@@ -56,7 +56,7 @@ export default async function DashboardPage({ searchParams }: PageProps) {
                     Command <span className="text-brand-accent">Center</span>
                 </h1>
                 <div className="flex items-center gap-2 mt-2">
-                    <span className="w-1.5 h-1.5 bg-brand-accent rounded-full animate-pulse"/>
+                    <span className="w-1.5 h-1.5 bg-brand-accent rounded-full"/>
                     <p className="text-gray-400 text-xs font-bold uppercase tracking-[0.2em]">
                         Operator: {session?.user?.name || 'Authorized Personnel'}
                     </p>
@@ -69,7 +69,6 @@ export default async function DashboardPage({ searchParams }: PageProps) {
                 <div className="flex items-center gap-2 relative z-10">
                     <Plus size={18} strokeWidth={2.5} /> Deploy Sequence
                 </div>
-                <div className="absolute inset-0 bg-white/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
             </Link>
         </div>
 
@@ -77,7 +76,7 @@ export default async function DashboardPage({ searchParams }: PageProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
            <div className="relative p-6 bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden group hover:bg-brand-onyx/80 transition-all">
              <div className="flex items-center gap-5">
-                 <div className="p-4 bg-brand-accent/10 rounded-2xl text-brand-accent border border-brand-accent/20 group-hover:scale-110 transition-transform"><Box size={24} /></div>
+                 <div className="p-4 bg-brand-dark rounded-2xl text-brand-accent border border-white/5 group-hover:scale-110 transition-transform"><Box size={24} /></div>
                  <div>
                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Active Assets</p>
                      <p className="text-3xl font-black text-gray-100">{totalSkins}</p>
@@ -87,7 +86,7 @@ export default async function DashboardPage({ searchParams }: PageProps) {
 
            <div className="relative p-6 bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden group hover:bg-brand-onyx/80 transition-all">
              <div className="flex items-center gap-5">
-                 <div className="p-4 bg-brand-sage/10 rounded-2xl text-brand-sage border border-brand-sage/20 group-hover:scale-110 transition-transform"><Activity size={24} /></div>
+                 <div className="p-4 bg-brand-dark rounded-2xl text-brand-sage border border-white/5 group-hover:scale-110 transition-transform"><Activity size={24} /></div>
                  <div>
                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">System Status</p>
                      <p className="text-3xl font-black text-brand-sage uppercase">Secure</p>
@@ -97,7 +96,7 @@ export default async function DashboardPage({ searchParams }: PageProps) {
 
            <div className="relative p-6 bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden group hover:bg-brand-onyx/80 transition-all">
              <div className="flex items-center gap-5">
-                 <div className="p-4 bg-purple-500/10 rounded-2xl text-purple-400 border border-purple-500/20 group-hover:scale-110 transition-transform"><Clock size={24} /></div>
+                 <div className="p-4 bg-brand-dark rounded-2xl text-brand-sage border border-white/5 group-hover:scale-110 transition-transform"><Clock size={24} /></div>
                  <div>
                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Last Sync</p>
                      <p className="text-3xl font-black text-gray-100">{timeSinceLastUpdate}</p>
@@ -109,20 +108,20 @@ export default async function DashboardPage({ searchParams }: PageProps) {
         {/* DATA TABLE - MINIMAL CONTAINER */}
         <div className="bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden">
            <div className="overflow-x-auto">
-             <table className="w-full text-left border-collapse">
+             <table className="w-full min-w-[760px] text-left border-collapse">
                <thead>
                  <tr className="bg-brand-dark/50 border-b border-white/5">
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Asset Identity</th>
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Visibility</th>
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Class</th>
-                   <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Timestamp</th>
-                   <th className="px-8 py-5 text-right text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Controls</th>
+                   <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Asset Identity</th>
+                   <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Visibility</th>
+                   <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Class</th>
+                   <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Timestamp</th>
+                   <th className="px-4 md:px-8 py-5 text-right text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Controls</th>
                  </tr>
                </thead>
                <tbody className="divide-y divide-white/5">
                  {allSkins.map((skin) => (
                    <tr key={skin.id} className="group hover:bg-brand-dark/30 transition-colors duration-200">
-                     <td className="px-8 py-4">
+                     <td className="px-4 md:px-8 py-4">
                        <div className="flex items-center gap-4">
                          <div className="w-16 h-12 rounded-lg overflow-hidden border border-white/5 relative bg-brand-dark">
                            {skin.image ? (
@@ -142,15 +141,15 @@ export default async function DashboardPage({ searchParams }: PageProps) {
                          </div>
                        </div>
                      </td>
-                     <td className="px-8 py-4">
-                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${skin.published ? 'bg-brand-sage/10 border-brand-sage/20 text-brand-sage' : 'bg-white/5 border-white/10 text-gray-500'}`}>
+                     <td className="px-4 md:px-8 py-4">
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${skin.published ? 'bg-brand-dark border-brand-sage/20 text-brand-sage' : 'bg-brand-dark border-white/10 text-gray-500'}`}>
                           {skin.published ? <Globe size={10} /> : <Lock size={10} />} 
                           {skin.published ? 'Live' : 'Hidden'}
                         </span>
                      </td>
-                     <td className="px-8 py-4"><span className="text-[10px] font-bold uppercase text-gray-400 bg-brand-dark px-3 py-1 rounded-full border border-white/5">{skin.category}</span></td>
-                     <td className="px-8 py-4"><p className="text-[10px] text-gray-500 font-medium">{new Date(skin.createdAt).toLocaleDateString()}</p></td>
-                     <td className="px-8 py-4 text-right">
+                     <td className="px-4 md:px-8 py-4"><span className="text-[10px] font-bold uppercase text-gray-400 bg-brand-dark px-3 py-1 rounded-full border border-white/5">{skin.category}</span></td>
+                     <td className="px-4 md:px-8 py-4"><p className="text-[10px] text-gray-500 font-medium">{new Date(skin.createdAt).toLocaleDateString()}</p></td>
+                     <td className="px-4 md:px-8 py-4 text-right">
                        <PostActions id={skin.id} />
                      </td>
                    </tr>
