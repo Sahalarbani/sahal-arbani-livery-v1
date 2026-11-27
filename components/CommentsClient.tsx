@@ -50,7 +50,7 @@ export default function CommentsClient({ initialComments }: { initialComments: a
         </div>
       </div>
 
-      <div className="flex-1 bg-brand-dark/50 border border-white/5 rounded-3xl overflow-hidden flex flex-col">
+      <div className="flex-1 bg-brand-dark border border-white/5 rounded-3xl overflow-hidden flex flex-col">
           <div className="flex-1 overflow-y-auto custom-scrollbar p-2 md:p-4">
               <div className="flex flex-col gap-3">
                   {filteredComments.length === 0 ? (

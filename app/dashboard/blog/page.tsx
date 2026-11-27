@@ -33,20 +33,20 @@ export default async function BlogDashboard() {
 
       <div className="bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full min-w-[640px] text-left border-collapse">
             <thead>
               <tr className="bg-brand-dark/50 border-b border-white/5">
-                <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Title</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Tag</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Status</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Created</th>
-                <th className="px-8 py-5 text-right text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Actions</th>
+                <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Title</th>
+                <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Tag</th>
+                <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Status</th>
+                <th className="px-4 md:px-8 py-5 text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Created</th>
+                <th className="px-4 md:px-8 py-5 text-right text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em]">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {posts.map((post) => (
                 <tr key={post.id} className="group hover:bg-brand-dark/30 transition-colors">
-                  <td className="px-8 py-4">
+                  <td className="px-4 md:px-8 py-4">
                     <div className="flex items-center gap-3">
                       <FileText size={16} className="text-brand-accent flex-shrink-0" />
                       <div>
@@ -55,18 +55,18 @@ export default async function BlogDashboard() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-8 py-4">
-                    <span className="text-[10px] font-bold uppercase text-brand-sage bg-brand-sage/10 px-3 py-1 rounded-full border border-brand-sage/20">{post.tag}</span>
+                  <td className="px-4 md:px-8 py-4">
+                    <span className="text-[10px] font-bold uppercase text-brand-sage bg-brand-dark px-3 py-1 rounded-full border border-brand-sage/20">{post.tag}</span>
                   </td>
-                  <td className="px-8 py-4">
-                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${post.published ? 'bg-brand-sage/10 border-brand-sage/20 text-brand-sage' : 'bg-white/5 border-white/10 text-gray-500'}`}>
+                  <td className="px-4 md:px-8 py-4">
+                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${post.published ? 'bg-brand-dark border-brand-sage/20 text-brand-sage' : 'bg-brand-dark border-white/10 text-gray-500'}`}>
                       {post.published ? 'Live' : 'Draft'}
                     </span>
                   </td>
-                  <td className="px-8 py-4">
+                  <td className="px-4 md:px-8 py-4">
                     <p className="text-[10px] text-gray-500 font-medium">{new Date(post.createdAt).toLocaleDateString()}</p>
                   </td>
-                  <td className="px-8 py-4 text-right">
+                  <td className="px-4 md:px-8 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link href={`/dashboard/blog/edit/${post.id}`} className="w-8 h-8 flex items-center justify-center rounded-full bg-brand-dark border border-white/5 text-gray-400 hover:text-brand-accent hover:border-brand-accent/30 transition-all">
                         <Edit3 size={14} />

@@ -53,14 +53,14 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
     <div className="mt-12 pt-12 border-t border-white/5">
       <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
         <MessageSquare className="text-brand-accent" />
-        Engagement Section ({comments.length})
+        Comments ({comments.length})
       </h3>
 
       {/* Comment List */}
       <div className="space-y-6 mb-12">
         {comments.length === 0 ? (
-          <div className="p-8 text-center bg-white/5 rounded-2xl border border-white/5 border-dashed">
-            <p className="text-gray-500 text-sm">No transmissions yet. Be the first to engage.</p>
+          <div className="p-8 text-center bg-brand-surface rounded-2xl border border-white/5 border-dashed">
+            <p className="text-gray-500 text-sm">No comments yet. Be the first to comment.</p>
           </div>
         ) : (
           comments.map((comment) => (
@@ -87,7 +87,7 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
                     {new Date(comment.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <div className="p-4 bg-brand-onyx/50 border border-white/5 rounded-2xl rounded-tl-none group-hover:border-brand-accent/20 transition-colors">
+                <div className="p-4 bg-brand-onyx border border-white/5 rounded-2xl rounded-tl-none group-hover:border-brand-accent/20 transition-colors">
                   <p className="text-sm text-gray-400 leading-relaxed whitespace-pre-wrap">
                     {comment.content}
                   </p>
@@ -115,11 +115,11 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
           </div>
 
           <div className="space-y-2">
-            <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Transmission Message</label>
+            <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Your Comment</label>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Deploy your thoughts..."
+              placeholder="Write a comment..."
               rows={3}
               className="w-full bg-brand-dark border border-white/5 focus:border-brand-accent/50 rounded-2xl p-4 text-gray-200 placeholder-gray-600 outline-none transition-all resize-none"
             />
@@ -145,7 +145,7 @@ export function CommentSection({ skinId, comments, initialUserName }: CommentSec
                   : "bg-brand-accent text-brand-dark hover:bg-white active:scale-95"
               )}
             >
-              {loading ? "Transmitting..." : "Post Transmission"}
+              {loading ? "Posting..." : "Post Comment"}
               <Send size={14} />
             </button>
           </div>

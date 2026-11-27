@@ -7,13 +7,14 @@ export async function getCategories() {
     distinct: ["category"],
   });
 
-  return [
-    "ALL",
-    ...dbCategories
-      .map((c) => c.category)
-      .filter(Boolean)
-      .sort()
-  ];
+  // B6: dedupe kategori yang hanya berbeda huruf besar/kecil atau spasi
+  // (mis. "Truck" vs "TRUCK" di database) supaya tombol filter tidak ganda.
+  const seen = new Map<string, string>();
+  for (const raw of dbCategories.map((c) => c.category).filter(Boolean)) {
+    const key = raw.trim().toUpperCase();
+    if (!seen.has(key)) seen.set(key, raw.trim());
+  }
+  return ["ALL", ...[...seen.values()].sort((a, b) => a.localeCompare(b))];
 }
 
 export async function getSkins(query: string = '', categoryFilter: string = 'ALL') {
