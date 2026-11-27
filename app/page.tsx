@@ -4,7 +4,7 @@ import { Search, Zap, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import { getCategories, getSkins } from '@/services/skin.service';
 import { AdSlot } from '@/components/AdSlot';
-import { getAdSettingsCached } from '@/lib/actions/ads';
+import { getAdSettings } from '@/lib/actions/ads';
 
 // Optimasi cache (branch optimasi-cache):
 // - Homepage dibuat statis / ISR: revalidate 3600 + force-static.
@@ -17,6 +17,12 @@ import { getAdSettingsCached } from '@/lib/actions/ads';
 //   /search yang memang dinamis. Form pencarian di bawah ini
 //   dipertahankan tampilannya, tapi filter server saat ini tidak aktif
 //   sampai komponen client itu dibuat.
+// - Perbaikan build: jangan pakai getAdSettingsCached() dari file
+//   "use server" (unstable_cache di sana membuat build gagal).
+//   ISR revalidate 3600 sudah cukup. Pengambilan data dibungkus
+//   try/catch supaya prerender statis tidak gagal total kalau
+//   database tidak tersedia saat build — ISR akan mencoba lagi
+//   saat revalidasi.
 export const revalidate = 3600; // ISR: regen maksimal 1x per jam
 export const dynamic = "force-static";
 
@@ -24,12 +30,25 @@ export default async function HomePage() {
   const query = '';
   const categoryFilter = 'ALL';
 
-  // Fetch data secara parallel untuk performa
-  const [allCategories, skins, adSettings] = await Promise.all([
-    getCategories(),
-    getSkins(query, categoryFilter),
-    getAdSettingsCached()
-  ]);
+  // Fetch data secara parallel untuk performa.
+  // Tahan terhadap DB yang tidak tersedia saat prerender statis:
+  // kalau gagal, render halaman kosong (empty state) dan biarkan
+  // ISR mencoba lagi saat revalidasi, bukan menggagalkan build.
+  let allCategories: string[] = ['ALL'];
+  let skins: any[] = [];
+  let adSettings: any = null;
+  try {
+    const [cats, skinList, ads] = await Promise.all([
+      getCategories(),
+      getSkins(query, categoryFilter),
+      getAdSettings()
+    ]);
+    allCategories = cats;
+    skins = skinList;
+    adSettings = ads;
+  } catch (error) {
+    console.error('Failed to load homepage data, rendering empty state:', error);
+  }
 
   // 3️⃣ RETURN UI (REFACTORED TO MINIMALIST iOS 26 STYLE)
   return (
