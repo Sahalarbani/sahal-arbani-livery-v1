@@ -33,7 +33,7 @@ export default async function DashboardLayout({
             <div className="flex items-center justify-between mb-8 relative z-10">
                 <div>
                     <Link href="/" className="flex items-center gap-2 text-gray-500 hover:text-gray-300 transition-colors text-[10px] font-bold uppercase tracking-widest mb-1 group">
-                        <ArrowLeft size={12} className="group-hover:-translate-x-1 transition-transform" /> Mainframe
+                        <ArrowLeft size={12} className="group-hover:-translate-x-1 transition-transform" /> Lihat Situs
                     </Link>
                     <h1 className="text-2xl font-black text-gray-100 leading-none">
                         ARB<span className="text-brand-accent">ADMIN</span>
@@ -48,7 +48,7 @@ export default async function DashboardLayout({
                 </Link>
                 <Link href="/dashboard/create" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <PackagePlus size={18} />
-                    <span>Deploy</span>
+                    <span>Tambah Skin</span>
                 </Link>
                 <Link href="/dashboard/ads" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <Layers size={18} />
@@ -79,7 +79,7 @@ export default async function DashboardLayout({
                         <p className="text-sm font-bold text-gray-100 truncate max-w-[120px]">{session.user.name}</p>
                         <div className="flex items-center gap-1.5 mt-0.5">
                            <div className="w-1.5 h-1.5 rounded-full bg-brand-sage"/>
-                           <p className="text-[9px] text-gray-500 uppercase tracking-widest font-medium">Level 5 Access</p>
+                           <p className="text-[9px] text-gray-500 uppercase tracking-widest font-medium">Admin</p>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ export default async function DashboardLayout({
                     await signOut({ redirectTo: '/' });
                 }}>
                       <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all text-[10px] font-bold uppercase tracking-widest group border border-red-500/20">
-                         <LogOut size={14} className="group-hover:-translate-x-1 transition-transform"/> Terminate Session
+                         <LogOut size={14} className="group-hover:-translate-x-1 transition-transform"/> Keluar
                       </button>
                 </form>
             </div>
@@ -113,7 +113,7 @@ export default async function DashboardLayout({
       </div>
       
       {/* MAIN CONTENT SECTION */}
-      <main className="flex-1 flex flex-col h-full relative overflow-hidden p-2 pb-[100px] md:pb-0 md:p-4 md:pl-0 w-full">
+      <main className="flex-1 flex flex-col h-full relative overflow-hidden p-3 pb-[100px] md:pb-0 md:p-4 md:pl-0 w-full">
         <div className="flex-1 bg-brand-dark border border-white/5 md:rounded-[40px] rounded-2xl relative overflow-hidden flex flex-col w-full h-full">
             <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-10 w-full relative z-10">
                  <div className="relative z-10 pb-20 md:pb-10">
@@ -137,7 +137,7 @@ export default async function DashboardLayout({
               <div className="absolute -top-6 bg-brand-accent text-brand-dark p-3 rounded-full">
                  <PackagePlus size={22} className="stroke-[2.5px]"/>
               </div>
-              <span className="text-[9px] font-bold uppercase tracking-wider mt-5">Deploy</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider mt-5">Tambah Skin</span>
           </Link>
           <Link href="/dashboard/ads" className="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-brand-accent transition-colors flex-1">
               <Layers size={20} />

@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { Plus, FileText, Clock, Edit3, Trash2 } from "lucide-react";
+import { Plus, FileText, Clock, Edit3, Trash2, ChevronRight } from "lucide-react";
 import { deleteBlogPost } from "@/app/lib/actions";
 
 export const dynamic = 'force-dynamic';
@@ -12,27 +12,31 @@ export default async function BlogDashboard() {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6 mb-8 sm:mb-12">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-100 uppercase tracking-tight">
-            Blog <span className="text-brand-accent">Manager</span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-100 tracking-tight">
+            Blog
           </h1>
           <p className="text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-2">
-            {posts.length} Articles Published
+            {posts.length} artikel
           </p>
         </div>
         <Link
           href="/dashboard/blog/create"
-          className="group relative px-6 py-3 bg-brand-accent text-brand-dark font-black uppercase text-sm rounded-full transition-all hover:shadow-md hover:scale-105"
+          className="inline-flex items-center px-6 py-3 min-h-[44px] bg-brand-accent text-brand-dark font-black uppercase text-sm rounded-full transition-all hover:shadow-md"
         >
           <div className="flex items-center gap-2 relative z-10">
-            <Plus size={18} strokeWidth={2.5} /> New Article
+            <Plus size={18} strokeWidth={2.5} /> Artikel Baru
           </div>
         </Link>
       </div>
 
       <div className="bg-brand-onyx border border-white/5 rounded-[24px] overflow-hidden">
-        <div className="overflow-x-auto">
+        <p className="md:hidden flex items-center justify-end gap-1 px-4 pt-4 text-[11px] font-medium text-gray-500">
+          Geser untuk melihat kolom lain <ChevronRight size={14} />
+        </p>
+        <div className="relative overflow-x-auto">
+          <div className="md:hidden pointer-events-none absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-brand-onyx to-transparent z-10" aria-hidden="true" />
           <table className="w-full min-w-[640px] text-left border-collapse">
             <thead>
               <tr className="bg-brand-dark/50 border-b border-white/5">
@@ -68,11 +72,11 @@ export default async function BlogDashboard() {
                   </td>
                   <td className="px-4 md:px-8 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <Link href={`/dashboard/blog/edit/${post.id}`} className="w-8 h-8 flex items-center justify-center rounded-full bg-brand-dark border border-white/5 text-gray-400 hover:text-brand-accent hover:border-brand-accent/30 transition-all">
+                      <Link href={`/dashboard/blog/edit/${post.id}`} className="w-11 h-11 flex items-center justify-center rounded-full bg-brand-dark border border-white/5 text-gray-400 hover:text-brand-accent hover:border-brand-accent/30 transition-all">
                         <Edit3 size={14} />
                       </Link>
                       <form action={async () => { "use server"; await deleteBlogPost(post.id); }}>
-                        <button type="submit" className="w-8 h-8 flex items-center justify-center rounded-full bg-brand-dark border border-white/5 text-gray-400 hover:text-red-500 hover:border-red-500/30 transition-all">
+                        <button type="submit" className="w-11 h-11 flex items-center justify-center rounded-full bg-brand-dark border border-white/5 text-gray-400 hover:text-red-500 hover:border-red-500/30 transition-all">
                           <Trash2 size={14} />
                         </button>
                       </form>
@@ -96,3 +100,4 @@ export default async function BlogDashboard() {
     </div>
   );
 }
+

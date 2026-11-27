@@ -1,5 +1,4 @@
 import React from 'react';
-import { Zap } from 'lucide-react';
 import Link from 'next/link';
 import { getCategories, getSkins } from '@/services/skin.service';
 import { AdSlot } from '@/components/AdSlot';
@@ -37,28 +36,23 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen relative overflow-hidden bg-brand-dark">
       {/* HERO SECTION */}
-      <div className="relative z-10 pt-32 pb-4 px-6 text-center max-w-5xl mx-auto">
-        {/* Version Badge - Minimalist Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-onyx border border-white/5 mb-8">
-          <Zap size={14} className="text-brand-sage fill-brand-sage" />
-          <span className="text-[11px] font-semibold text-brand-sage uppercase tracking-[0.2em]">
-            System V2.0 Online
-          </span>
-        </div>
-
-        {/* Minimalist Title */}
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-100 mb-6 tracking-tight uppercase">
+      {/* Mobile: judul 40px (bukan 48px) dan padding atas lebih kecil supaya
+          layar HP tidak terasa sumpek; skala naik bertahap ke desktop. */}
+      <div className="relative z-10 pt-28 sm:pt-32 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
+        {/* Judul */}
+        <h1 className="text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-100 mb-5 sm:mb-6 tracking-tight uppercase">
           SAHAL ARBANI <br />
           <span className="text-brand-paper italic font-serif opacity-80">
             LIVERIES
           </span>
         </h1>
 
-        {/* B7: spasi eksplisit sebelum span supaya tidak menempel ("forSAHAL ARBANI") */}
-        <p className="text-lg text-gray-400 font-medium max-w-2xl mx-auto mb-12 leading-relaxed">
-          The official source for{" "}
-          <span className="text-brand-accent">SAHAL ARBANI</span>{" "}
-          Truckers of Europe 3 (TOE3) skins.
+        {/* &nbsp; di sekitar span aksen: spasi harus terbaca oleh screen
+            reader / copy-paste, bukan hanya terlihat di layar. */}
+        <p className="text-base sm:text-lg text-gray-400 font-medium max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed">
+          The official source for&nbsp;
+          <span className="text-brand-accent">SAHAL ARBANI</span>
+          &nbsp;Truckers of Europe 3 (TOE3) skins.
           <br className="hidden md:block" /> Follow the evolution on TikTok: <Link href="https://www.tiktok.com/@sahal.arbani" target="_blank" className="text-white hover:text-brand-accent transition-colors">@sahal.arbani</Link>
         </p>
 
