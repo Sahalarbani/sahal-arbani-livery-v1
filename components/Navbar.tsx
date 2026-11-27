@@ -21,7 +21,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ href, children, icon: Icon }) => (
   <Link 
     href={href} 
-    className="group relative flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300 rounded-full hover:bg-white/5 uppercase tracking-widest"
+    className="group relative flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300 rounded-full hover:bg-brand-surface uppercase tracking-widest"
   >
     {Icon && <Icon size={14} className="text-brand-accent group-hover:scale-110 transition-transform" />}
     <span className="relative z-10">{children}</span>
@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
   };
 
   return (
-    <nav className="fixed w-full z-[100] top-0 left-0 border-b border-white/5 bg-brand-dark/80 backdrop-blur-xl">
+    <nav className="fixed w-full z-[100] top-0 left-0 border-b border-white/5 bg-brand-dark">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
@@ -57,7 +57,8 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
           <div className="hidden md:block">
             <div className="flex items-baseline space-x-1 bg-brand-onyx p-1.5 rounded-full border border-white/5">
               <NavLink href="/">Home</NavLink>
-              <NavLink href="/blog">Insight</NavLink>
+              <NavLink href="/blog">Blog</NavLink>
+              <NavLink href="/contact">Contact</NavLink>
               <NavLink href="/#about">About</NavLink>
               {user?.role === 'admin' && (
                 <NavLink href="/dashboard" icon={LayoutDashboard}>
@@ -87,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
                 onClick={handleLogin}
                 className="group relative flex items-center gap-2 bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-white px-6 py-2.5 rounded-full border border-brand-accent/20 transition-all duration-300 active:scale-95"
               >
-                <ShieldCheck size={16} className="group-hover:animate-bounce" />
+                <ShieldCheck size={16} />
                 <span className="font-bold uppercase text-[10px] tracking-widest">Authenticate</span>
               </button>
             )}
@@ -97,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-full bg-brand-onyx text-white hover:bg-white/10 active:scale-90 transition-all"
+              className="p-2 rounded-full bg-brand-onyx text-white hover:bg-brand-surface active:scale-90 transition-all"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -109,9 +110,10 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
       {isOpen && (
         <div className="md:hidden absolute top-20 left-4 right-4 bg-brand-onyx border border-white/5 rounded-2xl overflow-hidden shadow-xl animate-in slide-in-from-top-2 fade-in duration-200">
           <div className="p-4 space-y-1">
-            <Link href="/" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-white hover:bg-white/5 transition-colors">Home</Link>
-            <Link href="/blog" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-white hover:bg-white/5 transition-colors">Insight</Link>
-            <Link href="/#about" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-white hover:bg-white/5 transition-colors">About</Link>
+            <Link href="/" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-white hover:bg-brand-surface transition-colors">Home</Link>
+            <Link href="/blog" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-white hover:bg-brand-surface transition-colors">Blog</Link>
+            <Link href="/contact" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-white hover:bg-brand-surface transition-colors">Contact</Link>
+            <Link href="/#about" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-white hover:bg-brand-surface transition-colors">About</Link>
             
             {user?.role === 'admin' && (
                <Link href="/dashboard" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider text-brand-accent bg-brand-accent/5">
