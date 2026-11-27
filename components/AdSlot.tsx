@@ -1,35 +1,46 @@
 "use client";
 
-// Komponen khusus tempat meletakkan slot iklan AdSense 
-// Ini mempermudah pengguna memetakan ID iklan pada script tag standar Google Ads
+// Komponen khusus tempat meletakkan slot iklan AdSense.
+// B5 (skill: no dummy data, no placeholder kosong): kalau tidak ada
+// iklan nyata (publisher/slot tidak valid atau AdSense tidak aktif),
+// komponen ini TIDAK merender apa pun — jangan tampilkan kotak
+// placeholder besar yang terlihat seperti area rusak.
 import React, { useEffect, useState } from 'react';
 
 interface AdSlotProps {
   className?: string;
-  adSlotId?: string; 
+  adSlotId?: string;
   adFormat?: "auto" | "fluid" | "horizontal" | "vertical" | "rectangle";
   fullWidthResponsive?: boolean;
+  isAdsActive?: boolean;
 }
 
-export function AdSlot({ 
-  className = "", 
-  adSlotId = "XXXXXX", 
+export function AdSlot({
+  className = "",
+  adSlotId = "XXXXXX",
   adFormat = "auto",
   fullWidthResponsive = true,
-  publisherId
+  publisherId,
+  isAdsActive = true,
 }: AdSlotProps & { publisherId?: string }) {
   const [isMounted, setIsMounted] = useState(false);
   const pushedRef = React.useRef(false);
-  const isReal = publisherId && adSlotId && adSlotId !== "XXXXXX";
 
-  // Phase 1: Ensure we are on client
+  // Slot AdSense asli berupa angka; ID placeholder seperti
+  // "HOMEPAGE-TOP-728x90" atau "TOP-HOME-ARTICLES" bukan slot nyata.
+  const isRealSlot = /^\d{5,}$/.test(adSlotId);
+  const isRealPublisher =
+    !!publisherId &&
+    publisherId.startsWith("ca-pub-") &&
+    !publisherId.includes("XXXX");
+  const isReal = isMounted && isRealSlot && isRealPublisher && isAdsActive;
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Phase 2: Once mounted and isReal is confirmed, trigger the push
   useEffect(() => {
-    if (isMounted && isReal && !pushedRef.current) {
+    if (isReal && !pushedRef.current) {
       try {
         // @ts-ignore
         const adsbygoogle = window.adsbygoogle || [];
@@ -39,32 +50,20 @@ export function AdSlot({
         console.error("AdSense push error:", err);
       }
     }
-  }, [isMounted, isReal]);
+  }, [isReal]);
+
+  if (!isReal) return null;
 
   return (
-    <div className={`w-full bg-white/5 border border-white/10 rounded-xl overflow-hidden flex flex-col items-center justify-center min-h-[100px] my-6 transition-all relative group ${className}`}>
-      {isReal && isMounted ? (
-        <ins className="adsbygoogle"
-             style={{ display: "block", width: "100%", height: "100%", minHeight: "100px" }}
-             data-ad-client={publisherId}
-             data-ad-slot={adSlotId}
-             data-ad-format={adFormat}
-             data-full-width-responsive={fullWidthResponsive ? "true" : "false"}
-             suppressHydrationWarning
-        />
-      ) : (
-        <>
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none" />
-          <div className="z-10 text-center py-6 px-4">
-            <span className="inline-block px-3 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/20 rounded-full text-[10px] font-bold uppercase tracking-widest mb-2">
-              Sponsor / Advertisement
-            </span>
-            <p className="text-xs text-gray-500 font-medium max-w-sm">
-              Ruang iklan AdSense. Slot ID: <code className="text-gray-300 font-mono bg-black/30 px-1 rounded">{adSlotId}</code>
-            </p>
-          </div>
-        </>
-      )}
+    <div className={`w-full my-6 ${className}`}>
+      <ins className="adsbygoogle"
+           style={{ display: "block", width: "100%", minHeight: "100px" }}
+           data-ad-client={publisherId}
+           data-ad-slot={adSlotId}
+           data-ad-format={adFormat}
+           data-full-width-responsive={fullWidthResponsive ? "true" : "false"}
+           suppressHydrationWarning
+      />
     </div>
   );
 }
