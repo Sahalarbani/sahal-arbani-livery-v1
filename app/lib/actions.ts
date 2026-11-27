@@ -195,7 +195,17 @@ export async function createBlogPost(prevState: any, formData: FormData) {
   if (existing) slug = `${slug}-${Date.now()}`;
 
   try {
-    await prisma.blogPost.create({ data: { ...data, slug } });
+    await prisma.blogPost.create({
+      data: {
+        title: data.title ?? "",
+        excerpt: data.excerpt ?? "",
+        content: data.content ?? "",
+        tag: data.tag ?? "",
+        readTime: data.readTime ?? "5 min read",
+        published: data.published ?? true,
+        slug,
+      },
+    });
     await prisma.activityLog.create({
       data: { action: "CREATE_BLOG", description: `Published article: ${data.title}`, userName: session.user.name || "Admin" }
     });
@@ -225,7 +235,17 @@ export async function updateBlogPost(id: string, prevState: any, formData: FormD
   if (!validated.success) return { errors: validated.error.flatten().fieldErrors, message: "Update Failed." };
 
   try {
-    await prisma.blogPost.update({ where: { id }, data: validated.data });
+    await prisma.blogPost.update({
+      where: { id },
+      data: {
+        title: validated.data.title ?? "",
+        excerpt: validated.data.excerpt ?? "",
+        content: validated.data.content ?? "",
+        tag: validated.data.tag ?? "",
+        readTime: validated.data.readTime ?? "5 min read",
+        published: validated.data.published ?? true,
+      },
+    });
     await prisma.activityLog.create({
       data: { action: "UPDATE_BLOG", description: `Updated article: ${validated.data.title}`, userName: session.user.name || "Admin" }
     });
