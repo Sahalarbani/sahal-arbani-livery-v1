@@ -14,11 +14,20 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogIndex() {
-  const articles = await prisma.blogPost.findMany({
-    where: { published: true },
-    orderBy: { createdAt: 'desc' },
-    select: { id: true, slug: true, title: true, excerpt: true, tag: true, readTime: true, createdAt: true },
-  });
+  // Build tidak boleh gagal kalau tabel BlogPost belum ada saat prerender
+  // (Prisma P2021 — migrasi baru jalan di postbuild, setelah build).
+  // Kembalikan [] dan render daftar kosong; ISR revalidate 60 akan mencoba lagi nanti.
+  let articles: Awaited<ReturnType<typeof prisma.blogPost.findMany>> = [];
+  try {
+    articles = await prisma.blogPost.findMany({
+      where: { published: true },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, slug: true, title: true, excerpt: true, tag: true, readTime: true, createdAt: true },
+    });
+  } catch (error) {
+    console.error('Failed to fetch blog posts (returning empty list so prerender does not fail):', error);
+    articles = [];
+  }
 
   return (
     <div className="pt-24 pb-20 min-h-screen">
