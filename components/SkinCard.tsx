@@ -36,7 +36,7 @@ export const SkinCard: React.FC<SkinCardProps> = ({ skin, onClick, href }) => {
         
         {/* Category Pill - Floating Top Left */}
         <div className="absolute top-3 left-3">
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-dark/80 backdrop-blur-md border border-white/5 text-[10px] font-semibold text-brand-sage uppercase tracking-widest shadow-sm">
+          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-dark border border-white/5 text-[10px] font-semibold text-brand-sage uppercase tracking-widest shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-sage" />
             {skin.category}
           </span>
@@ -57,14 +57,14 @@ export const SkinCard: React.FC<SkinCardProps> = ({ skin, onClick, href }) => {
         <div className="flex items-center justify-between mt-auto">
           {/* Stats */}
           <div className="flex items-center gap-2 text-gray-500">
-            <div className="p-1.5 rounded-full bg-white/5">
+            <div className="p-1.5 rounded-full bg-brand-surface">
               <Download size={12} />
             </div>
             <span className="text-xs font-mono text-gray-400">{(skin.downloads || 0).toLocaleString()}</span>
           </div>
           
           {/* Action Button - Pill Shape */}
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 text-brand-accent border border-brand-accent/20 transition-all duration-300 group-hover:bg-brand-accent group-hover:text-white group-hover:shadow-[0_0_15px_rgba(224,122,95,0.4)]">
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 text-brand-accent border border-brand-accent/20 transition-all duration-300 group-hover:bg-brand-accent group-hover:text-white ">
             <span className="text-[10px] uppercase font-bold tracking-widest">Inspect</span>
             <Eye size={14} />
           </div>
