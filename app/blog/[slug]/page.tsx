@@ -65,13 +65,13 @@ export default async function BlogPost(props: Props) {
 
           <article>
             <header className="mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-[10px] font-bold uppercase tracking-widest border border-brand-sage/20 mb-6">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-dark text-brand-sage text-[10px] font-bold uppercase tracking-widest border border-brand-sage/20 mb-6">
                 {article.tag}
               </span>
               <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-6 tracking-tight">{article.title}</h1>
               <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400 font-mono border-y border-white/5 py-4">
                 <span className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent">S</span>
+                  <span className="w-6 h-6 rounded-full bg-brand-dark border border-white/5 flex items-center justify-center text-brand-accent">S</span>
                   By <strong className="text-white">Sahal Arbani</strong>
                 </span>
                 <span className="hidden md:inline">•</span>
