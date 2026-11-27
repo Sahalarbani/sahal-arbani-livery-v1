@@ -4,22 +4,31 @@ import { Search, Zap, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import { getCategories, getSkins } from '@/services/skin.service';
 import { AdSlot } from '@/components/AdSlot';
-import { getAdSettings } from '@/lib/actions/ads';
+import { getAdSettingsCached } from '@/lib/actions/ads';
 
-// ✅ Caching Strategy: Incremental Static Regeneration (ISR)
-export const revalidate = 60; // Revalidate every 60 seconds instead of force-dynamic
+// Optimasi cache (branch optimasi-cache):
+// - Homepage dibuat statis / ISR: revalidate 3600 + force-static.
+// - Hapus penggunaan searchParams di server. Di Next 15, membaca
+//   searchParams memaksa halaman dinamis, sehingga revalidate yang
+//   lama (60 detik) tidak berpengaruh dan X-Vercel-Cache selalu MISS.
+// - Tampilan default (tanpa query/kategori) dirender statis.
+// - LANGKAH LANJUTAN (belum di PR ini): pindahkan pencarian (q) dan
+//   filter kategori ke komponen client terpisah, atau ke route
+//   /search yang memang dinamis. Form pencarian di bawah ini
+//   dipertahankan tampilannya, tapi filter server saat ini tidak aktif
+//   sampai komponen client itu dibuat.
+export const revalidate = 3600; // ISR: regen maksimal 1x per jam
+export const dynamic = "force-static";
 
-export default async function HomePage({ searchParams }: { searchParams: Promise<{ q?: string; category?: string }> }) {
-  const resolvedSearchParams = await searchParams;
-  const query = resolvedSearchParams?.q || '';
-  const categoryFilter = resolvedSearchParams?.category || 'ALL';
+export default async function HomePage() {
+  const query = '';
+  const categoryFilter = 'ALL';
 
-  // 1️⃣ LOGIKA DINAMIS: Dipisah ke Service (SoC)
   // Fetch data secara parallel untuk performa
   const [allCategories, skins, adSettings] = await Promise.all([
     getCategories(),
     getSkins(query, categoryFilter),
-    getAdSettings()
+    getAdSettingsCached()
   ]);
 
   // 3️⃣ RETURN UI (REFACTORED TO MINIMALIST iOS 26 STYLE)
