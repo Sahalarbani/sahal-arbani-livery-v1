@@ -133,8 +133,8 @@ export default async function SkinPage({ params }: Props) {
               <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-60 pointer-events-none" />
 
               <div className="absolute top-4 right-4 z-10">
-                <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-dark/80 backdrop-blur-md border border-white/5 text-brand-sage shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-sage animate-pulse mr-2" />
+                <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-dark border border-white/5 text-brand-sage shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-sage mr-2" />
                   {skin.category}
                 </span>
               </div>
@@ -142,15 +142,15 @@ export default async function SkinPage({ params }: Props) {
 
             {/* Statistik / Metadata -> Simple Bento Mini Grid */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-brand-onyx border border-white/5 p-4 rounded-2xl text-center hover:bg-brand-onyx/80 transition-colors">
+              <div className="bg-brand-onyx border border-white/5 p-4 rounded-2xl text-center hover:border-brand-accent/30 transition-colors">
                 <div className="text-2xl font-bold text-gray-100">{skin.downloads}</div>
                 <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Downloads</div>
               </div>
-              <div className="bg-brand-onyx border border-white/5 p-4 rounded-2xl text-center hover:bg-brand-onyx/80 transition-colors">
+              <div className="bg-brand-onyx border border-white/5 p-4 rounded-2xl text-center hover:border-brand-accent/30 transition-colors">
                 <Calendar className="mx-auto mb-2 text-gray-400" size={18} />
                 <div className="text-[11px] font-medium text-gray-300 mt-1">{formattedDate}</div>
               </div>
-              <div className="bg-brand-onyx border border-white/5 p-4 rounded-2xl text-center hover:bg-brand-onyx/80 transition-colors">
+              <div className="bg-brand-onyx border border-white/5 p-4 rounded-2xl text-center hover:border-brand-accent/30 transition-colors">
                 <User className="mx-auto mb-2 text-gray-400" size={18} />
                 <div className="text-[11px] font-medium text-gray-300 mt-1 truncate px-1">{skin.author}</div>
               </div>
@@ -166,12 +166,12 @@ export default async function SkinPage({ params }: Props) {
 
               <div className="flex items-center gap-4 mb-10">
                 {skin.published ? (
-                  <div className="flex items-center text-brand-sage text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-sage/10 border border-brand-sage/20">
+                  <div className="flex items-center text-brand-sage text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-dark border border-brand-sage/20">
                     <CheckCircle size={14} className="mr-1.5" />
                     Public Access
                   </div>
                 ) : (
-                  <div className="flex items-center text-brand-accent text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20">
+                  <div className="flex items-center text-brand-accent text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-dark border border-brand-accent/20">
                     <XCircle size={14} className="mr-1.5" />
                     Private
                   </div>
@@ -203,7 +203,7 @@ export default async function SkinPage({ params }: Props) {
               />
 
               {/* Internal linking for visitor guidance. */}
-              <div className="mt-8 p-4 rounded-xl bg-white/5 border border-white/5">
+              <div className="mt-8 p-4 rounded-xl bg-brand-surface border border-white/5">
                 <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Professional Insight & TOE3 Guides</h4>
                 <div className="flex flex-col gap-2">
                   <Link href="/blog/panduan-lengkap-memilih-livery-truckers-of-europe-3-terbaik" className="text-xs text-brand-accent hover:text-white transition-colors flex items-center justify-between group">
