@@ -30,8 +30,6 @@ export default async function DashboardLayout({
       {/* DESKTOP SIDEBAR SECTION */}
       <aside className="hidden md:flex flex-shrink-0 w-80 z-50 p-4 h-full">
         <div className="w-full h-full bg-brand-onyx border border-white/5 rounded-[32px] flex flex-col p-6 shadow-sm overflow-hidden relative">
-            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-brand-accent/5 to-transparent pointer-events-none opacity-50"/>
-
             <div className="flex items-center justify-between mb-8 relative z-10">
                 <div>
                     <Link href="/" className="flex items-center gap-2 text-gray-500 hover:text-gray-300 transition-colors text-[10px] font-bold uppercase tracking-widest mb-1 group">
@@ -44,27 +42,27 @@ export default async function DashboardLayout({
             </div>
 
             <nav className="flex flex-col gap-3 flex-1 overflow-y-auto relative z-10">
-                <Link href="/dashboard" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
+                <Link href="/dashboard" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <LayoutDashboard size={18} />
                     <span>Overview</span>
                 </Link>
-                <Link href="/dashboard/create" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
+                <Link href="/dashboard/create" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <PackagePlus size={18} />
                     <span>Deploy</span>
                 </Link>
-                <Link href="/dashboard/ads" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
+                <Link href="/dashboard/ads" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <Layers size={18} />
                     <span>Ads Manager</span>
                 </Link>
-                <Link href="/dashboard/comments" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
+                <Link href="/dashboard/comments" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
                     <span>Comments</span>
                 </Link>
-                <Link href="/dashboard/blog" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
+                <Link href="/dashboard/blog" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <FileText size={18} />
                     <span>Blog</span>
                 </Link>
-                <Link href="/dashboard/logs" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark/50 border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:bg-brand-dark hover:text-gray-200 transition-all hover:scale-[1.02]">
+                <Link href="/dashboard/logs" className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-brand-dark border border-white/5 text-gray-400 font-bold uppercase text-sm tracking-wide hover:text-gray-200 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                     <span>Activity Logs</span>
                 </Link>
@@ -80,7 +78,7 @@ export default async function DashboardLayout({
                     <div className="overflow-hidden">
                         <p className="text-sm font-bold text-gray-100 truncate max-w-[120px]">{session.user.name}</p>
                         <div className="flex items-center gap-1.5 mt-0.5">
-                           <div className="w-1.5 h-1.5 rounded-full bg-brand-sage animate-pulse"/>
+                           <div className="w-1.5 h-1.5 rounded-full bg-brand-sage"/>
                            <p className="text-[9px] text-gray-500 uppercase tracking-widest font-medium">Level 5 Access</p>
                         </div>
                     </div>
@@ -116,9 +114,8 @@ export default async function DashboardLayout({
       
       {/* MAIN CONTENT SECTION */}
       <main className="flex-1 flex flex-col h-full relative overflow-hidden p-2 pb-[100px] md:pb-0 md:p-4 md:pl-0 w-full">
-        <div className="flex-1 bg-brand-dark/40 md:bg-brand-dark/40 border border-white/5 md:rounded-[40px] rounded-2xl relative overflow-hidden flex flex-col w-full h-full">
+        <div className="flex-1 bg-brand-dark border border-white/5 md:rounded-[40px] rounded-2xl relative overflow-hidden flex flex-col w-full h-full">
             <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-10 w-full relative z-10">
-                 <div className="absolute top-[-20%] right-[-10%] w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-brand-accent/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none" />
                  <div className="relative z-10 pb-20 md:pb-10">
                     {children}
                  </div>
@@ -127,17 +124,17 @@ export default async function DashboardLayout({
       </main>
 
       {/* MOBILE BOTTOM NAVIGATION */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-brand-onyx border-t border-white/5 px-2 sm:px-6 pt-3 pb-[env(safe-area-inset-bottom,1rem)] flex items-center justify-between z-50 shadow-2xl backdrop-blur-xl bg-opacity-95">
+      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-brand-onyx border-t border-white/5 px-2 sm:px-6 pt-3 pb-[env(safe-area-inset-bottom,1rem)] flex items-center justify-between z-50 shadow-2xl">
           <Link href="/dashboard" className="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-brand-accent transition-colors flex-1">
               <LayoutDashboard size={20} />
               <span className="text-[9px] font-bold uppercase tracking-wider">Overview</span>
           </Link>
           <Link href="/dashboard/comments" className="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-brand-accent transition-colors flex-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
-              <span className="text-[9px] font-bold uppercase tracking-wider">Chats</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider">Comments</span>
           </Link>
           <Link href="/dashboard/create" className="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-brand-accent transition-colors relative flex-1">
-              <div className="absolute -top-6 bg-brand-accent text-brand-dark p-3 rounded-full shadow-[0_0_20px_rgba(205,255,100,0.3)]">
+              <div className="absolute -top-6 bg-brand-accent text-brand-dark p-3 rounded-full">
                  <PackagePlus size={22} className="stroke-[2.5px]"/>
               </div>
               <span className="text-[9px] font-bold uppercase tracking-wider mt-5">Deploy</span>
