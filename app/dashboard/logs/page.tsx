@@ -19,11 +19,11 @@ export default async function LogsPage() {
         </p>
       </div>
 
-      <div className="flex-1 bg-brand-dark/50 border border-white/5 rounded-3xl overflow-hidden flex flex-col relative">
+      <div className="flex-1 bg-brand-dark border border-white/5 rounded-3xl overflow-hidden flex flex-col relative">
           <div className="absolute top-0 right-0 p-4">
-              <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                  <span className="text-[9px] font-bold text-green-500 uppercase tracking-widest">Logging Active</span>
+              <div className="flex items-center gap-2 bg-brand-dark border border-white/5 px-3 py-1.5 rounded-full">
+                  <span className="w-2 h-2 rounded-full bg-brand-sage"></span>
+                  <span className="text-[9px] font-bold text-brand-sage uppercase tracking-widest">Logging Active</span>
               </div>
           </div>
 
@@ -44,7 +44,7 @@ export default async function LogsPage() {
 
                         <div className="flex-1 min-w-0">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                                <span className="text-[10px] font-black uppercase tracking-widest text-brand-accent bg-brand-accent/10 px-2 py-0.5 rounded-md inline-block w-max">
+                                <span className="text-[10px] font-black uppercase tracking-widest text-brand-accent bg-brand-dark px-2 py-0.5 rounded-md inline-block w-max">
                                     {log.action}
                                 </span>
                                 <span className="text-[9px] text-gray-500 flex items-center gap-1 uppercase tracking-wider font-bold">
