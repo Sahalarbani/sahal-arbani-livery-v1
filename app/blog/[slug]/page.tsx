@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { cache } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, Calendar } from 'lucide-react';
 import { AdSlot } from '@/components/AdSlot';
@@ -14,9 +14,16 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+// generateMetadata() dan BlogPost() dulu masing-masing query
+// prisma.blogPost.findUnique() sendiri; cache() mendedupe jadi 1 query
+// per request.
+const getArticle = cache(async (slug: string) =>
+  prisma.blogPost.findUnique({ where: { slug } })
+);
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  const article = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
+  const article = await getArticle(params.slug);
   if (!article) return {};
 
   return {
@@ -34,8 +41,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function BlogPost(props: Props) {
   const params = await props.params;
-  const article = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
-  const adSettings = await getAdSettings();
+  // Dulu berurutan: findUnique() lalu getAdSettings(). Keduanya
+  // independen, jadi paralel.
+  const [article, adSettings] = await Promise.all([
+    getArticle(params.slug),
+    getAdSettings(),
+  ]);
 
   if (!article) notFound();
 

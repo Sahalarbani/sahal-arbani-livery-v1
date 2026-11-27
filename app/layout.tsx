@@ -16,7 +16,8 @@
  *   setelah mount, atau aktifkan kembali setelah layout statis terverifikasi.
  */
 
-import React from 'react';
+import React, { Suspense } from 'react';
+import { NavigationProgress } from '@/components/NavigationProgress';
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
@@ -94,6 +95,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans font-medium antialiased bg-brand-dark text-gray-200 min-h-screen flex flex-col">
+        <Suspense fallback={null}>
+          <NavigationProgress />
+        </Suspense>
         <Navbar user={null} />
 
         <main className="flex-grow">

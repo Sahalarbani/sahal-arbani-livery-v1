@@ -1,3 +1,4 @@
+import { cache, Suspense } from "react";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { ArrowLeft, Calendar, User, CheckCircle, XCircle, AlertTriangle, Home } from "lucide-react";
@@ -10,6 +11,7 @@ import { CommentSection } from "@/components/CommentSection";
 import { AdSlot } from "@/components/AdSlot";
 import { getAdSettings } from "@/lib/actions/ads";
 import { SITE_URL } from "@/lib/site";
+import { SkeletonBox, SkeletonListItem } from "@/components/Skeleton";
 
 // ✅ Caching Strategy: Incremental Static Regeneration (ISR)
 export const revalidate = 60;
@@ -47,11 +49,43 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+// Navigasi lambat: generateMetadata() dan SkinPage() dulu masing-masing
+// query prisma.skin.findUnique() sendiri (2 query berurutan per kunjungan).
+// React cache() mendedupe keduanya dalam satu request jadi 1 query.
+// Komentar TIDAK ikut di sini supaya shell halaman tidak diblokir
+// menunggu komentar — komentar di-streaming terpisah di bawah.
+const getSkin = cache(async (id: string) =>
+  prisma.skin.findUnique({ where: { id } })
+);
+
+const getSkinComments = cache(async (id: string) => {
+  const skin = await prisma.skin.findUnique({
+    where: { id },
+    select: { comments: { orderBy: { createdAt: "desc" } } },
+  });
+  return skin?.comments ?? [];
+});
+
+// Server component terpisah supaya komentar bisa di-streaming lewat
+// <Suspense>: shell + gambar tampil dulu, komentar menyusul.
+async function SkinComments({ skinId, initialUserName }: { skinId: string; initialUserName: string }) {
+  const comments = await getSkinComments(skinId);
+  return <CommentSection skinId={skinId} comments={comments} initialUserName={initialUserName} />;
+}
+
+function CommentsSkeleton() {
+  return (
+    <div className="mt-12 pt-12 border-t border-white/5 space-y-6" aria-label="Loading comments">
+      <SkeletonBox className="h-6 w-48" />
+      <SkeletonListItem />
+      <SkeletonListItem />
+    </div>
+  );
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const skin = await prisma.skin.findUnique({
-    where: { id: resolvedParams.id },
-  });
+  const skin = await getSkin(resolvedParams.id);
 
   if (!skin) return { title: "Skin Not Found" };
 
@@ -77,17 +111,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SkinPage({ params }: Props) {
   const resolvedParams = await params;
-  const session = await auth();
-  const adSettings = await getAdSettings();
-
-  const skin = await prisma.skin.findUnique({
-    where: { id: resolvedParams.id },
-    include: {
-      comments: {
-        orderBy: { createdAt: 'desc' }
-      }
-    }
-  });
+  // Dulu berurutan: auth() -> getAdSettings() -> findUnique() (ditambah
+  // query metadata terpisah). Ketiganya independen, jadi paralel.
+  const [session, adSettings, skin] = await Promise.all([
+    auth(),
+    getAdSettings(),
+    getSkin(resolvedParams.id),
+  ]);
 
   if (!skin) return notFound();
 
@@ -254,12 +284,14 @@ export default async function SkinPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Comment Section with Cloudflare Turnstile */}
-        <CommentSection
-          skinId={skin.id}
-          comments={skin.comments}
-          initialUserName={session?.user?.name || ""}
-        />
+        {/* Comment Section with Cloudflare Turnstile — di-streaming:
+            shell halaman tidak menunggu query komentar selesai. */}
+        <Suspense fallback={<CommentsSkeleton />}>
+          <SkinComments
+            skinId={skin.id}
+            initialUserName={session?.user?.name || ""}
+          />
+        </Suspense>
       </div>
     </div>
   );
