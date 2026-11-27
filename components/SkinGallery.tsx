@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Search, LayoutGrid } from "lucide-react";
 import { SkinCard } from "@/components/SkinCard";
 import type { Skin } from "../types";
+import { canonicalCategory } from "@/services/skin.service";
 
 // B1: pencarian & filter homepage dipindah ke client.
 // Homepage server tetap force-static / ISR (revalidate 3600) supaya
@@ -22,7 +23,9 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
         skin.title.toLowerCase().includes(q) ||
         skin.description.toLowerCase().includes(q);
       const matchesCategory =
-        category === "ALL" || skin.category.toLowerCase() === category.toLowerCase();
+        category === "ALL" ||
+        canonicalCategory(skin.category).toLowerCase() ===
+          canonicalCategory(category).toLowerCase();
       return matchesQuery && matchesCategory;
     });
   }, [skins, query, category]);
@@ -59,7 +62,9 @@ export function SkinGallery({ skins, categories }: { skins: Skin[]; categories: 
       {/* Category filters */}
       <div className="flex flex-wrap justify-center gap-2 mb-6" role="group" aria-label="Filter by category">
         {categories.map((cat) => {
-          const isActive = category.toUpperCase() === cat.toUpperCase();
+          const isActive =
+            canonicalCategory(category).toLowerCase() ===
+            canonicalCategory(cat).toLowerCase();
           return (
             <button
               key={cat}
