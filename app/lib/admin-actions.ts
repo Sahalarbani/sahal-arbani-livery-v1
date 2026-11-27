@@ -19,7 +19,7 @@ export async function getCommentsAction() {
     }
   }
   
-  export async function deleteCommentAction(id: string) {
+  export async function deleteCommentAction(id: string): Promise<{ success: boolean; error?: string }> {
     const session = await auth();
     if (session?.user?.role !== "admin") throw new Error("Unauthorized");
   
@@ -41,7 +41,7 @@ export async function getCommentsAction() {
       return { success: true };
     } catch (e) {
       console.error(e);
-      return { error: "Failed to delete comment" };
+      return { success: false, error: "Failed to delete comment" };
     }
   }
   

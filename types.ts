@@ -13,6 +13,17 @@ declare module "next-auth" {
   }
 }
 
+// JWT lives in @auth/core/jwt; "next-auth/jwt" hanya me-re-export tipe ini,
+// jadi augmentasi harus menarget modul aslinya agar token.id / token.role
+// di callback jwt (auth.ts) lolos pengecekan tipe. Tanpa ini, TypeScript
+// menganggap JWT tidak punya properti id/role dan build gagal.
+declare module "@auth/core/jwt" {
+  interface JWT {
+    id?: string;
+    role?: string;
+  }
+}
+
 // --- Batas Kode Baru (Biarkan kode lama di bawah ini tetap ada) ---
 
 

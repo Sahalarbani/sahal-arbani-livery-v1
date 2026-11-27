@@ -9,11 +9,11 @@ export async function addComment(formData: {
   userImage?: string;
   content: string;
   token: string;
-}) {
+}): Promise<{ success: boolean; error?: string }> {
   const { skinId, userName, userImage, content, token } = formData;
 
   if (!content || content.trim().length === 0) {
-    return { error: "Content is required" };
+    return { success: false, error: "Content is required" };
   }
 
   // Verify Turnstile Token (Cloudflare)
@@ -31,7 +31,7 @@ export async function addComment(formData: {
 
   const outcome = await response.json();
   if (!outcome.success && process.env.NODE_ENV === 'production') {
-    return { error: "Security check failed. Please try again." };
+    return { success: false, error: "Security check failed. Please try again." };
   }
 
   try {
@@ -59,6 +59,6 @@ export async function addComment(formData: {
     return { success: true };
   } catch (error) {
     console.error("Failed to add comment:", error);
-    return { error: "Failed to post comment" };
+    return { success: false, error: "Failed to post comment" };
   }
 }

@@ -35,8 +35,21 @@ export async function getSkins(query: string = '', categoryFilter: string = 'ALL
     });
   }
 
+  // Optimasi cache (branch optimasi-cache):
+  // Ambil hanya kolom yang dipakai SkinCard / homepage, dan batasi
+  // ke 24 skin terbaru. Sebelumnya semua kolom diambil tanpa batas.
   return await prisma.skin.findMany({
     where: whereCondition,
     orderBy: { createdAt: 'desc' },
+    take: 24,
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      category: true,
+      image: true,
+      downloads: true,
+      createdAt: true,
+    },
   });
 }
