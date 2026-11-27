@@ -7,28 +7,19 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="relative mt-20 border-t border-white/5 bg-brand-dark">
-      {/* Top Glow Accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-12 border-b border-white/5 pb-12">
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-white/5 pb-12">
-          
           {/* Brand Column (Span 5) */}
           <div className="md:col-span-5 space-y-6">
             <div className="group cursor-default">
               <h2 className="text-xl md:text-2xl font-black tracking-tight text-white uppercase flex items-center gap-2">
-                SAHAL ARBANI <span className="text-brand-accent text-sm md:text-lg">/ LIVERY</span>
+                SAHAL ARBANI&nbsp;<span className="text-brand-accent text-sm md:text-lg">/ LIVERY</span>
               </h2>
               <p className="mt-4 text-gray-400 text-sm font-medium leading-relaxed max-w-sm">
-                Premium digital assets for the simulation racing ecosystem. 
+                Premium digital assets for the simulation racing ecosystem.
                 Forging the gap between virtual performance and visual dominance.
               </p>
-            </div>
-            
-            {/* System Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/5 border border-brand-accent/10">
-              <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-              <span className="text-[10px] font-bold text-brand-accent uppercase tracking-wider">All Systems Operational</span>
             </div>
           </div>
 
@@ -48,7 +39,7 @@ export const Footer: React.FC = () => {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-gray-500 hover:text-white transition-colors text-sm font-medium flex items-center gap-2 group"
+                    className="text-gray-500 hover:text-white transition-colors text-sm font-medium flex items-center gap-2 group min-h-[44px] md:min-h-0"
                   >
                     <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-brand-accent transition-colors" />
                     {item.label}
@@ -72,7 +63,7 @@ export const Footer: React.FC = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/5 text-gray-400 hover:text-brand-dark hover:bg-brand-accent hover:border-brand-accent transition-all duration-300 hover:scale-110"
+                  className="w-11 h-11 flex items-center justify-center rounded-full bg-white/5 border border-white/5 text-gray-400 hover:text-brand-dark hover:bg-brand-accent hover:border-brand-accent transition-all duration-300"
                   aria-label={social.label}
                 >
                   {social.label === 'TikTok' ? (
@@ -85,8 +76,9 @@ export const Footer: React.FC = () => {
                 </a>
               ))}
             </div>
+            {/* &nbsp; supaya "for Sahal Arbani" terbaca utuh oleh screen reader / copy-paste */}
             <p className="mt-6 text-xs text-gray-600 font-medium leading-relaxed max-w-md">
-              Official Hub for{" "}<span className="text-gray-400">Sahal Arbani</span> (TikTok: <span className="text-gray-400">@sahal.arbani</span>). 
+              Official Hub for&nbsp;<span className="text-gray-400">Sahal Arbani</span>&nbsp;(TikTok: <span className="text-gray-400">@sahal.arbani</span>).
               Premium Livery designer for the Wanda Software simulation community.
             </p>
           </div>
@@ -95,12 +87,12 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 opacity-60">
           <p className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-             &copy; {currentYear} SAHAL ARBANI LIVERY.
+            {`© ${currentYear} SAHAL ARBANI LIVERY.`}
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy-policy" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors">Privacy</Link>
-            <Link href="/terms-of-service" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors">Terms</Link>
-            <Link href="/contact" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors">Contact</Link>
+            <Link href="/privacy-policy" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors min-h-[44px] md:min-h-0 flex items-center">Privacy</Link>
+            <Link href="/terms-of-service" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors min-h-[44px] md:min-h-0 flex items-center">Terms</Link>
+            <Link href="/contact" className="text-[10px] font-bold text-gray-500 hover:text-brand-accent uppercase tracking-wider transition-colors min-h-[44px] md:min-h-0 flex items-center">Contact</Link>
           </div>
         </div>
       </div>
