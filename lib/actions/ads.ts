@@ -21,6 +21,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
 
 export async function getAdSettings() {
@@ -47,6 +48,14 @@ export async function updateAdSettings(data: {
   slotDownload: string;
 }): Promise<{ success: boolean; error?: string }> {
   try {
+    // SEC2: hanya admin boleh mengubah pengaturan iklan. Sebelumnya fungsi
+    // ini tanpa cek auth sehingga siapa pun bisa memanggil server action ini
+    // dan mengganti publisherId AdSense.
+    const session = await auth();
+    if (!session?.user || session.user.role !== "admin") {
+      return { success: false, error: "Unauthorized" };
+    }
+
     await prisma.adSetting.upsert({
       where: { id: "global-ads" },
       update: data,
@@ -62,3 +71,4 @@ export async function updateAdSettings(data: {
     return { success: false, error: "Failed to update settings" };
   }
 }
+

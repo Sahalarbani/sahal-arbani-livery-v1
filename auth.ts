@@ -11,6 +11,15 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import { authConfig } from "./auth.config"; 
 
+// SEC1: AUTH_SECRET wajib dari environment. Jangan pernah pakai fallback
+// hardcode — secret yang tertulis di repo publik bisa dipakai siapa pun
+// untuk menempa sesi JWT admin. Gagal start dengan pesan jelas kalau kosong.
+if (!process.env.AUTH_SECRET) {
+  throw new Error(
+    "AUTH_SECRET is not set. Set a random secret (min. 32 characters) in the Vercel environment variables."
+  );
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: {
     ...PrismaAdapter(prisma),
@@ -25,7 +34,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   } as any,
   session: { strategy: "jwt" }, // Perubahan arsitektur ke JWT
   trustHost: true,
-  secret: process.env.AUTH_SECRET || "sahal-arbani-livery-secret-key-that-is-at-least-32-chars",
+  secret: process.env.AUTH_SECRET,
   ...authConfig,
   useSecureCookies: true,
   cookies: {
@@ -76,3 +85,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
+

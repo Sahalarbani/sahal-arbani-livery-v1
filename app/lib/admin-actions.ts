@@ -5,6 +5,13 @@ import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
 
 export async function getCommentsAction() {
+    // SEC4: hanya admin boleh membaca semua komentar (pola yang sama seperti
+    // deleteCommentAction di bawah).
+    const session = await auth();
+    if (!session?.user || session.user.role !== "admin") {
+      return [];
+    }
+
     try {
       const comments = await prisma.comment.findMany({
         orderBy: { createdAt: "desc" },
@@ -46,6 +53,12 @@ export async function getCommentsAction() {
   }
   
   export async function getLogsAction() {
+    // SEC4: hanya admin boleh membaca activity log.
+    const session = await auth();
+    if (!session?.user || session.user.role !== "admin") {
+      return [];
+    }
+
     try {
       const logs = await prisma.activityLog.findMany({
         orderBy: { createdAt: "desc" },
@@ -57,3 +70,4 @@ export async function getCommentsAction() {
       return [];
     }
   }
+
