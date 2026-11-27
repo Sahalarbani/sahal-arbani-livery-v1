@@ -9,9 +9,10 @@
  *   Keduanya membaca cookie / database di setiap request dan memaksa seluruh
  *   layout (dan semua halaman di bawahnya) menjadi dinamis, sehingga
  *   X-Vercel-Cache selalu MISS dan Cache-Control: private, no-cache.
- * - Navbar dipanggil dengan user={null} agar layout tetap statis.
- *   Session dibaca client-side dengan useSession() di komponen client
- *   (langkah lanjutan, lihat deskripsi PR).
+ * - Navbar dipanggil tanpa prop user agar layout tetap statis.
+ *   Session dibaca client-side oleh <NavbarAuth /> lewat GET
+ *   /api/auth/session (components/NavbarAuth.tsx), jadi Navbar menampilkan
+ *   nama + peran + tombol Keluar saat login, dan tombol Masuk saat belum.
  * - Script AdSense dihapus dari head server. Muat dari komponen client
  *   setelah mount, atau aktifkan kembali setelah layout statis terverifikasi.
  */
@@ -98,7 +99,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <NavigationProgress />
         </Suspense>
-        <Navbar user={null} />
+        <Navbar />
 
         <main className="flex-grow">
           {children}
