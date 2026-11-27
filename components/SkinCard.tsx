@@ -1,8 +1,9 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { Skin } from '../types';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Eye, Download } from 'lucide-react'; // Menggunakan icon Lucide agar konsisten
 
 import Image from 'next/image';
@@ -15,7 +16,22 @@ interface SkinCardProps {
 }
 
 export const SkinCard: React.FC<SkinCardProps> = ({ skin, onClick, href }) => {
-  
+  const router = useRouter();
+  const prefetchedRef = useRef(false);
+
+  // Prefetch saat ada niat klik (hover / fokus keyboard / sentuh), bukan
+  // saat semua kartu masuk viewport: prefetch 9 kartu sekaligus di
+  // homepage akan menembak 9 query detail skin ke DB (auth + iklan +
+  // skin) dan memperlambat halaman awal. Satu kartu = satu prefetch,
+  // sekali saja, supaya klik berikutnya sudah siap dan terasa instan.
+  // Default <Link> untuk halaman dinamis hanya prefetch sampai batas
+  // loading, jadi prefetch eksplisit ini yang membuat data siap.
+  const prefetchDetail = () => {
+    if (!href || prefetchedRef.current) return;
+    prefetchedRef.current = true;
+    router.prefetch(href);
+  };
+
   // LOGIC & CONTENT WRAPPER
   const CardContent = (
     <div className="group relative h-full flex flex-col bg-brand-onyx border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-lg hover:border-brand-accent/30">
@@ -78,7 +94,13 @@ export const SkinCard: React.FC<SkinCardProps> = ({ skin, onClick, href }) => {
 
   if (href) {
     return (
-      <Link href={href} className={containerClasses}>
+      <Link
+        href={href}
+        className={containerClasses}
+        onMouseEnter={prefetchDetail}
+        onFocus={prefetchDetail}
+        onTouchStart={prefetchDetail}
+      >
         {CardContent}
       </Link>
     );
