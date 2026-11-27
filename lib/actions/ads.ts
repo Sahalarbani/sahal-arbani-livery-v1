@@ -45,7 +45,7 @@ export async function updateAdSettings(data: {
   slotDetail: string;
   slotBlog: string;
   slotDownload: string;
-}) {
+}): Promise<{ success: boolean; error?: string }> {
   try {
     await prisma.adSetting.upsert({
       where: { id: "global-ads" },
@@ -59,6 +59,6 @@ export async function updateAdSettings(data: {
     return { success: true };
   } catch (error) {
     console.error("Failed to update ad settings:", error);
-    return { error: "Failed to update settings" };
+    return { success: false, error: "Failed to update settings" };
   }
 }
