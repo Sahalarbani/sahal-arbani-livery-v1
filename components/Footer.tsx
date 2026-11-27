@@ -1,12 +1,12 @@
 import React from 'react';
-import { Youtube, Instagram, MessageSquare, Terminal, Shield, ExternalLink } from 'lucide-react';
+import { MessageSquare, Terminal, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 border-t border-white/5 bg-brand-dark/60 backdrop-blur-2xl">
+    <footer className="relative mt-20 border-t border-white/5 bg-brand-dark">
       {/* Top Glow Accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent" />
 
@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
             
             {/* System Status Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/5 border border-brand-accent/10">
-              <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+              <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
               <span className="text-[10px] font-bold text-brand-accent uppercase tracking-wider">All Systems Operational</span>
             </div>
           </div>
@@ -38,14 +38,20 @@ export const Footer: React.FC = () => {
               <Terminal size={14} className="text-brand-accent" /> Navigation
             </h3>
             <ul className="space-y-3">
-              {['Home', 'Blog', 'Gallery', 'About', 'Dashboard'].map((item) => (
-                <li key={item}>
-                  <Link 
-                    href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `/#${item.toLowerCase()}`}
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'Blog', href: '/blog' },
+                { label: 'Gallery', href: '/#gallery' },
+                { label: 'About', href: '/#about' },
+                { label: 'Dashboard', href: '/dashboard' },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
                     className="text-gray-500 hover:text-white transition-colors text-sm font-medium flex items-center gap-2 group"
                   >
                     <span className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-brand-accent transition-colors" />
-                    {item === 'Blog' ? 'Insight' : item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -60,8 +66,6 @@ export const Footer: React.FC = () => {
             <div className="flex gap-4">
               {[
                 { icon: MessageSquare, label: 'TikTok', href: 'https://www.tiktok.com/@sahal.arbani' },
-                { icon: Youtube, label: 'Youtube', href: '#' },
-                { icon: Instagram, label: 'Instagram', href: '#' }
               ].map((social) => (
                 <a
                   key={social.label}
@@ -81,8 +85,8 @@ export const Footer: React.FC = () => {
                 </a>
               ))}
             </div>
-            <p className="mt-6 text-xs text-gray-600 font-medium leading-relaxed">
-              Official Hub for <span className="text-gray-400">Sahal Arbani</span> (TikTok: <span className="text-gray-400">@sahal.arbani</span>). 
+            <p className="mt-6 text-xs text-gray-600 font-medium leading-relaxed max-w-md">
+              Official Hub for{" "}<span className="text-gray-400">Sahal Arbani</span> (TikTok: <span className="text-gray-400">@sahal.arbani</span>). 
               Premium Livery designer for the Wanda Software simulation community.
             </p>
           </div>
