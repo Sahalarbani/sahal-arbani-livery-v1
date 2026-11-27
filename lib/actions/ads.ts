@@ -10,14 +10,18 @@
  *   dan memaksa akses tulis ke database saat baca. Buat data awal
  *   "global-ads" sekali lewat seed / dashboard (updateAdSettings),
  *   bukan saat ada pengunjung.
- * - Tambah getAdSettingsCached() dengan unstable_cache (revalidate 3600)
- *   agar homepage ISR tidak perlu query Prisma di setiap revalidasi.
+ *
+ * Perbaikan build (branch optimasi-cache, setelah Vercel gagal):
+ * - Hapus getAdSettingsCached() dengan unstable_cache dari file ini.
+ *   File "use server" hanya boleh mengekspor async function, dan
+ *   mengekspor const dari unstable_cache membuat build Next.js gagal.
+ *   ISR dengan revalidate 3600 di app/page.tsx sudah cukup untuk caching.
  */
 
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { revalidatePath, unstable_cache } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async function getAdSettings() {
   try {
@@ -33,12 +37,6 @@ export async function getAdSettings() {
     return null;
   }
 }
-
-export const getAdSettingsCached = unstable_cache(
-  async () => getAdSettings(),
-  ["ad-settings"],
-  { revalidate: 3600 }
-);
 
 export async function updateAdSettings(data: {
   publisherId: string;
