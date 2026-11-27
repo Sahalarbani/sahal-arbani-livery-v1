@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout }) => {
 
   const handleLogout = () => {
     if (onLogout) onLogout();
-    else signOut();
+    else signOut({ callbackUrl: "/" });
   };
 
   const closeMenu = () => setIsOpen(false);

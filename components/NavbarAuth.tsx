@@ -76,7 +76,9 @@ export const NavbarAuth: React.FC<NavbarAuthProps> = ({
   const handleLogout = () => {
     onNavigate?.();
     if (onLogout) onLogout();
-    else signOut();
+    // callbackUrl "/": setelah logout mendarat di homepage, bukan kembali
+    // ke halaman saat itu (mis. /dashboard) yang lalu redirect ke login.
+    else signOut({ callbackUrl: "/" });
   };
 
   if (!loaded) {
