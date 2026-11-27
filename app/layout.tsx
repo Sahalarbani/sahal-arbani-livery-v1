@@ -3,6 +3,17 @@
  * Version: 2.1.2
  * Date: 2026-04-24
  * Description: Pembaruan arsitektur metadata untuk SEO. Mengganti seluruh referensi arbskin.vercel.app menjadi sahalarbani.my.id. Menambahkan konfigurasi alternates canonical untuk memperbaiki isu duplikasi di Google Search Console.
+ *
+ * Optimasi cache (branch optimasi-cache):
+ * - RootLayout dibuat sync: hapus await auth() dan await getAdSettings().
+ *   Keduanya membaca cookie / database di setiap request dan memaksa seluruh
+ *   layout (dan semua halaman di bawahnya) menjadi dinamis, sehingga
+ *   X-Vercel-Cache selalu MISS dan Cache-Control: private, no-cache.
+ * - Navbar dipanggil dengan user={null} agar layout tetap statis.
+ *   Session dibaca client-side dengan useSession() di komponen client
+ *   (langkah lanjutan, lihat deskripsi PR).
+ * - Script AdSense dihapus dari head server. Muat dari komponen client
+ *   setelah mount, atau aktifkan kembali setelah layout statis terverifikasi.
  */
 
 import React from 'react';
@@ -11,13 +22,11 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { auth } from '@/auth';
 import CookieConsent from '@/components/CookieConsent';
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from 'next/script';
-import { getAdSettings } from '@/lib/actions/ads';
 import { SITE_URL } from '@/lib/site';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -56,27 +65,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
-  const adSettings = await getAdSettings();
-
   return (
     <html lang="id" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
-                {adSettings?.isAdsActive && adSettings?.publisherId && (
-                  <Script
-                    id="adsense"
-                    async
-                    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adSettings.publisherId}`}
-                    crossOrigin="anonymous"
-                    strategy="afterInteractive"
-                  />
-                )}
-
         <Script
           id="json-ld-person"
           type="application/ld+json"
@@ -98,7 +94,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="font-sans font-medium antialiased bg-brand-dark text-gray-200 min-h-screen flex flex-col">
-        <Navbar user={session?.user as any} />
+        <Navbar user={null} />
 
         <main className="flex-grow">
           {children}
